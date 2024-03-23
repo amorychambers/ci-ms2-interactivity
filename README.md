@@ -1,39 +1,238 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Tea & Time Teahouse
 
-Welcome,
+![Website homepage on different devices](docs/am-i-responsive.png)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Developed by Benedict Amory Chambers
+## Table of Contents
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+1. [Project Goals](#project-goals)
+    1. [User Goals](#user-goals)
+    2. [Site Goals](#site-goals)
+2. [User Experience](#user-experience)
+    1. [Target Audience](#target-audience)
+    2. [User Stories](#user-stories)
+3. [Design](#design)
+    1. [Design Choices](#design-choices)
+    2. [Colours](#colours)
+    3. [Fonts](#fonts)
+    4. [Structure](#structure)
+    5. [Wireframes](#wireframes)
+4. [Technologies](#technologies)
+    1. [Languages](#languages)
+    2. [Frameworks and Tools](#frameworks-and-tools)
+5. [Features](#features)
+6. [Testing](#testing)
+    1. [HTML Validation](#HTML-validation)
+    2. [CSS Validation](#CSS-validation)
+    3. [JavaScript Validation](#javascript-validation)
+    4. [Accessibility](#accessibility)
+    5. [Performance](#performance)
+    6. [Compatibility](#compatibility)
+    7. [Testing user stories](#testing-user-stories)
+7. [Bugs](#bugs)
+8. [Credits](#credits)
+9. [Deployment](#deployment)
+10. [Acknowledgements](#acknowledgements)
 
-## Codeanywhere Reminders
+## Project Goals
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
 
-`python3 -m http.server`
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+### User Goals
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
 
-`http_server`
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Site Goals
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
+### Developer Goals
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
----
 
-Happy coding!
+## User Experience
+
+### Target Audience
+
+
+
+### User Stories 
+
+#### First-time User
+
+
+#### Returning User
+
+
+#### Site Owner
+
+
+## Design
+
+### Design Choices
+
+
+
+### Colours
+
+
+### Fonts
+
+
+
+### Structure 
+
+
+
+### Wireframes
+
+
+Wireframes created in Balsamiq 
+
+<details><summary>Homepage</summary>
+<img src="docs/wireframes/mobile-homepage.png">
+<img src="docs/wireframes/tablet-homepage.png">
+<img src="docs/wireframes/desktop-homepage.png">
+</details>
+
+
+
+## Technologies 
+
+### Languages
+
+HTML5
+
+CSS3
+
+### Frameworks and Tools
+
+[Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+
+[Visual Studio Code](https://code.visualstudio.com/)
+
+[Git](github.com)
+
+[Google Fonts](https://fonts.google.com/)
+
+[Balsamiq](https://balsamiq.com/)
+
+[Canva](https://www.canva.com/colors/color-wheel/)
+
+[Obsidian](https://obsidian.md/)
+
+[Pexels](https://www.pexels.com/)
+
+[Imagemin](https://github.com/imagemin/imagemin-cli)
+
+[cwebp Encoder](https://developers.google.com/speed/webp/docs/cwebp)
+
+[Font Awesome](https://fontawesome.com/)
+
+[Favicon](https://favicon.io/)
+
+[W3C Markup Validation Service](https://validator.w3.org/)
+
+[W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+
+[WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+[Accessible Color Generator](https://www.learnui.docs/tools/accessible-color-generator.html)
+
+[Am I Responsive?](https://ui.dev/amiresponsive)
+
+[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)
+
+
+## Features
+
+### Header and Navigation
+
+
+
+### Landing Page
+
+
+### Ethos Images
+
+
+### Visiting Information
+
+
+### Map
+
+
+### Footer
+
+
+### Tea Menu
+
+
+### Upcoming Events
+
+
+### Past Events
+
+
+
+### Contact Form
+
+
+
+### 404 Error
+
+
+## Testing
+
+### HTML Validation
+
+
+### CSS Validation
+
+### JavaScript Validation
+
+
+### Accessibility
+
+
+
+
+### Performance
+
+
+
+
+### Compatibility 
+
+
+### Testing User Stories
+
+#### First-Time User
+
+
+
+#### Returning User
+
+
+#### Site Owner
+
+
+## Bugs
+
+
+## Credits
+
+### Media Content
+
+
+### External Code
+
+- Initial template with .devcontainer folder cloned from Code Institute [ci-full-template](https://github.com/Code-Institute-Org/ci-full-template)
+- Initial boilerplate HTML head from [Emmet extension](https://emmet.io/) in Visual Studio Code
+- Code snippet for navigation bar from [Bootstrap v5.3 documentation](https://getbootstrap.com/docs/5.3/components/navbar/)
+
+## Deployment
+
+
+## Acknowledgements
