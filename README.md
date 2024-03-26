@@ -1,4 +1,4 @@
-# Tea & Time Teahouse
+# Lost in Library - Steam Games
 
 ![Website homepage on different devices](docs/am-i-responsive.png)
 
@@ -117,8 +117,6 @@ CSS3
 [Google Fonts](https://fonts.google.com/)
 
 [Balsamiq](https://balsamiq.com/)
-
-[Canva](https://www.canva.com/colors/color-wheel/)
 
 [Obsidian](https://obsidian.md/)
 
