@@ -39,7 +39,7 @@
         </nav>
         <div class="container">
             <div class="row">
-                <div class="col m-3 center">
+                <div class="col m-4 center">
                     <p>Lost in Library is a memory game that will challenge you to remember the forgotten, unplayed
                         games in your Steam Library. Once they are dragged up from the mire of sales, bundles, and
                         forgotten buys, consider giving one of them a chance, if you aren't too sore about losing...
@@ -51,14 +51,14 @@
     <section>
         <div class="container">
             <div class="row">
-                <h2 class='heading'>Play</h2>
+                <h2 class='heading mb-4'>Play</h2>
                 <div class="col center">
                     <p>Enter your Steam ID here to summon some games from the shadowy backlogs of your Steam library!
                     </p>
-                    <input type='text' placeholder='1234567890...'>
-                    <button>SUMMON</button>
-                    <p>All Games Mode</p>
-                    <input type='checkbox'>
+                    <input style='width: 100%' type='text' class='my-3' placeholder='1234567890...'>
+                    <button class='my-3'>SUMMON</button>
+                    <p class='m-3'>All Games Mode <input class='m-3' type='checkbox'></p>
+
                 </div>
             </div>
         </div>
@@ -66,8 +66,8 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2 class='heading'>Requirements</h2>
+                <div class="col-12 my-4">
+                    <h2 class='heading mb-4'>Requirements</h2>
                     <ul>
                         <li>A public Steam account</li>
                         <li>At least four games in your Steam library</li>
@@ -75,14 +75,15 @@
                     </ul>
                 </div>
                 <div class="col-12">
-                    <h2 class="heading">About</h2>
-                    <p>Lost in Library will select four random unplayed games from your Steam Library and add them to
+                    <h2 class="heading mb-4">About</h2>
+                    <p class='m-2'>Lost in Library will select four random unplayed games from your Steam Library and
+                        add them to
                         the board. When you select New Game, you will see a sequence of these games presented on the
                         board. Once the sequence is complete, you must remember the pattern and select the correct games
                         in the same order using the buttons below. If you succeed, the next round will start with one
                         additional turn in the sequence. If you fail, you must restart the game, or go download the game
                         that beat you and give it a chance!</p>
-                    <p>
+                    <p class='m-2'>
                         The player wins if they successfully complete round ten. The prize for your victory is that you
                         are absolved of any guilt for ignoring your backlog of unplayed games and are free to replay an
                         old favourite once again. If the player loses, they will be presented with some info about the
@@ -93,7 +94,9 @@
         </div>
     </section>
     <footer>
-        <a href='privacy.html'>Privacy Policy</a>
+        <div class='center my-3'>
+            <a href='privacy.html'>Privacy Policy</a>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
