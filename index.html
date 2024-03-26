@@ -1,51 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Lost in Library - A Memory Game" content="Lost in Library is a memory game that will challenge you to remember the forgotten, unplayed games in your Steam Library. Once they are dragged up from the mire of sales, bundles, and forgotten buys, consider giving one of them a chance, if you aren't too sore about losing...
-"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Lost in Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Lost in Library - A Memory Game" content="Lost in Library is a memory game that will challenge you to remember the forgotten, unplayed games in your Steam Library. Once they are dragged up from the mire of sales, bundles, and forgotten buys, consider giving one of them a chance, if you aren't too sore about losing...
+" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Lost in Library</title>
 </head>
+
 <body>
     <header>
         <!-- Navbar code snippet from Bootstrap v5.3 documentation-->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">Lost in Library<span class='d-none d-lg-inline'> | A Memory Game</span></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item ms-auto">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item ms-auto">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                  </li>
-                </ul>
-              </div>
+                <a class="navbar-brand" href="index.html">Lost in Library<span class='d-none d-lg-inline'> | A Memory
+                        Game</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </nav>
-          <div class="container">
+        </nav>
+        <div class="container">
             <div class="row">
                 <div class="col m-3 center">
-                    <p>Lost in Library is a memory game that will challenge you to remember the forgotten, unplayed games in your Steam Library. Once they are dragged up from the mire of sales, bundles, and forgotten buys, consider giving one of them a chance, if you aren't too sore about losing...
+                    <p>Lost in Library is a memory game that will challenge you to remember the forgotten, unplayed
+                        games in your Steam Library. Once they are dragged up from the mire of sales, bundles, and
+                        forgotten buys, consider giving one of them a chance, if you aren't too sore about losing...
                     </p>
                 </div>
             </div>
-          </div>
+        </div>
     </header>
-    <section></section>
-    <section></section>
-    <footer></footer>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <section>
+        <div class="container">
+            <div class="row">
+                <h2 class='heading'>Play</h2>
+                <div class="col center">
+                    <p>Enter your Steam ID here to summon some games from the shadowy backlogs of your Steam library!
+                    </p>
+                    <input type='text' placeholder='1234567890...'>
+                    <button>SUMMON</button>
+                    <p>All Games Mode</p>
+                    <input type='checkbox'>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class='heading'>Requirements</h2>
+                    <ul>
+                        <li>A public Steam account</li>
+                        <li>At least four games in your Steam library</li>
+                        <li>Your Steam ID</li>
+                    </ul>
+                </div>
+                <div class="col-12">
+                    <h2 class="heading">About</h2>
+                    <p>Lost in Library will select four random unplayed games from your Steam Library and add them to
+                        the board. When you select New Game, you will see a sequence of these games presented on the
+                        board. Once the sequence is complete, you must remember the pattern and select the correct games
+                        in the same order using the buttons below. If you succeed, the next round will start with one
+                        additional turn in the sequence. If you fail, you must restart the game, or go download the game
+                        that beat you and give it a chance!</p>
+                    <p>
+                        The player wins if they successfully complete round ten. The prize for your victory is that you
+                        are absolved of any guilt for ignoring your backlog of unplayed games and are free to replay an
+                        old favourite once again. If the player loses, they will be presented with some info about the
+                        game they should have picked that may entice you to give it a shot.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <a href='privacy.html'>Privacy Policy</a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

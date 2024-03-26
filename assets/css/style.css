@@ -1,5 +1,10 @@
-/* -------------------- Spacing -------------------- */
+/* -------------------- General Styles -------------------- */
 
 .center {
     text-align: center;
+}
+
+.heading {
+    text-align: center;
+    text-transform: uppercase;
 }
