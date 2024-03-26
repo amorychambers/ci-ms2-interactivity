@@ -8,3 +8,21 @@
     text-align: center;
     text-transform: uppercase;
 }
+
+
+/* -------------------- Homepage -------------------- */
+
+
+input {
+    display: block;
+    width: 100%;
+}
+
+input[type='checkbox'] {
+    display: inline;
+    width: auto;
+}
+
+/* -------------------- Contact -------------------- */
+
+
