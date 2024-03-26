@@ -13,16 +13,19 @@
 /* -------------------- Homepage -------------------- */
 
 
-input {
+input[type='text'], input[type='textarea'] {
     display: block;
     width: 100%;
 }
 
-input[type='checkbox'] {
-    display: inline;
-    width: auto;
-}
+
 
 /* -------------------- Contact -------------------- */
 
+form input {
+    margin: 5px 0 20px 0;
+}
 
+form input[type='textarea'] {
+    min-height: 12vh;
+}

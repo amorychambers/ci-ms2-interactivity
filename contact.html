@@ -53,15 +53,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col mx-2">
+                <div class="col mx-2 mt-4">
                     <form method='POST' action=''>
                         <label for='name'>Name</label>
-                        <input type='text' id='name' name='name' placeholder='Name...'>
+                        <input type='text' id='name' name='name' placeholder='Name...' required>
                         <label for='email'>Email</label>
-                        <input type='text' id='email' name='email' placeholder='Email...'>
+                        <input type='text' id='email' name='email' placeholder='Email...' required>
                         <label for='message'>Message</label>
-                        <input type='textarea' id='message' name='message' placeholder='Type your message here...'>
-                        <input type='submit' value='Submit'>
+                        <input type='textarea' id='message' name='message' placeholder='Type your message here...' required>
+                        <div class='center'>
+                            <input type='submit' value='Submit'>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -69,7 +71,9 @@
         </div>
     </section>
     <footer>
-        <a href='privacy.html'>Privacy Policy</a>
+        <div class='center my-3'>
+            <a href='privacy.html'>Privacy Policy</a>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
