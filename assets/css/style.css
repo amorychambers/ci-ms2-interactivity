@@ -3,6 +3,8 @@
 body {
     background-color: #1b2838;
     color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
 }
 
 .dark-bg {
@@ -18,11 +20,17 @@ body {
 }
 
 .heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em;
     text-align: center;
     text-transform: uppercase;
     text-decoration: underline #ffc107;
 }
 
+.navbar-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+}
 
 /* -------------------- Homepage -------------------- */
 
