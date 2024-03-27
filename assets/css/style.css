@@ -1,5 +1,18 @@
 /* -------------------- General Styles -------------------- */
 
+body {
+    background-color: #1b2838;
+    color: #FFFFFF;
+}
+
+.dark-bg {
+    background-color: #0c1620;
+}
+
+.aside-text {
+    color: #969696;
+}
+
 .center {
     text-align: center;
 }
@@ -7,6 +20,7 @@
 .heading {
     text-align: center;
     text-transform: uppercase;
+    text-decoration: underline #ffc107;
 }
 
 
