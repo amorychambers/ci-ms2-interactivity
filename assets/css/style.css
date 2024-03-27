@@ -32,6 +32,11 @@ body {
     font-size: 2em;
 }
 
+footer a {
+    color:#969696;
+    text-decoration: none;
+}
+
 /* -------------------- Homepage -------------------- */
 
 
