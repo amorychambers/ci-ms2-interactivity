@@ -19,12 +19,16 @@ body {
     text-align: center;
 }
 
-.heading {
+.heading, .sub-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5em;
     text-align: center;
     text-transform: uppercase;
     text-decoration: underline #ffc107;
+}
+
+.sub-heading {
+    text-decoration: none;
 }
 
 .navbar-brand {
@@ -33,14 +37,15 @@ body {
 }
 
 footer a {
-    color:#969696;
+    color: #969696;
     text-decoration: none;
 }
 
 /* -------------------- Homepage -------------------- */
 
 
-input[type='text'], input[type='textarea'] {
+input[type='text'],
+input[type='textarea'] {
     display: block;
     width: 100%;
 }
@@ -54,4 +59,15 @@ form input {
 
 form input[type='textarea'] {
     min-height: 12vh;
+}
+
+
+/* -------------------- Game -------------------- */
+
+.card {
+    border: solid 1px white;
+    width: 40%;
+    height: 200px;
+    margin: 10px;
+    padding: 10px;
 }
