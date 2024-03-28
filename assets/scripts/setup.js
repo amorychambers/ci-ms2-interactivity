@@ -1,4 +1,4 @@
-const {api, steamID} = require('./key.js');
+import {api, steamID} from './key.js';
 
 const game = {
     steamLibrary: [],
@@ -12,7 +12,7 @@ var xhttp = new XMLHttpRequest();
 
 xhttp.onreadystatechange = function() {
     if (this.readyState = 4 && this.status == 200) {
-        game.steamLibrary = [xhttp.responseText];
+        document.getElementById('smello').innerHTML = xhttp.responseType;
     };
     // Check Steam API status options for different incorrect data inputs later and account for them with alerts
 
@@ -22,8 +22,8 @@ xhttp.open('GET', `https://api.steampowered.com/IPlayerService/GetOwnedGames/v00
 xhttp.send();
 
 function getSteamLibrary() {
-    console.log(typeof(xhttp.responseText));
-    console.log(game.steamLibrary);
-};
 
-module.exports = { game, getSteamLibrary };
+};
+console.log('smello');
+
+export { game, getSteamLibrary };

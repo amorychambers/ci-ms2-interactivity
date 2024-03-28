@@ -1,1 +1,1 @@
-const {api, steamID} = require('./key.js');
+import {api, steamID} from './key.js';

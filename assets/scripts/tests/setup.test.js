@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game, getSteamLibrary, requestStatus } = require('../setup.js');
+import { game, getSteamLibrary, requestStatus } from '../setup.js';
 
 describe('game object is ready for new game data', () => {
     test('steamLibrary key is empty', () => {
@@ -24,8 +24,6 @@ describe('game object is ready for new game data', () => {
 
 describe('game calls to the Steam Web API', () => {
     beforeAll(() => {
-        game.steamLibrary = [];
-        getSteamLibrary();
     });
     test('getSteamLibrary function connects to Steam Web API', () => {
         expect(game.steamLibrary.length).toBeGreaterThan(0);
