@@ -1,9 +1,11 @@
-// import { api } from './key.js';
-
 const {api} = require('./key.js');
 
 const game = {
-    steamLibrary: []
+    steamLibrary: [],
+    randomGames: [],
+    newSequence: [],
+    playerMoves: [],
+    currentScore: 0,
 };
 
 module.exports = { game };
