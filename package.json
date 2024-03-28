@@ -1,0 +1,14 @@
+{
+  "name": "ci-ms2-interactivity",
+  "version": "1.0.0",
+  "description": "![Website homepage on different devices](docs/am-i-responsive.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
