@@ -1,4 +1,4 @@
-const {api} = require('./key.js');
+const {api, steamID} = require('./key.js');
 
 const game = {
     steamLibrary: [],
@@ -8,4 +8,18 @@ const game = {
     currentScore: 0,
 };
 
-module.exports = { game };
+const xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState = 4 && this.status == 200) {
+        game.steamLibrary = [xhttp.responseText];
+    };
+    // Check Steam API status options for different incorrect data inputs later and account for them with alerts
+    
+};
+
+function getSteamLibrary() {
+
+};
+
+module.exports = { game, getSteamLibrary };

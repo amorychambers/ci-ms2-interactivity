@@ -229,6 +229,7 @@ CSS3
 - Initial template with .devcontainer folder cloned from Code Institute [ci-full-template](https://github.com/Code-Institute-Org/ci-full-template)
 - Initial boilerplate HTML head from [Emmet extension](https://emmet.io/) in Visual Studio Code
 - Code snippet for navigation bar from [Bootstrap v5.3 documentation](https://getbootstrap.com/docs/5.3/components/navbar/)
+- Common syntax for XMLHttpRequest in JavaScript from [W3Schools](https://www.w3schools.com/xml/xml_http.asp)
 
 ## Deployment
 
