@@ -8,18 +8,22 @@ const game = {
     currentScore: 0,
 };
 
-const xhttp = new XMLHttpRequest();
+var xhttp = new XMLHttpRequest();
 
 xhttp.onreadystatechange = function() {
     if (this.readyState = 4 && this.status == 200) {
         game.steamLibrary = [xhttp.responseText];
     };
     // Check Steam API status options for different incorrect data inputs later and account for them with alerts
-    
+
 };
 
-function getSteamLibrary() {
+xhttp.open('GET', `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${api}&steamid=${steamID}&include_appinfo=true&format=json`);
+xhttp.send();
 
+function getSteamLibrary() {
+    console.log(typeof(xhttp.responseText));
+    console.log(game.steamLibrary);
 };
 
 module.exports = { game, getSteamLibrary };
