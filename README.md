@@ -221,6 +221,8 @@ CSS3
 
 ## Credits
 
+- Thanks to[Dan Beyer](https://danbeyer.github.io/) for a useful guide on creating server side HTTP calls to the Steam Web API
+
 ### Media Content
 
 
@@ -230,6 +232,7 @@ CSS3
 - Initial boilerplate HTML head from [Emmet extension](https://emmet.io/) in Visual Studio Code
 - Code snippet for navigation bar from [Bootstrap v5.3 documentation](https://getbootstrap.com/docs/5.3/components/navbar/)
 - Common syntax for XMLHttpRequest in JavaScript from [W3Schools](https://www.w3schools.com/xml/xml_http.asp)
+// - Server code snippet for creating server side HTTP calls to the Steam Web API from [Dan Beyer](https://danbeyer.github.io/steamapi/page2.html)
 
 ## Deployment
 
