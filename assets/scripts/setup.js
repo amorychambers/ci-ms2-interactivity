@@ -17,22 +17,13 @@ function getSteamLibrary() {
 
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
-        // req.onreadystatechange = function () {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         game.steamLibrary = xhttp.responseText;
-        //         console.log('Success!')
-        //     } else {
-        //         console.log('Error in request')
-        //     };
-        req.addEventListener('load', function(){
-            if(req.status>= 200 && req.status<400){
-            var response = JSON.parse(req.responseText);
-            console.log(JSON.parse(req.responseText));
-            }
-            else {
-                console.log("Error in network request: " + req.statusText);
-            }
-        });
+        req.addEventListener('load',function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const steamData = JSON.parse(req.responseText);
+                game.steamLibrary = steamData.response.games;
+            } else {
+                console.log('Error type: ' + this.status)
+            }});
             // Check Steam API status options for different incorrect data inputs later and account for them with alerts
 
             req.send();

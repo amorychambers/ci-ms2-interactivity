@@ -23,3 +23,9 @@ Reset for a new game
 If player reaches tenth turn:
 Display success message
 (Optional: Display further data about the final game in the sequence using Steam API app news feature)
+
+
+Testing notes:
+Account for incorrect ID
+Account for private profile
+Account for fewer than four Steam games
