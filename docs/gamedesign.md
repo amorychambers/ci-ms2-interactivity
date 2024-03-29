@@ -1,7 +1,7 @@
 The game must:
 
 Setup a new game:
-Call the Steam API to select four random games
+Call the Steam API to select four random games 
 Download the image icons for the games
 Populate the board with hidden game images
 Populate the player cards with visible game images

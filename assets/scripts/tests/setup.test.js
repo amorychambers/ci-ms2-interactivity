@@ -2,7 +2,17 @@
  * @jest-environment jsdom
  */
 
-const { game, getSteamLibrary, requestStatus } = require('../setup.js');
+const { game, getSteamLibrary} = require('../setup.js');
+
+// Implementing JSDom using code snippets from Code Institute module 'A Software Testing Framework > Let's Meet Jest > Testing the DOM'
+
+beforeEach(() => {
+    let fs = require('fs');
+    let fileContents = fs.readFileSync('index.html', 'utf-8');
+    document.open();
+    document.write(fileContents);
+    document.close();
+})
 
 describe('game object is ready for new game data', () => {
     test('steamLibrary key is empty', () => {
@@ -24,6 +34,7 @@ describe('game object is ready for new game data', () => {
 
 describe('game calls to the Steam Web API', () => {
     beforeAll(() => {
+
     });
     test('getSteamLibrary function connects to Steam Web API', () => {
         expect(game.steamLibrary.length).toBeGreaterThan(0);
