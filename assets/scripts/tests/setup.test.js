@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { game, getSteamLibrary, requestStatus } from '../setup.js';
+const { game, getSteamLibrary, requestStatus } = require('../setup.js');
 
 describe('game object is ready for new game data', () => {
     test('steamLibrary key is empty', () => {
