@@ -4,9 +4,9 @@
 
 const { game, getSteamLibrary} = require('../setup.js');
 
-// Implementing JSDom using code snippets from Code Institute module 'A Software Testing Framework > Let's Meet Jest > Testing the DOM'
+// Implementing JSDom using code snippet from Code Institute module 'A Software Testing Framework > Let's Meet Jest > Testing the DOM'
 
-beforeEach(() => {
+beforeAll(() => {
     let fs = require('fs');
     let fileContents = fs.readFileSync('index.html', 'utf-8');
     document.open();

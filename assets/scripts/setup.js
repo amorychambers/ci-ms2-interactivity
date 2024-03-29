@@ -1,3 +1,10 @@
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const fs = require('fs');
+const fileContents = fs.readFileSync('index.html', 'utf-8');
+const document = new JSDOM(fileContents).window.document;
+
+
 const game = {
     steamLibrary: [],
     randomGames: [],
@@ -6,9 +13,8 @@ const game = {
     currentScore: 0,
 };
 
-
 document.getElementById('summon').addEventListener('click', getSteamLibrary);
-console.log(document.getElementById('summon'));
+
 
 function getSteamLibrary() {
 
