@@ -2,18 +2,21 @@
   "name": "ci-ms2-interactivity",
   "version": "1.0.0",
   "description": "![Website homepage on different devices](docs/am-i-responsive.png)",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
   "dependencies": {
-    "express": "^4.19.2",
-    "jsdom": "^24.0.0",
-    "request": "^2.88.2"
+    "jsdom": "^24.0.0"
   }
 }
