@@ -106,7 +106,11 @@ HTML5
 
 CSS3
 
+JavaScript
+
 ### Frameworks and Tools
+
+[Node.js](https://nodejs.org/en)
 
 [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
