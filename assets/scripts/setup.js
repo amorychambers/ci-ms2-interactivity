@@ -1,9 +1,3 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const fs = require('fs');
-const fileContents = fs.readFileSync('index.html', 'utf-8');
-const document = new JSDOM(fileContents).window.document;
-
 const game = {
     steamLibrary: [],
     randomGames: [],
@@ -12,10 +6,10 @@ const game = {
     currentScore: 0,
 };
 
-document.getElementById('summon').addEventListener('click', getSteamLibrary);
+// document.getElementById('summon').addEventListener('click', getSteamLibrary);
 
 
-function getSteamLibrary() {
+async function getSteamLibrary() {
 
         var baseURL = 'http://localhost:5500/getlibrary/?';
         // var userID = document.getElementById('userID').value;
@@ -30,15 +24,12 @@ function getSteamLibrary() {
             if (this.readyState == 4 && this.status == 200) {
                 const steamData = JSON.parse(req.responseText);
                 game.steamLibrary = steamData.response.games;
-                console.log(game.steamLibrary)
             } else {
                 console.log('Error type: ' + this.status)
             }});
-            // Check Steam API status options for different incorrect data inputs later and account for them with alerts
+            // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
 
             req.send();
         };
 
-module.exports = {game};
-
-console.log('hello');
+module.exports = {game, getSteamLibrary};
