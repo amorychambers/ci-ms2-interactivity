@@ -2,13 +2,15 @@
  * @jest-environment jsdom
  */
 
+
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const fs = require('fs');
 const fileContents = fs.readFileSync('index.html', 'utf-8');
 const document = new JSDOM(fileContents).window.document;
 
-const { game, getSteamLibrary } = require('../setup.js');
+const { game, fetchLibrary } = require('../setup.js');
+
 
 describe('game object is ready for new game data', () => {
     test('steamLibrary key is empty', () => {
@@ -33,12 +35,10 @@ describe('setup successfully calls to Steam Web API', () => {
     //     game.steamLibrary = [];
     //     game.steamConnect = false;
     // });
-    test('getSteamLibrary connects to the Steam Web API', async () => {
-        const data = await getSteamLibrary();
-        expect(data).toBe('Connect');
+    test('getSteamLibrary connects to the Steam Web API', () => {
+        return expect(fetchLibrary).resolves.toBe('Success');
     });
     test('getSteamLibrary populates game.steamLibrary', async () => {
-        const data = await getSteamLibrary();
-        expect(data.length).toBeGreaterThan(0);
+        expect(game.steamLibrary.length).toBeGreaterThan(0);
     });
 });
