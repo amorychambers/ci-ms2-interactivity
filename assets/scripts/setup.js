@@ -10,10 +10,9 @@ const game = {
     newSequence: [],
     playerMoves: [],
     currentScore: 0,
-    steamConnect: false,
 };
 
-let steamData;
+var newLibrary = 'Smello';
 
 let fetchLibrary = new Promise(function (resolve, reject) {
 
@@ -29,11 +28,11 @@ let fetchLibrary = new Promise(function (resolve, reject) {
     req.addEventListener('load', function () {
         if (this.readyState == 4 && this.status == 200) {
             steamData = JSON.parse(req.responseText);
-            game.steamConnect = true;
+            newLibrary = steamData.response.games;
             resolve('Success');
         } else {
             console.log('Error type: ' + this.status);
-            resolve('Failure')
+            reject('Failure')
         }
     });
     // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
@@ -42,6 +41,7 @@ let fetchLibrary = new Promise(function (resolve, reject) {
 
 function addNewLibrary() {
     console.log('W');
+    game.steamLibrary = newLibrary;
 }
 
 function throwError() {

@@ -33,12 +33,13 @@ describe('game object is ready for new game data', () => {
 describe('setup successfully calls to Steam Web API', () => {
     // afterEach(() => {
     //     game.steamLibrary = [];
-    //     game.steamConnect = false;
     // });
     test('getSteamLibrary connects to the Steam Web API', () => {
         return expect(fetchLibrary).resolves.toBe('Success');
     });
-    test('getSteamLibrary populates game.steamLibrary', async () => {
-        expect(game.steamLibrary.length).toBeGreaterThan(0);
+    test('getSteamLibrary populates game.steamLibrary', () => {
+        return fetchLibrary.then(() => {
+            expect(game.steamLibrary.length).toBeGreaterThan(0);
+        });
     });
 });
