@@ -16,6 +16,8 @@ const game = {
 let newLibrary = [];
 let errorMessage = '';
 
+document.getElementById('summon').addEventListener('click', getUnplayedGamesList);
+
 // This function makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
 let fetchLibrary = new Promise(function (resolve, reject) {
 
@@ -54,9 +56,9 @@ function throwError() {
 fetchLibrary.then(addNewLibrary, throwError);
 
 function getUnplayedGamesList() {
-
-    let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
-    game.steamLibrary = unplayedGames;
+    allGamesModeToggle();
+    // let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
+    // game.steamLibrary = unplayedGames;
 
     //Creates a list of random numbers based on how many games are available  
     let count = game.steamLibrary.length;
@@ -68,10 +70,12 @@ function getUnplayedGamesList() {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
+    console.log(game.randomGames);
 };
 
 function getAllGamesList() {
-    game.steamLibrary = newLibrary;
+    allGamesModeToggle();
+    // game.steamLibrary = newLibrary;
     let count = game.steamLibrary.length;
     let randomNums = [];
     for (let i = 0; i < 4; i++) {
@@ -81,7 +85,18 @@ function getAllGamesList() {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
+    console.log(game.randomGames);
 };
 
+function allGamesModeToggle() {
+    if (document.getElementById('all-games').checked == true) {
+        game.allGamesMode = true;
+        game.steamLibrary = newLibrary;
+    } else if (document.getElementById('all-games').checked == false) {
+        game.allGamesMode = false;
+        let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
+        game.steamLibrary = unplayedGames;
+    };
+};
 
 module.exports = { game, fetchLibrary, newLibrary, getUnplayedGamesList, getAllGamesList };
