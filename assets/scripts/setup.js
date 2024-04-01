@@ -89,11 +89,9 @@ function getAllGamesList() {
 };
 
 function allGamesModeToggle() {
-    if (document.getElementById('all-games').checked == true) {
-        game.allGamesMode = true;
+    if (game.allGamesMode == true) {
         game.steamLibrary = newLibrary;
-    } else if (document.getElementById('all-games').checked == false) {
-        game.allGamesMode = false;
+    } else if (game.allGamesMode == false) {
         let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
         game.steamLibrary = unplayedGames;
     };

@@ -70,7 +70,7 @@ describe('setup.js does not filter for unplayed games only in All Games Mode', (
     test('getGamesList creates a list of any four games to play with in All Games Mode', () => {
         return fetchLibrary.then(async () => {
             debugger;
-            document.getElementById('all-games').checked = true;
+            game.allGamesMode = true;
             await getAllGamesList();
             expect(game.randomGames.length).toBe(4);
             //Tests that all four games in the randomGames array do not have a collective playtime of 0. Limited by the random element, but if any game in the list has playtime greater than 0, the test will pass. Multiple tests show that it passes each time the random list provides a played game, working correctly
