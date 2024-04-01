@@ -53,12 +53,11 @@ function throwError(errorMessage) {
 
 fetchLibrary.then(addNewLibrary, throwError);
 
-function getGamesList(obj) {
-    //Checks if user has selected All Games Mode
-    if (obj.allGamesMode == false) {
-        let unplayedGames = obj.steamLibrary.filter(game => game.playtime_forever == 0);
-        game.steamLibrary = unplayedGames;
-    };
+function getUnplayedGamesList(array) {
+
+    let unplayedGames = array.filter(game => game.playtime_forever == 0);
+    game.steamLibrary = unplayedGames;
+
     //Creates a list of random numbers based on how many games are available  
     let count = game.steamLibrary.length;
     let randomNums = [];
@@ -69,7 +68,21 @@ function getGamesList(obj) {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
+    console.log(game.randomGames);
+};
+
+function getAllGamesList() {
+    let count = game.steamLibrary.length;
+    let randomNums = [];
+    for (let i = 0; i < 4; i++) {
+        randomNums.push(Math.floor(Math.random() * count));
+    }
+    //Creates a list of random games to play with 
+    for (let i of randomNums) {
+        game.randomGames.push(game.steamLibrary[i]);
+    };
+    console.log(game.randomGames);
 };
 
 
-module.exports = { game, fetchLibrary, getGamesList };
+module.exports = { game, fetchLibrary, getUnplayedGamesList, getAllGamesList };
