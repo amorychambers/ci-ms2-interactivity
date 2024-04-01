@@ -54,12 +54,23 @@ function throwError(errorMessage) {
 fetchLibrary.then(addNewLibrary, throwError);
 
 function getGamesList(array) {
+    //Checks if user has selected All Games Mode
     if (game.allGamesMode == false) {
         let unplayedGames = array.filter(game => game.playtime_forever == 0);
         game.steamLibrary = unplayedGames;
     } else {
         return;
+    };
+    //Creates a list of random games from library data 
+    let count = game.steamLibrary.length;
+    console.log(count);
+    let randomNums = [];
+    for (let i = 0; i < 4; i++) {
+        randomNums.push(Math.floor(Math.random() * count));
     }
+    console.log(randomNums);
+
+
 };
 
 

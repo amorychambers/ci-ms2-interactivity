@@ -40,15 +40,12 @@ describe('setup.js successfully calls to Steam Web API', () => {
     test('getSteamLibrary populates game.steamLibrary', () => {
         return fetchLibrary.then(() => {
             expect(game.steamLibrary.length).toBeGreaterThan(0);
+            console.log(game.steamLibrary.length);
         });
     });
 });
 
 describe('setup.js creates a new selection of random games', () => {
-    beforeEach(() => {
-        game.steamLibrary = [];
-        game.allGamesMode = false;
-    })
     test('getGamesList filters for games with no recorded playtime', () => {
         return fetchLibrary.then(() => {
             getGamesList(game.steamLibrary);
@@ -60,9 +57,9 @@ describe('setup.js creates a new selection of random games', () => {
     test('getGamesList does not remove played games in All Games Mode', () => {
         game.allGamesMode = true;
         return fetchLibrary.then(() => {
-            const count = game.steamLibrary.length;
+            const length = game.steamLibrary.length;
             getGamesList(game.steamLibrary);
-            expect(game.steamLibrary.length).toBe(count);
+            expect(game.steamLibrary.length).toBe(length);
         });
     });
 });
