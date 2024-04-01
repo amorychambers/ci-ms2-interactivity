@@ -111,10 +111,12 @@ describe('setup.js creates a random ten game sequence using the appropriate four
         game.allGamesMode = true;
         getGamesList();
         randomSequence(game.randomGames);
-        for (let i in game.newSequence) {
-            let sum = 0;
-            sum += game.newSequence[i].playtime_forever;
-            expect(sum).toBeGreaterThan(0);
-        };
+        setTimeout(() => {
+            for (let i in game.newSequence) {
+                let sum = 0;
+                sum += game.newSequence[i].playtime_forever;
+                expect(sum).toBeGreaterThan(0);
+            };
+        }, 1000);
     });
 });

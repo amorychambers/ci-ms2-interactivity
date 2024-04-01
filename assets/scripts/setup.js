@@ -1,8 +1,8 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const fs = require('fs');
-const fileContents = fs.readFileSync('index.html', 'utf-8');
-const document = new JSDOM(fileContents).window.document;
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const fs = require('fs');
+// const fileContents = fs.readFileSync('index.html', 'utf-8');
+// const document = new JSDOM(fileContents).window.document;
 
 const game = {
     steamLibrary: [],
@@ -83,5 +83,47 @@ function randomSequence(array) {
     };
     console.log(game.newSequence);
 };
+
+function newGameBoard() {
+    document.getElementById('new-player').remove();
+    const board = document.createElement('main');
+    board.innerHTML = `
+    <main id='gameboard'>
+    <div class="container">
+        <div class="row center">
+            <h2 id='smello' class='heading my-4'>Board</h2>
+            <div class="col card card1"></div>
+            <div class="col card card2"></div>
+        </div>
+        <div class="row">
+            <div class="col card card3"></div>
+            <div class="col card card4"></div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row center">
+            <h2 class='heading mb-4'>Player Cards</h2>
+            <div class="col card card1"></div>
+            <div class="col card card2"></div>
+        </div>
+        <div class="row">
+            <div class="col card card3"></div>
+            <div class="col card card4"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col center m-4">
+                <h3 class='heading'>Current Score</h3>
+                <h4 class='sub-heading'><span id='current-score'>0</span>/10</h4>
+                <button class='btn btn-outline-warning my-3'>NEW GAME</button>
+            </div>
+        </div>
+    </div>
+</main>`;
+document.getElementById('intro').insertAdjacentElement('afterend', board);
+};
+
 
 module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
