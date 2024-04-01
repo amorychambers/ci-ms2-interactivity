@@ -58,8 +58,6 @@ function getGamesList(array) {
     if (game.allGamesMode == false) {
         let unplayedGames = array.filter(game => game.playtime_forever == 0);
         game.steamLibrary = unplayedGames;
-    } else {
-        return;
     };
     //Creates a list of random numbers based on how many games are available  
     let count = game.steamLibrary.length;
@@ -71,9 +69,7 @@ function getGamesList(array) {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
-    
-
-
+    console.log(game.randomGames);
 };
 
 

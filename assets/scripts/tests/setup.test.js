@@ -45,6 +45,11 @@ describe('setup.js successfully calls to Steam Web API', () => {
 });
 
 describe('setup.js creates a new selection of random games', () => {
+    beforeEach(() => {
+        game.steamLibrary = [];
+        game.randomGames = [];
+        game.allGamesMode = false;
+    });
     test('getGamesList filters for games with no recorded playtime', () => {
         return fetchLibrary.then(() => {
             getGamesList(game.steamLibrary);
@@ -61,7 +66,14 @@ describe('setup.js creates a new selection of random games', () => {
             expect(game.steamLibrary.length).toBe(length);
         });
     });
-    test('getGamesList creates a list of four games to play with', () => {
+    test('getGamesList creates a list of four unplayed games to play with', () => {
+        return fetchLibrary.then(() => {
+            getGamesList(game.steamLibrary);
+            expect(game.randomGames.length).toBe(4);
+        });
+    });
+    test('getGamesList creates a list of four games to play with in All Games Mode', () => {
+        game.allGamesMode = true;
         return fetchLibrary.then(() => {
             getGamesList(game.steamLibrary);
             expect(game.randomGames.length).toBe(4);
