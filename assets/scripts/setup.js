@@ -61,14 +61,17 @@ function getGamesList(array) {
     } else {
         return;
     };
-    //Creates a list of random games from library data 
+    //Creates a list of random numbers based on how many games are available  
     let count = game.steamLibrary.length;
-    console.log(count);
     let randomNums = [];
     for (let i = 0; i < 4; i++) {
         randomNums.push(Math.floor(Math.random() * count));
     }
-    console.log(randomNums);
+    //Creates a list of random games to play with 
+    for (let i of randomNums) {
+        game.randomGames.push(game.steamLibrary[i]);
+    };
+    
 
 
 };
