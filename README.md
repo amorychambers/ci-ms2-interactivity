@@ -228,6 +228,7 @@ JavaScript
 - [Dan Beyer](https://danbeyer.github.io/) for a useful guide on creating server side HTTP calls to the Steam Web API
 - [twilio.com](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment) guide on creating an Express.js application 
 - https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
+- [jestjs.io](https://jestjs.io/docs/) 
 
 
 ### Media Content
@@ -239,7 +240,7 @@ JavaScript
 - Initial boilerplate HTML head from [Emmet extension](https://emmet.io/) in Visual Studio Code
 - Code snippet for navigation bar from [Bootstrap v5.3 documentation](https://getbootstrap.com/docs/5.3/components/navbar/)
 - Common syntax for XMLHttpRequest in JavaScript from [W3Schools](https://www.w3schools.com/xml/xml_http.asp)
-// - Server code snippet for creating server side HTTP calls to the Steam Web API from [Dan Beyer](https://danbeyer.github.io/steamapi/page2.html)
+- Server code snippet for creating server side HTTP calls to the Steam Web API from [Dan Beyer](https://danbeyer.github.io/steamapi/page2.html)
 
 ## Deployment
 

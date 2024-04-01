@@ -10,10 +10,13 @@ const game = {
     newSequence: [],
     playerMoves: [],
     currentScore: 0,
+    allGamesMode: false,
 };
 
-var newLibrary = 'Smello';
+var newLibrary = '';
+var errorMessage = '';
 
+// This function makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
 let fetchLibrary = new Promise(function (resolve, reject) {
 
     var baseURL = 'http://localhost:5500/getlibrary/?';
@@ -24,14 +27,14 @@ let fetchLibrary = new Promise(function (resolve, reject) {
 
     var req = new XMLHttpRequest();
     req.open('GET', newURL, true);
-    // This function isolates the games array from the Steam Web API response and assigns it to the steamLibrary key 
+    // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
     req.addEventListener('load', function () {
         if (this.readyState == 4 && this.status == 200) {
             steamData = JSON.parse(req.responseText);
             newLibrary = steamData.response.games;
             resolve('Success');
         } else {
-            console.log('Error type: ' + this.status);
+            errorMessage = 'Error type: ' + this.status;
             reject('Failure')
         }
     });
@@ -40,17 +43,24 @@ let fetchLibrary = new Promise(function (resolve, reject) {
 });
 
 function addNewLibrary() {
-    console.log('W');
     game.steamLibrary = newLibrary;
 }
 
-function throwError() {
-    console.log('L');
+function throwError(errorMessage) {
+    console.log(errorMessage);
+    // Fix JSDOM reference
 }
 
 fetchLibrary.then(addNewLibrary, throwError);
 
+function getGamesList(array) {
+    if (game.allGamesMode == false) {
+        let unplayedGames = array.filter(game => game.playtime_forever == 0);
+        game.steamLibrary = unplayedGames;
+    } else {
+        return;
+    }
+};
 
 
-
-module.exports = { game, fetchLibrary };
+module.exports = { game, fetchLibrary, getGamesList };

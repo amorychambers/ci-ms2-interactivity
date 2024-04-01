@@ -9,7 +9,7 @@ const fs = require('fs');
 const fileContents = fs.readFileSync('index.html', 'utf-8');
 const document = new JSDOM(fileContents).window.document;
 
-const { game, fetchLibrary } = require('../setup.js');
+const { game, fetchLibrary, getGamesList } = require('../setup.js');
 
 
 describe('game object is ready for new game data', () => {
@@ -30,7 +30,7 @@ describe('game object is ready for new game data', () => {
     });
 });
 
-describe('setup successfully calls to Steam Web API', () => {
+describe('setup.js successfully calls to Steam Web API', () => {
     // afterEach(() => {
     //     game.steamLibrary = [];
     // });
@@ -40,6 +40,29 @@ describe('setup successfully calls to Steam Web API', () => {
     test('getSteamLibrary populates game.steamLibrary', () => {
         return fetchLibrary.then(() => {
             expect(game.steamLibrary.length).toBeGreaterThan(0);
+        });
+    });
+});
+
+describe('setup.js creates a new selection of random games', () => {
+    beforeEach(() => {
+        game.steamLibrary = [];
+        game.allGamesMode = false;
+    })
+    test('getGamesList filters for games with no recorded playtime', () => {
+        return fetchLibrary.then(() => {
+            getGamesList(game.steamLibrary);
+            for (i in game.steamLibrary) {
+                expect(game.steamLibrary[i].playtime_forever).toBe(0);
+            };
+        });
+    });
+    test('getGamesList does not remove played games in All Games Mode', () => {
+        game.allGamesMode = true;
+        return fetchLibrary.then(() => {
+            const count = game.steamLibrary.length;
+            getGamesList(game.steamLibrary);
+            expect(game.steamLibrary.length).toBe(count);
         });
     });
 });
