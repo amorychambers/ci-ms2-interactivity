@@ -9,7 +9,7 @@ const fs = require('fs');
 const fileContents = fs.readFileSync('index.html', 'utf-8');
 const document = new JSDOM(fileContents).window.document;
 
-const { game, fetchLibrary, getUnplayedGamesList, getAllGamesList } = require('../setup.js');
+const { game, fetchLibrary, newLibrary, getUnplayedGamesList, getAllGamesList } = require('../setup.js');
 
 
 describe('game object is ready for new game data', () => {
@@ -34,9 +34,11 @@ describe('setup.js successfully calls to Steam Web API', () => {
     test('getSteamLibrary connects to the Steam Web API', () => {
         return expect(fetchLibrary).resolves.toBe('Success');
     });
-    test('getSteamLibrary populates game.steamLibrary', () => {
+    test('getSteamLibrary populates newLibrary', async () => {
         return fetchLibrary.then(() => {
-            expect(game.steamLibrary.length).toBeGreaterThan(0);
+            setTimeout(() => {
+                expect(newLibrary.length).toBeGreaterThan(0);
+            }, 1000);
         });
     });
 });
@@ -47,7 +49,7 @@ describe('setup.js creates a new selection of random games', () => {
     });
     test('getGamesList filters for games with no recorded playtime', () => {
         return fetchLibrary.then(() => {
-            getUnplayedGamesList(game.steamLibrary);
+            getUnplayedGamesList();
             for (i in game.steamLibrary) {
                 expect(game.steamLibrary[i].playtime_forever).toBe(0);
             };
@@ -55,7 +57,7 @@ describe('setup.js creates a new selection of random games', () => {
     });
     test('getGamesList creates a list of four unplayed games to play with', () => {
         return fetchLibrary.then(() => {
-            getUnplayedGamesList(game.steamLibrary);
+            getUnplayedGamesList();
             expect(game.randomGames.length).toBe(4);
         });
     });

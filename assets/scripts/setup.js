@@ -13,8 +13,8 @@ const game = {
     allGamesMode: false,
 };
 
-var newLibrary = '';
-var errorMessage = '';
+let newLibrary = [];
+let errorMessage = '';
 
 // This function makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
 let fetchLibrary = new Promise(function (resolve, reject) {
@@ -43,19 +43,19 @@ let fetchLibrary = new Promise(function (resolve, reject) {
 });
 
 function addNewLibrary() {
-    game.steamLibrary = newLibrary;
+    game.steamLibrary = [];
 }
 
-function throwError(errorMessage) {
+function throwError() {
     console.log(errorMessage);
     // Fix JSDOM reference
 }
 
 fetchLibrary.then(addNewLibrary, throwError);
 
-function getUnplayedGamesList(array) {
+function getUnplayedGamesList() {
 
-    let unplayedGames = array.filter(game => game.playtime_forever == 0);
+    let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
     game.steamLibrary = unplayedGames;
 
     //Creates a list of random numbers based on how many games are available  
@@ -68,10 +68,10 @@ function getUnplayedGamesList(array) {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
-    console.log(game.randomGames);
 };
 
 function getAllGamesList() {
+    game.steamLibrary = newLibrary;
     let count = game.steamLibrary.length;
     let randomNums = [];
     for (let i = 0; i < 4; i++) {
@@ -81,8 +81,7 @@ function getAllGamesList() {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
-    console.log(game.randomGames);
 };
 
 
-module.exports = { game, fetchLibrary, getUnplayedGamesList, getAllGamesList };
+module.exports = { game, fetchLibrary, newLibrary, getUnplayedGamesList, getAllGamesList };
