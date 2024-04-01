@@ -47,7 +47,7 @@ describe('setup.js creates a new selection of random games', () => {
     });
     test('getGamesList filters for games with no recorded playtime', () => {
         return fetchLibrary.then(() => {
-            getGamesList(game.steamLibrary);
+            getGamesList(game);
             for (i in game.steamLibrary) {
                 expect(game.steamLibrary[i].playtime_forever).toBe(0);
             };
@@ -55,33 +55,35 @@ describe('setup.js creates a new selection of random games', () => {
     });
     test('getGamesList creates a list of four unplayed games to play with', () => {
         return fetchLibrary.then(() => {
-            getGamesList(game.steamLibrary);
+            getGamesList(game);
             expect(game.randomGames.length).toBe(4);
         });
     });
 });
 
-// describe('setup.js does not filter for unplayed games only in All Games Mode', () => {
-//     test('getGamesList creates a list of any four games to play with in All Games Mode', () => {
-//         return fetchLibrary.then(() => {
-//             game.allGamesMode = true;
-//             getGamesList(game.steamLibrary);
-//             expect(game.randomGames.length).toBe(4);
-//             //Tests that all four games in the randomGames array do not have a collective playtime of 0. Limited by the random element, but if any game in the list has playtime greater than 0, the test will pass. Multiple tests show that it passes each time the random list provides a played game, working correctly
-//             let playtimeList = [];
-//             for (i in game.randomGames) {
-//                 playtimeList.push(game.randomGames[i].playtime_forever);
-//             };
-//             expect(playtimeList.reduce((acc, curr) => acc + curr)).toBeGreaterThan(0);
-//         });
-//     });
-//     test('getGamesList does not remove played games in All Games Mode', () => {
-//         return fetchLibrary.then(() => {
-//             game.allGamesMode = true;
-//             const length = game.steamLibrary.length;
-//             getGamesList(game.steamLibrary);
-//             expect(game.steamLibrary.length).toBe(length);
-//             expect(game.steamLibrary.length).toBeGreatherThan(0);
-//         });
-//     });
-// });
+describe('setup.js does not filter for unplayed games only in All Games Mode', () => {
+    beforeEach(() => {
+        game.randomGames = [];
+        game.allGamesMode = true;
+    });
+    test('getGamesList creates a list of any four games to play with in All Games Mode', async () => {
+        return fetchLibrary.then(() => {
+            getGamesList(game);
+            expect(game.randomGames.length).toBe(4);
+            //Tests that all four games in the randomGames array do not have a collective playtime of 0. Limited by the random element, but if any game in the list has playtime greater than 0, the test will pass. Multiple tests show that it passes each time the random list provides a played game, working correctly
+            let playtimeList = [];
+            for (i in game.randomGames) {
+                playtimeList.push(game.randomGames[i].playtime_forever);
+            };
+            expect(playtimeList.reduce((acc, curr) => acc + curr)).toBeGreaterThan(0);
+        });
+    });
+    test('getGamesList does not remove played games in All Games Mode', async () => {
+        return fetchLibrary.then(() => {
+            const length = game.steamLibrary.length;
+            getGamesList(game);
+            expect(game.steamLibrary.length).toBe(length);
+            expect(game.steamLibrary.length).toBeGreaterThan(0);
+        });
+    });
+});
