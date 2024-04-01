@@ -46,9 +46,7 @@ describe('setup.js successfully calls to Steam Web API', () => {
 
 describe('setup.js creates a new selection of random games', () => {
     beforeEach(() => {
-        game.steamLibrary = [];
         game.randomGames = [];
-        game.allGamesMode = false;
     });
     test('getGamesList filters for games with no recorded playtime', () => {
         return fetchLibrary.then(() => {
@@ -58,25 +56,37 @@ describe('setup.js creates a new selection of random games', () => {
             };
         });
     });
-    test('getGamesList does not remove played games in All Games Mode', () => {
-        game.allGamesMode = true;
-        return fetchLibrary.then(() => {
-            const length = game.steamLibrary.length;
-            getGamesList(game.steamLibrary);
-            expect(game.steamLibrary.length).toBe(length);
-        });
-    });
     test('getGamesList creates a list of four unplayed games to play with', () => {
         return fetchLibrary.then(() => {
             getGamesList(game.steamLibrary);
             expect(game.randomGames.length).toBe(4);
         });
     });
-    test('getGamesList creates a list of four games to play with in All Games Mode', () => {
+});
+
+describe('setup.js does not filter for unplayed games only in All Games Mode', () => {
+    beforeEach(() => {
+        game.randomGames = [];
+    });
+    test('getGamesList creates a list of any four games to play with in All Games Mode', () => {
         game.allGamesMode = true;
         return fetchLibrary.then(() => {
             getGamesList(game.steamLibrary);
             expect(game.randomGames.length).toBe(4);
+            //Tests that all four games in the randomGames array do not have a collective playtime of 0. Limited by the random element, but if any game in the list has playtime greater than 0, the test will pass. Multiple tests show that it passes each time the random list provides a played game, working correctly
+            let playtimeList = [];
+            for (i in game.randomGames) {
+                playtimeList.push(game.randomGames[i].playtime_forever);
+            };
+            expect(playtimeList.reduce((acc, curr) => acc + curr)).toBeGreaterThan(0);
+        });
+    });
+    test('getGamesList does not remove played games in All Games Mode', () => {
+        game.allGamesMode = true;
+        return fetchLibrary.then(() => {
+            const length = game.steamLibrary.length;
+            getGamesList(game.steamLibrary);
+            expect(game.steamLibrary.length).toBe(length);
         });
     });
 });
