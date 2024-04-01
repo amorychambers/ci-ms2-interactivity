@@ -16,9 +16,8 @@ const game = {
 let newLibrary = [];
 let errorMessage = '';
 
-document.getElementById('summon').addEventListener('click', getUnplayedGamesList);
 
-// This function makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
+// This promise makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
 let fetchLibrary = new Promise(function (resolve, reject) {
 
     var baseURL = 'http://localhost:5500/getlibrary/?';
@@ -55,12 +54,8 @@ function throwError() {
 
 fetchLibrary.then(addNewLibrary, throwError);
 
-function getUnplayedGamesList() {
+function getGamesList() {
     allGamesModeToggle();
-    // let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
-    // game.steamLibrary = unplayedGames;
-
-    //Creates a list of random numbers based on how many games are available  
     let count = game.steamLibrary.length;
     let randomNums = [];
     for (let i = 0; i < 4; i++) {
@@ -70,22 +65,6 @@ function getUnplayedGamesList() {
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
-    console.log(game.randomGames);
-};
-
-function getAllGamesList() {
-    allGamesModeToggle();
-    // game.steamLibrary = newLibrary;
-    let count = game.steamLibrary.length;
-    let randomNums = [];
-    for (let i = 0; i < 4; i++) {
-        randomNums.push(Math.floor(Math.random() * count));
-    }
-    //Creates a list of random games to play with 
-    for (let i of randomNums) {
-        game.randomGames.push(game.steamLibrary[i]);
-    };
-    console.log(game.randomGames);
 };
 
 function allGamesModeToggle() {
@@ -97,4 +76,12 @@ function allGamesModeToggle() {
     };
 };
 
-module.exports = { game, fetchLibrary, newLibrary, getUnplayedGamesList, getAllGamesList };
+function randomSequence(array) {
+    for (let i = 0; i < 10; i++) {
+        let randomIndex = Math.floor(Math.random() * 4)
+        game.newSequence.push(array[randomIndex]);
+    };
+    console.log(game.newSequence);
+};
+
+module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
