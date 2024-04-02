@@ -95,6 +95,10 @@ function newGameBoard() {
     $('#gameboard').delay(1490).fadeIn(1500);
 };
 
+function createCardImages() {
+
+};
+
 
 
 module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard };
