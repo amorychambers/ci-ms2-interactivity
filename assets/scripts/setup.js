@@ -98,13 +98,11 @@ function newGameBoard() {
 function createCardImages(array) {
     for (let i in array) {
         debugger;
-        let gameID = '#game' + (Number(i) + 1);
-        let gameDiv = document.getElementById(`${gameID}`);
+        let gameID = 'game' + (Number(i) + 1);
         let imageURL = `http://media.steampowered.com/steamcommunity/public/images/apps/${array[i].appid}/${array[i].img_icon_url}.jpg`
-        console.log(imageURL);
+        $(`#${gameID}`).css('background', `silver ${imageURL} center center no-repeat`);
     }
 };
-
 
 
 module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard, createCardImages };

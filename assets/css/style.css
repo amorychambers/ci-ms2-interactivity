@@ -64,10 +64,17 @@ form input[type='textarea'] {
 
 /* -------------------- Game -------------------- */
 
-.card {
+.card, .game {
     border: solid 1px white;
     width: 40%;
     height: 200px;
     margin: 10px;
     padding: 10px;
+}
+
+#game1 {
+    background-position: center;
+    background-size:auto;
+    background-repeat: no-repeat;
+    background-image:url("http://media.steampowered.com/steamcommunity/public/images/apps/337000/90a596fcc9934c7fe20d1202bca2c6fc80375d54.jpg")
 }
