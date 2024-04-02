@@ -54,6 +54,11 @@ function throwError() {
 
 fetchLibrary.then(addNewLibrary, throwError);
 
+// This async function is used in the main setupNewGame function to ensure the Steam Web API data is received before the function continues setting up a new game
+async function waitForFetchLibrary() {
+    const dataReceived = await Promise.resolve('Success');
+}
+
 // This creates a list of four random games from the user's library to be used in the game
 function getGamesList() {
     allGamesModeToggle();
@@ -74,8 +79,7 @@ function checkAllGamesMode() {
         game.allGamesMode = true;
     } else {
         game.allGamesMode = false;
-    }
-    console.log(game.allGamesMode);
+    };
 }
 
 // This determined whether or not the user has selected All Games Mode, and filters for unplayed games only if not
@@ -135,6 +139,7 @@ function backupCard() {
 };
 
 async function setupNewGame() {
+    await waitForFetchLibrary();
     addNewLibrary();
     getGamesList();
     newGameBoard();
