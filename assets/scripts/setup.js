@@ -96,26 +96,29 @@ function newGameBoard() {
 };
 
 // This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API. 
-// The board images are set to transparent for the game, and I have used a data-type attribute to just use the game's title should the image file not load
+// The board images are set to transparent for the game, and I have used a data-type attribute to supply API data to the backupCard function if there is a loading error
 function createCardImages(array) {
     for (let i in array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-icon': array[i].img_icon_url}).css('opacity', 0).on('error', backupCard);
-        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url}).on('error', backupCard);
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0}).css('opacity', 0).on('error', backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1}).on('error', backupCard);
     };
 };
 
+// This function replaces the box cover art with a custom card that displays the game's title and icon from the Steam Web API, when the box art does not exist or fails to load
 function backupCard() {
     if ($(this).height() < 50 ) {
         let title = $(this).attr('data-title');
         let appID = $(this).attr('data-appid');
         let imgURL = $(this).attr('data-icon');
+        let transparencyToggle = $(this).attr('data-opacity');
+
 
         $(this).parent().html(`
         <img class='card-img-top'
-        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg'>
+        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: ${transparencyToggle}'>
         <div class="card-body">
         <h5 class='card-title'>${title}</h5>
         </div>`)
