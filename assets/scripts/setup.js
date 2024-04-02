@@ -13,6 +13,14 @@ const game = {
     allGamesMode: false,
 };
 
+async function setupNewGame() {
+    await waitForFetchLibrary();
+    getGamesList();
+    newGameBoard();
+    createCardImages(game.randomGames);
+    randomSequence(game.randomGames);
+};
+
 let newLibrary = [];
 let errorMessage = '';
 
@@ -138,14 +146,6 @@ function backupCard() {
     };
 };
 
-async function setupNewGame() {
-    await waitForFetchLibrary();
-    addNewLibrary();
-    getGamesList();
-    newGameBoard();
-    createCardImages(game.randomGames);
-    randomSequence(game.randomGames);
-};
 
 $('#summon').click(setupNewGame);
 $('#all-games').on('change', checkAllGamesMode);
