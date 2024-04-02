@@ -102,22 +102,25 @@ function createCardImages(array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name}).css('opacity', 0).click(backupCard);
-        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name}).click(backupCard);
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-icon': array[i].img_icon_url}).css('opacity', 0).click(backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url}.click(backupCard));
     };
 };
 
 function backupCard() {
-    debugger;
     if ($(this).height() < 50 ) {
+
+        let title = $(this).attr('data-title');
+        let appID = $(this).attr('data-appid');
+        let imgURL = $(this).attr('data-icon');
 
         $(this).parent().html(`
         <img class='card-img-top'
-        src='http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg'>
+        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg'>
         <div class="card-body">
-        <h5 class='card-title'>Game Title</h5>
+        <h5 class='card-title'>${title}</h5>
         </div>`)
-    }
+    };
 };
 
 // {
