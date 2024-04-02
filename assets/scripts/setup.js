@@ -95,16 +95,23 @@ function newGameBoard() {
     $('#gameboard').delay(1490).fadeIn(1500);
 };
 
+// This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API. 
+// The board images are set to opaque for the game, and I have used a data-type attribute to just use the game's title should the image file not load
 function createCardImages(array) {
     for (let i in array) {
-        let gameID = 'game' + (Number(i) + 1);
-        let cardID = 'card' + (Number(i) + 1);
+        let gameID = '#game' + (Number(i) + 1);
+        let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        document.getElementById(gameID).firstElementChild.setAttribute('src', imageURL);
-        document.getElementById(gameID).firstElementChild.style.opacity = 0;
+        // document.getElementById(gameID).firstElementChild.setAttribute('src', imageURL);
+        // document.getElementById(gameID).firstElementChild.setAttribute('data-title', array[i].name);
+        // document.getElementById(gameID).firstElementChild.style.opacity = 0;
+        $(gameID).children(':first').attr({'src':imageURL, 'data-title':array[i].name}).css('opacity', 0);
+        $(cardID).children(':first').attr({'src':imageURL, 'data-title':array[i].name});
         document.getElementById(cardID).firstElementChild.setAttribute('src', imageURL);
-    }
+        document.getElementById(cardID).firstElementChild.setAttribute('data-title', array[i].name);
+    };
 };
+
 
 
 module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard, createCardImages };
