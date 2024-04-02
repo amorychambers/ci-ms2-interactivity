@@ -65,15 +65,10 @@ form input[type='textarea'] {
 
 /* -------------------- Game -------------------- */
 
-.card,
-.game {
+.card {
     border: solid 1px white;
     width: 40%;
-    height: 200px;
+    height: 60%;
     margin: 10px;
     padding: 10px;
-}
-
-#card2 {
-    background: url('https://steamcdn-a.akamaihd.net/steam/apps/840010/library_600x900_2x.jpg') center center / cover no-repeat;
 }
