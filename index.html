@@ -86,6 +86,13 @@
     <!-- There is a second main element here which represents the game board. Initially I had this created and inserted by JavaScript, but the performance was improved having it hidden on the page instead -->
     <main id='gameboard' style='display: none;'>
         <div class="container">
+            <div class="row">
+                <div class="col center">
+                    <button class='btn btn-outline-warning my-3'>START ROUND</button>
+                    <h2 id="countdown"></h2>
+                </div>
+                <hr>
+            </div>
             <div class="row center my-4">
                 <h2 class='heading mb-4'>Board</h2>
                 <div class="col card" id="game1">
@@ -128,7 +135,7 @@
             <div class="row">
                 <div class="col center m-4">
                     <h3 class='heading'>Current Score</h3>
-                    <h4 class='sub-heading'><span id='current-score'>0</span>/10</h4>
+                    <h4 class='sub-heading'><span id='current-score'>0</span>/5</h4>
                     <button class='btn btn-outline-warning my-3'>NEW GAME</button>
                 </div>
             </div>
@@ -151,15 +158,15 @@
                     <p class='m-2'>Lost in Library will select four random unplayed games from your Steam Library and
                         add them to
                         the board. When you select New Game, you will see a sequence of these games presented on the
-                        board. Once the sequence is complete, you must remember the pattern and select the correct games
+                        screen. Once the sequence is complete, you must remember the pattern and select the correct games
                         in the same order using the buttons below. If you succeed, the next round will start with one
-                        additional turn in the sequence. If you fail, you must restart the game, or go download the game
+                        additional turn in the sequence. If you fail, you must restart the round, or go download the game
                         that beat you and give it a chance!</p><br>
                     <p class='m-2'>
                         The player wins if they successfully complete round ten. The prize for your victory is that you
                         are absolved of any guilt for ignoring your backlog of unplayed games and are free to replay an
                         old favourite once again. If the player loses, they will be presented with some info about the
-                        game they should have picked that may entice you to give it a shot.
+                        game they should have picked next that may entice you to give it a shot.
                     </p>
                 </div>
             </div>
