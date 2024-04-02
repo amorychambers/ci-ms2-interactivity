@@ -68,7 +68,7 @@ form input[type='textarea'] {
 .card {
     border: solid 1px white;
     width: 40%;
-    height: 60%;
+    min-height: 60%;
     margin: 10px;
     padding: 10px;
 }
