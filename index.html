@@ -65,13 +65,17 @@
             <div class="row">
                 <h2 class='heading mb-4'>Play</h2>
                 <div class="col center dark-bg">
-                    <p class='aside-text p-3 position-relative'>Enter your Steam ID here to summon some games from the shadowy backlogs of
-                        your Steam library! <i class='fa'></i>
+                    <p class='aside-text p-3 position-relative'>Enter your Steam ID here to summon some games from the
+                        shadowy backlogs of
+                        your Steam library!
+                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal" data-bs-target="#findMyID"></i></sup>
                     </p>
                     <input type='text' class='my-3' placeholder='1234567890...' id='userID'>
                     <button class='btn btn-outline-warning my-3' id='summon'>SUMMON</button>
-                    <p class='border border-warning m-3'>All Games Mode <input class='m-3' type='checkbox'
-                            id='all-games'></p>
+                    <p class='border border-warning m-3'>All Games Mode
+                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"></i></sup>
+                        <input class='m-3' type='checkbox' id='all-games'>
+                    </p>
 
                 </div>
             </div>
@@ -168,28 +172,28 @@
     <!-- Modals -->
 
     <!-- Button trigger modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- This code snippet is the standard example of a non-static modal taken from the Bootstrap v5.3 documentation. I have amended the data as required -->
-  <div class="modal fade" id="findMyID" tabindex="-1" aria-labelledby="findMyIDLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="findMyIDLabel">Where is my Steam ID?</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <!-- This code snippet is the standard example of a non-static modal taken from the Bootstrap v5.3 documentation. I have amended the data as required -->
+    <div class="modal fade" id="findMyID" tabindex="-1" aria-labelledby="findMyIDLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="findMyIDLabel">Where is my Steam ID?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
