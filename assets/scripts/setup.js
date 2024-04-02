@@ -98,9 +98,11 @@ function newGameBoard() {
 function createCardImages(array) {
     for (let i in array) {
         debugger;
-        let gameID = 'game' + (Number(i) + 1);
-        let imageURL = `http://media.steampowered.com/steamcommunity/public/images/apps/${array[i].appid}/${array[i].img_icon_url}.jpg`
-        $(`#${gameID}`).css('background', `silver ${imageURL} center center no-repeat`);
+        let gameID = (Number(i) + 1).toString();
+        let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`
+        $('#game' + gameID).css('background', `url(${imageURL}) center no-repeat;`);
+        $(`#game2`).css('background', `url(${imageURL}) center no-repeat;`);
+
     }
 };
 

@@ -19,7 +19,8 @@ body {
     text-align: center;
 }
 
-.heading, .sub-heading {
+.heading,
+.sub-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5em;
     text-align: center;
@@ -64,7 +65,8 @@ form input[type='textarea'] {
 
 /* -------------------- Game -------------------- */
 
-.card, .game {
+.card,
+.game {
     border: solid 1px white;
     width: 40%;
     height: 200px;
@@ -72,9 +74,6 @@ form input[type='textarea'] {
     padding: 10px;
 }
 
-#game1 {
-    background-position: center;
-    background-size:auto;
-    background-repeat: no-repeat;
-    background-image:url("http://media.steampowered.com/steamcommunity/public/images/apps/337000/90a596fcc9934c7fe20d1202bca2c6fc80375d54.jpg")
+#card2 {
+    background: url('https://steamcdn-a.akamaihd.net/steam/apps/840010/library_600x900_2x.jpg') center center / cover no-repeat;
 }
