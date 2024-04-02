@@ -1,8 +1,8 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const fs = require('fs');
-const fileContents = fs.readFileSync('index.html', 'utf-8');
-const document = new JSDOM(fileContents).window.document;
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const fs = require('fs');
+// const fileContents = fs.readFileSync('index.html', 'utf-8');
+// const document = new JSDOM(fileContents).window.document;
 
 const game = {
     steamLibrary: [],
@@ -90,6 +90,8 @@ function randomSequence(array) {
 
 function newGameBoard() {
     $('#new-player').fadeOut(1500);
+    $('#intro').fadeOut(1500);
+    $('#requirements').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
 };
 
