@@ -1,8 +1,8 @@
-// const jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-// const fs = require('fs');
-// const fileContents = fs.readFileSync('index.html', 'utf-8');
-// const document = new JSDOM(fileContents).window.document;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const fs = require('fs');
+const fileContents = fs.readFileSync('index.html', 'utf-8');
+const document = new JSDOM(fileContents).window.document;
 
 const game = {
     steamLibrary: [],
@@ -17,7 +17,7 @@ let newLibrary = [];
 let errorMessage = '';
 
 
-// This promise makes use of an express server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
+// This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
 let fetchLibrary = new Promise(function (resolve, reject) {
 
     var baseURL = 'http://localhost:5500/getlibrary/?';
@@ -43,17 +43,18 @@ let fetchLibrary = new Promise(function (resolve, reject) {
     req.send();
 });
 
+// This ensures the steamLibrary property is empty before all allGamesModeToggle function determines whether it will select from all games or only unplayed ones
 function addNewLibrary() {
     game.steamLibrary = [];
 }
 
 function throwError() {
     console.log(errorMessage);
-    // Fix JSDOM reference
 }
 
 fetchLibrary.then(addNewLibrary, throwError);
 
+// This creates a list of four random games from the user's library to be used in the game
 function getGamesList() {
     allGamesModeToggle();
     let count = game.steamLibrary.length;
@@ -67,6 +68,7 @@ function getGamesList() {
     };
 };
 
+// This determined whether or not the user has selected All Games Mode, and filters for unplayed games only if not
 function allGamesModeToggle() {
     if (game.allGamesMode == true) {
         game.steamLibrary = newLibrary;
@@ -84,15 +86,13 @@ function randomSequence(array) {
     console.log(game.newSequence);
 };
 
-// At this point I have decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing
+// At this point I decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing, and it will be used to run the game later
 
 function newGameBoard() {
     $('#new-player').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
-
 };
 
-document.getElementById('summon').addEventListener('click', newGameBoard);
 
 
-module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
+module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard };
