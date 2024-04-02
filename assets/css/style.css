@@ -55,6 +55,14 @@ input[type='textarea'] {
     color: #FFFFFF;    
 }
 
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.modal-content {
+    background-color: #1b2838;
+}
+
 
 /* -------------------- Contact -------------------- */
 

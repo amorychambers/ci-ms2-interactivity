@@ -73,7 +73,7 @@
                     <input type='text' class='my-3' placeholder='1234567890...' id='userID'>
                     <button class='btn btn-outline-warning my-3' id='summon'>SUMMON</button>
                     <p class='border border-warning m-3'>All Games Mode
-                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"></i></sup>
+                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal" data-bs-target="#explainAllGamesMode"></i></sup>
                         <input class='m-3' type='checkbox' id='all-games'>
                     </p>
 
@@ -171,25 +171,39 @@
 
     <!-- Modals -->
 
-    <!-- Button trigger modal -->
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-
     <!-- This code snippet is the standard example of a non-static modal taken from the Bootstrap v5.3 documentation. I have amended the data as required -->
     <div class="modal fade" id="findMyID" tabindex="-1" aria-labelledby="findMyIDLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="findMyIDLabel">Where is my Steam ID?</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <p>Your Steam ID is a unique string of numbers that is paired with your Steam Profile. Lost in Library uses this to select games from your personal library to use in the memory game.<br>
+                    If you have a Steam account, you can find your Steam ID by navigating to your profile. Your unique Steam ID is in the URL underneath the navigation bar!</p>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="explainAllGamesMode" tabindex="-1" aria-labelledby="explainAllGamesModeLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 heading" id="explainAllGamesModeLabel">What is All Games Mode?</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body dark-bg">
+                    <p class='center'>In a normal round of Lost in Library, you will only face the games from your Steam Library with a playtime of 0. Those games you have ignored and who are granted the chance to pique your interest, demand your attention, or exact their just vengeance. If you'd like to instead randomly select from every game in your Steam Library, check the All Games Mode option!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href='contact.html' target='_blank'><button type="button" class="btn btn-secondary">I Resent This</button></a>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
