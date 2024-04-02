@@ -96,17 +96,44 @@ function newGameBoard() {
 };
 
 // This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API. 
-// The board images are set to opaque for the game, and I have used a data-type attribute to just use the game's title should the image file not load
+// The board images are set to transparent for the game, and I have used a data-type attribute to just use the game's title should the image file not load
 function createCardImages(array) {
     for (let i in array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({'src':imageURL, 'data-title':array[i].name}).css('opacity', 0);
-        $(cardID).children(':first').attr({'src':imageURL, 'data-title':array[i].name});
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name}).css('opacity', 0).click(backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name}).click(backupCard);
     };
 };
 
+function backupCard() {
+    debugger;
+    if ($(this).height() < 50 ) {
+
+        $(this).parent().html(`
+        <img class='card-img-top'
+        src='http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg'>
+        <div class="card-body">
+        <h5 class='card-title'>Game Title</h5>
+        </div>`)
+    }
+};
+
+// {
+//     "appid": 406730,
+//     "name": "1,000 Heads Among the Trees",
+//     "playtime_forever": 0,
+//     "img_icon_url": "8f628d66ac2fafe2deb14e46ca33696253424ba3",
+//     "has_community_visible_stats": true,
+//     "playtime_windows_forever": 0,
+//     "playtime_mac_forever": 0,
+//     "playtime_linux_forever": 0,
+//     "playtime_deck_forever": 0,
+//     "rtime_last_played": 0,
+//     "playtime_disconnected": 0
+// }
 
 
-module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard, createCardImages };
+
+module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard, createCardImages, backupCard };
