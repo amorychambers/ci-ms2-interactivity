@@ -102,13 +102,8 @@ function createCardImages(array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        // document.getElementById(gameID).firstElementChild.setAttribute('src', imageURL);
-        // document.getElementById(gameID).firstElementChild.setAttribute('data-title', array[i].name);
-        // document.getElementById(gameID).firstElementChild.style.opacity = 0;
         $(gameID).children(':first').attr({'src':imageURL, 'data-title':array[i].name}).css('opacity', 0);
         $(cardID).children(':first').attr({'src':imageURL, 'data-title':array[i].name});
-        document.getElementById(cardID).firstElementChild.setAttribute('src', imageURL);
-        document.getElementById(cardID).firstElementChild.setAttribute('data-title', array[i].name);
     };
 };
 
