@@ -68,6 +68,16 @@ function getGamesList() {
     };
 };
 
+// This is an event handler to ensure the allGamesMode property of the game object is up to date with user input
+function checkAllGamesMode() {
+    if (document.getElementById('all-games').checked) {
+        game.allGamesMode = true;
+    } else {
+        game.allGamesMode = false;
+    }
+    console.log(game.allGamesMode);
+}
+
 // This determined whether or not the user has selected All Games Mode, and filters for unplayed games only if not
 function allGamesModeToggle() {
     if (game.allGamesMode == true) {
@@ -83,7 +93,6 @@ function randomSequence(array) {
         let randomIndex = Math.floor(Math.random() * 4)
         game.newSequence.push(array[randomIndex]);
     };
-    console.log(game.newSequence);
 };
 
 // At this point I decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing, and it will be used to run the game later
@@ -120,11 +129,20 @@ function backupCard() {
         <img class='card-img-top'
         src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: ${transparencyToggle}'>
         <div class="card-body">
-        <h5 class='card-title'>${title}</h5>
+        <h5 class='card-title' style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)
     };
 };
 
+async function setupNewGame() {
+    addNewLibrary();
+    getGamesList();
+    newGameBoard();
+    createCardImages(game.randomGames);
+    randomSequence(game.randomGames);
+};
 
+$('#summon').click(setupNewGame);
+$('#all-games').on('change', checkAllGamesMode);
 
-module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence, newGameBoard, createCardImages, backupCard };
+module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence};

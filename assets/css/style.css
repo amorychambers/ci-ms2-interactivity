@@ -75,5 +75,10 @@ form input[type='textarea'] {
 
 .card-body {
     color: #1b2838;
-    font-family: 'Bebas Neue', sans-serif;;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+}
+
+.card-img-top {
+    object-fit: cover;
 }
