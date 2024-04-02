@@ -102,14 +102,13 @@ function createCardImages(array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-icon': array[i].img_icon_url}).css('opacity', 0).click(backupCard);
-        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url}.click(backupCard));
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-icon': array[i].img_icon_url}).css('opacity', 0).on('error', backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url}).on('error', backupCard);
     };
 };
 
 function backupCard() {
     if ($(this).height() < 50 ) {
-
         let title = $(this).attr('data-title');
         let appID = $(this).attr('data-appid');
         let imgURL = $(this).attr('data-icon');
@@ -122,20 +121,6 @@ function backupCard() {
         </div>`)
     };
 };
-
-// {
-//     "appid": 406730,
-//     "name": "1,000 Heads Among the Trees",
-//     "playtime_forever": 0,
-//     "img_icon_url": "8f628d66ac2fafe2deb14e46ca33696253424ba3",
-//     "has_community_visible_stats": true,
-//     "playtime_windows_forever": 0,
-//     "playtime_mac_forever": 0,
-//     "playtime_linux_forever": 0,
-//     "playtime_deck_forever": 0,
-//     "rtime_last_played": 0,
-//     "playtime_disconnected": 0
-// }
 
 
 
