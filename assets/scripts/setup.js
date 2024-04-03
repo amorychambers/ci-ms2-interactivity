@@ -16,7 +16,7 @@ const game = {
 
 async function setupNewGame() {
     newGameBoard();
-    await waitForFetchLibrary();
+    const dataReceived = await fetchLibrary();
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
@@ -70,10 +70,6 @@ function throwError() {
 
 fetchLibrary.then(addNewLibrary, throwError);
 
-// This async function is used in the main setupNewGame function to ensure the Steam Web API data is received before the function continues setting up a new game
-async function waitForFetchLibrary() {
-    const dataReceived = await fetchLibrary();
-}
 
 // This creates a list of four random games from the user's library to be used in the game
 function getGamesList() {
