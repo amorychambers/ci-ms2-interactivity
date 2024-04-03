@@ -1,8 +1,11 @@
-// const jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-// const fs = require('fs');
-// const fileContents = fs.readFileSync('index.html', 'utf-8');
-// const document = new JSDOM(fileContents).window.document;
+/* const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const fs = require('fs');
+const fileContents = fs.readFileSync('index.html', 'utf-8');
+const document = new JSDOM(fileContents).window.document; 
+*/
+// The Node.js modules above are used to run the setup.test.js suite in Jest. In order to run the test suite, it is necessary to remove the comment notation and allow Node to create a virtual DOM to test.
+// At the bottom of the file, there is a line of module.exports to pass all the functions to the test suite in Node. The comment notation must be removed there as well for the test suite to run.
 
 const game = {
     steamLibrary: [],
@@ -14,6 +17,7 @@ const game = {
     computerTurn: true,
 };
 
+// Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
 async function setupNewGame() {
     newGameBoard();
     const dataReceived = await fetchLibrary();
@@ -68,7 +72,7 @@ function throwError() {
     console.log(errorMessage);
 }
 
-fetchLibrary.then(addNewLibrary, throwError);
+fetchLibrary().then(addNewLibrary, throwError);
 
 
 // This creates a list of four random games from the user's library to be used in the game
@@ -116,7 +120,7 @@ function randomSequence(array) {
     };
 };
 
-// At this point I decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing, and it will be used to run the game later
+// At this point I decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing, and jQuery will be used to run the game later
 
 function newGameBoard() {
     $('#new-player').fadeOut(1500);
@@ -166,7 +170,6 @@ function createPlayerCards() {
 
 
 function playerSelect() {
-    debugger;
     $(this).addClass('clicked');
     setTimeout(() => {
         $(this).removeClass('clicked')
@@ -177,10 +180,10 @@ function playerSelect() {
         } else {
             game.computerTurn = true;
             // callback function to check correct or not
-        }
-    }
-}
+        };
+    };
+};
 
 
 
-module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
+// module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
