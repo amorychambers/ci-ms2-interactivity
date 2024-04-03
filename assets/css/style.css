@@ -108,3 +108,9 @@ form input[type='textarea'] {
     opacity: 0.8;
 }
 
+#counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2em;
+    color:#ffc107;
+    line-height: 0.75;
+}
