@@ -2742,14 +2742,15 @@ const game = {
     "computerTurn": true
 }
 
-$('#start').click(beginNextRound)
+$('#start').on('click', beginNextRound)
 
 function beginNextRound() {
     updateTurn();
     setComputerTurn();
     runCountdown();
     showComputerTurn();
-}
+    handleButton();
+};
 
 function updateTurn() {
     game.currentScore += 1;
@@ -2840,3 +2841,9 @@ function playerSelect() {
         };
     };
 };
+
+function handleButton() {
+    $('#start').off('click', beginNextRound)
+    $('#start').attr('disabled', 'true')
+    $('#start').parent().attr('href', '');
+}
