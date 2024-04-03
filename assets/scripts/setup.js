@@ -11,13 +11,13 @@ const game = {
     playerMoves: [],
     currentScore: 0,
     allGamesMode: false,
-    playerTurn: false,
+    computerTurn: true,
 };
 
 async function setupNewGame() {
+    newGameBoard();
     await waitForFetchLibrary();
     getGamesList();
-    newGameBoard();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
 };
@@ -31,31 +31,34 @@ let errorMessage = '';
 
 
 // This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
-let fetchLibrary = new Promise(function (resolve, reject) {
+function fetchLibrary() {
 
-    var baseURL = 'http://localhost:5500/getlibrary/?';
-    // var userID = document.getElementById('userID').value;
-    // Using static ID for testing
-    var userID = '76561198033224422'
-    var newURL = baseURL + userID;
-
-    var req = new XMLHttpRequest();
-    req.open('GET', newURL, true);
-    // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
-    req.addEventListener('load', function () {
-        if (this.readyState == 4 && this.status == 200) {
-            steamData = JSON.parse(req.responseText);
-            newLibrary = steamData.response.games;
-            resolve('Success');
-        } else {
-            errorMessage = 'Error type: ' + this.status;
-            reject('Failure')
-        }
+    return new Promise(function (resolve, reject) {
+        
+        var baseURL = 'http://localhost:5500/getlibrary/?';
+        // var userID = document.getElementById('userID').value;
+        // Using static ID for testing
+        var userID = '76561198033224422'
+        var newURL = baseURL + userID;
+        
+        var req = new XMLHttpRequest();
+        req.open('GET', newURL, true);
+        // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
+        req.addEventListener('load', function () {
+            if (this.readyState == 4 && this.status == 200) {
+                steamData = JSON.parse(req.responseText);
+                newLibrary = steamData.response.games;
+                resolve('Success');
+            } else {
+                errorMessage = 'Error type: ' + this.status;
+                reject('Failure')
+            }
+        });
+        // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
+        req.send();
     });
-    // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
-    req.send();
-});
-
+};
+    
 // This ensures the steamLibrary property is empty before all allGamesModeToggle function determines whether it will select from all games or only unplayed ones
 function addNewLibrary() {
     game.steamLibrary = [];
@@ -69,7 +72,7 @@ fetchLibrary.then(addNewLibrary, throwError);
 
 // This async function is used in the main setupNewGame function to ensure the Steam Web API data is received before the function continues setting up a new game
 async function waitForFetchLibrary() {
-    const dataReceived = await Promise.resolve('Success');
+    const dataReceived = await fetchLibrary();
 }
 
 // This creates a list of four random games from the user's library to be used in the game
@@ -167,11 +170,19 @@ function createPlayerCards() {
 
 
 function playerSelect() {
+    debugger;
     $(this).addClass('clicked');
     setTimeout(() => {
         $(this).removeClass('clicked')
     }, 150);
-    game.playerMoves.push($(this).children(':first').attr('data-appid'));
+    if (game.computerTurn == false) {
+        if (game.playerMoves < (4 + game.currentScore)) {
+            game.playerMoves.push($(this).children(':first').attr('data-appid'));
+        } else {
+            game.computerTurn = true;
+            // callback function to check correct or not
+        }
+    }
 }
 
 
