@@ -2766,16 +2766,22 @@ function setComputerTurn(array) {
     };
 };
 
-function showComputerTurn(array) {
-    for (i in array) {
-        setTimeout(() => {
-            $(`img[data-appid|=${array[i]}]`).css('opacity', '1');
-        }, 1000);
-        setTimeout(() => {
-            $(`img[data-appid|=${array[i]}]`).css('opacity', '0');
-        }, 3000);
-    };
+// Change appid to gameid when switching to index.html
+function showComputerTurn() {
+    for (let i = 0; i < game.thisTurn.length; i++) {
+        revealGame(i);
+    }
 };
+
+function revealGame(index) {
+    let showTime = (index + 2000)
+    setTimeout(() => {
+        $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
+    }, showTime);
+    setTimeout(() => {
+        $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
+    }, 4000);
+}
 
 function runCountdown() {
     $('#counter').show()
@@ -2798,7 +2804,7 @@ function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).click(playerSelect)
-        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
 
