@@ -21,6 +21,10 @@ async function setupNewGame() {
     randomSequence(game.randomGames);
 };
 
+
+$('#summon').click(setupNewGame);
+$('#all-games').on('change', checkAllGamesMode);
+
 let newLibrary = [];
 let errorMessage = '';
 
@@ -103,7 +107,7 @@ function allGamesModeToggle() {
 function randomSequence(array) {
     for (let i = 0; i < 10; i++) {
         let randomIndex = Math.floor(Math.random() * 4)
-        game.newSequence.push(array[randomIndex]);
+        game.newSequence.push(array[randomIndex].appid);
     };
 };
 
@@ -146,8 +150,22 @@ function backupCard() {
     };
 };
 
+function createPlayerCards() {
+    for (let i = 0; i <4; i++){
+        let cardID = '#card' + (Number(i) + 1);
+        $(cardID).click(playerSelect).mousedown(function(){$(this).addClass('clicked')}).mouseup(function(){$(this).removeClass('clicked')}).mouseenter(function(){$(this).children(':first').addClass('hover')}).mouseout(function(){$(this).children(':first').removeClass('hover')});
+    };
+}
 
-$('#summon').click(setupNewGame);
-$('#all-games').on('change', checkAllGamesMode);
+// add playerSelect on click
+// add .clicked on mousedown, remove on mouseup
+// consider: add opacity on mouseover?
+
+function playerSelect() {
+    game.playerMoves.push($(this).children(':first').attr('data-appid'))
+    console.log(game.playerMoves);
+}
+
+
 
 module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence};

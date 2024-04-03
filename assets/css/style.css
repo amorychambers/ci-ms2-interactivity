@@ -99,3 +99,11 @@ form input[type='textarea'] {
 .card-img-top {
     object-fit: cover;
 }
+
+.clicked {
+    background-color: green;
+}
+
+.hover {
+    opacity: 0.8;
+}
