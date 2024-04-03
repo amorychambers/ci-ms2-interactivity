@@ -8,6 +8,17 @@ function showComputerTurn(array) {
             thisTurn = array.slice(0, 5);
             break;
         case 3:
-            thisTurn = array.slice(0, 6);
-    }
-}
+            thisTurn = array.slice(0, 7);
+            break;
+        case 4:
+            thisTurn = array.slice(0, 9);
+            break;
+        case 5:
+            thisTurn = array;
+    };
+};
+
+function updateTurn() {
+    game.currentScore += 1;
+    $('#current-score').html(game.currentScore);
+};
