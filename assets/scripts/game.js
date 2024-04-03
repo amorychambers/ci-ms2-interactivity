@@ -2742,12 +2742,22 @@ const game = {
     "computerTurn": true
 }
 
+$('#start').click(beginNextRound)
+
+function beginNextRound() {
+    updateTurn();
+    setComputerTurn();
+    runCountdown();
+    showComputerTurn();
+}
+
 function updateTurn() {
     game.currentScore += 1;
     $('#current-score').html(game.currentScore);
 };
 
-function setComputerTurn(array) {
+function setComputerTurn() {
+    let array = game.newSequence;
     switch (game.currentScore) {
         case 1:
             game.thisTurn = array.slice(0, 4);
@@ -2768,14 +2778,16 @@ function setComputerTurn(array) {
 
 
 function showComputerTurn() {
-    for (let i = 0; i < game.thisTurn.length; i++) {
-        revealGame(i);
-    }
+    setTimeout(() => {
+        for (let i = 0; i < game.thisTurn.length; i++) {
+            revealGame(i);
+        }
+    }, 3000);
 };
 
 function revealGame(index) {
-    let showTime = (1000 + (2000*(index)));
-    let hideTime = (2000 + (2000*(index)));
+    let showTime = (500 + (1500*(index)));
+    let hideTime = (1000 + (1500*(index)));
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().addClass('attention');
@@ -2796,10 +2808,13 @@ function runCountdown() {
         $('#counter').html('1')
     }, 2000);
     setTimeout(() => {
+        $('#counter').html('GO!')
+    }, 3000);
+    setTimeout(() => {
         $('#counter').hide()
         $('#counter').html('3')
         // start turn function
-    }, 3000);
+    }, 3500);
 
 }
 
