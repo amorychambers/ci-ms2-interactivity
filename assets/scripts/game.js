@@ -2766,6 +2766,21 @@ function setComputerTurn(array) {
     };
 };
 
+function runCountdown() {
+    $('#counter').show()
+    $('#counter').html('3')
+    setTimeout(() => {
+        $('#counter').html('2')
+    }, 1000);
+    setTimeout(() => {
+        $('#counter').html('1')
+    }, 2000);
+    setTimeout(() => {
+        $('#counter').hide()
+        $('#counter').html('3')
+    }, 3000);
+}
+
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);

@@ -84,7 +84,7 @@
         </div>
     </main>
     <!-- There is a second main element here which represents the game board. Initially I had this created and inserted by JavaScript, but the performance was improved having it hidden on the page instead -->
-    <main id="gameboard" style="display: none;">
+    <main id="gameboard" style="">
         <div class="container">
             <div class="row">
                 <div class="col center">
@@ -95,7 +95,7 @@
             </div>
             <h2 class="heading my-4">Board</h2>
             <div class="row center my-4 position-relative">
-                <span class='counter position-absolute top-100'>3</span>
+                <p class='position-absolute top-100' id='counter'>3</p>
                 <div class="col card" id="game1">
                     <img>
                 </div>
