@@ -11,6 +11,7 @@ const game = {
     playerMoves: [],
     currentScore: 0,
     allGamesMode: false,
+    playerTurn: false,
 };
 
 async function setupNewGame() {
@@ -123,6 +124,7 @@ function newGameBoard() {
     $('#intro').fadeOut(1500);
     $('#requirements').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
+    createPlayerCards();
 };
 
 // This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API. 
@@ -159,20 +161,17 @@ function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).click(playerSelect)
-        // $(cardID).mousedown(function () { $(cardID).addClass('clicked') });
-        // $(cardID).mouseup(function () { $(cardID).removeClass('clicked') });
-        // $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
     };
 }
 
 
 function playerSelect() {
-    game.playerMoves.push($(this).children(':first').attr('data-appid'));
     $(this).addClass('clicked');
     setTimeout(() => {
         $(this).removeClass('clicked')
     }, 150);
-    console.log(game.playerMoves);
+    game.playerMoves.push($(this).children(':first').attr('data-appid'));
 }
 
 
