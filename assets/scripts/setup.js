@@ -11,6 +11,7 @@ const game = {
     steamLibrary: [],
     randomGames: [],
     newSequence: [],
+    thisTurn: [],
     playerMoves: [],
     currentScore: 0,
     allGamesMode: false,
