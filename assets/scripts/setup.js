@@ -77,7 +77,12 @@ function getGamesList() {
     let count = game.steamLibrary.length;
     let randomNums = [];
     for (let i = 0; i < 4; i++) {
-        randomNums.push(Math.floor(Math.random() * count));
+        let randomIndex = Math.floor(Math.random() * count);
+        if (randomNums.includes(randomIndex)) {
+            i--;
+            continue;
+        };
+        randomNums.push(randomIndex);
     }
     //Creates a list of random games to play with 
     for (let i of randomNums) {
@@ -153,13 +158,10 @@ function backupCard() {
 function createPlayerCards() {
     for (let i = 0; i <4; i++){
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).click(playerSelect).mousedown(function(){$(this).addClass('clicked')}).mouseup(function(){$(this).removeClass('clicked')}).mouseenter(function(){$(this).children(':first').addClass('hover')}).mouseout(function(){$(this).children(':first').removeClass('hover')});
+        $(cardID).click(playerSelect).mousedown(function(){$(cardID).addClass('clicked')}).mouseup(function(){$(cardID).removeClass('clicked')}).mouseenter(function(){$(cardID).children(':first').addClass('hover')}).mouseout(function(){$(cardID).children(':first').removeClass('hover')});
     };
 }
 
-// add playerSelect on click
-// add .clicked on mousedown, remove on mouseup
-// consider: add opacity on mouseover?
 
 function playerSelect() {
     game.playerMoves.push($(this).children(':first').attr('data-appid'))
