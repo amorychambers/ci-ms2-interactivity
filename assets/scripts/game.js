@@ -2774,13 +2774,14 @@ function showComputerTurn() {
 };
 
 function revealGame(index) {
-    let showTime = (index + 2000)
+    let showTime = (1000 + (2000*(index)));
+    let hideTime = (2000 + (2000*(index)));
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
     }, showTime);
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
-    }, 4000);
+    }, hideTime);
 }
 
 function runCountdown() {
