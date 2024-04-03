@@ -2766,7 +2766,7 @@ function setComputerTurn(array) {
     };
 };
 
-// Change appid to gameid when switching to index.html
+
 function showComputerTurn() {
     for (let i = 0; i < game.thisTurn.length; i++) {
         revealGame(i);
@@ -2778,9 +2778,11 @@ function revealGame(index) {
     let hideTime = (2000 + (2000*(index)));
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
-    }, showTime);
+        $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().addClass('attention');
+    }, showTime)
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
+        $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().removeClass('attention');
     }, hideTime);
 }
 
