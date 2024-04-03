@@ -172,7 +172,7 @@ function playerSelect() {
         $(this).removeClass('clicked')
     }, 150);
     if (game.computerTurn == false) {
-        if (game.playerMoves < (4 + game.currentScore)) {
+        if (game.playerMoves.length < (4 + game.currentScore)) {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
         } else {
             game.computerTurn = true;
