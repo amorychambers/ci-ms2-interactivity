@@ -84,17 +84,18 @@
         </div>
     </main>
     <!-- There is a second main element here which represents the game board. Initially I had this created and inserted by JavaScript, but the performance was improved having it hidden on the page instead -->
-    <main id='gameboard' style='display: none;'>
+    <main id="gameboard" style="display: none;">
         <div class="container">
             <div class="row">
                 <div class="col center">
-                    <button class='btn btn-outline-warning my-3'>START ROUND</button>
+                    <button class="btn btn-outline-warning my-3">START ROUND</button>
                     <h2 id="countdown"></h2>
                 </div>
                 <hr>
             </div>
-            <div class="row center my-4">
-                <h2 class='heading mb-4'>Board</h2>
+            <h2 class="heading my-4">Board</h2>
+            <div class="row center my-4 position-relative">
+                <span class='counter position-absolute top-100'>3</span>
                 <div class="col card" id="game1">
                     <img>
                 </div>
@@ -136,7 +137,7 @@
                 <div class="col center m-4">
                     <h3 class='heading'>Current Score</h3>
                     <h4 class='sub-heading'><span id='current-score'>0</span>/5</h4>
-                    <button class='btn btn-outline-warning my-3'>NEW GAME</button>
+                    <button class='btn btn-outline-warning my-3' style='display: none;'>NEW GAME</button>
                 </div>
             </div>
         </div>

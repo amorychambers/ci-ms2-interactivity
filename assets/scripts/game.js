@@ -2672,10 +2672,22 @@ const game = {
     ],
     "randomGames": [
         {
-            "appid": 34270,
-            "name": "SEGA Mega Drive & Genesis Classics",
+            "appid": 21000,
+            "name": "LEGO® Batman™: The Videogame",
             "playtime_forever": 0,
-            "img_icon_url": "2cda9462fbaf9309e5aedce99ad8452adf8a40bd",
+            "img_icon_url": "51fee43ed4f78494e23bd3eaeec5be43635dbd4c",
+            "playtime_windows_forever": 0,
+            "playtime_mac_forever": 0,
+            "playtime_linux_forever": 0,
+            "playtime_deck_forever": 0,
+            "rtime_last_played": 0,
+            "playtime_disconnected": 0
+        },
+        {
+            "appid": 482300,
+            "name": "Investigator",
+            "playtime_forever": 0,
+            "img_icon_url": "cda8ec752785ebe0b57d47cba4b2591bef25c45b",
             "has_community_visible_stats": true,
             "playtime_windows_forever": 0,
             "playtime_mac_forever": 0,
@@ -2685,27 +2697,10 @@ const game = {
             "playtime_disconnected": 0
         },
         {
-            "appid": 358750,
-            "name": "Sunrider: Liberation Day - Captain's Edition",
+            "appid": 265890,
+            "name": "Hexcells",
             "playtime_forever": 0,
-            "img_icon_url": "15355d72a018ee3c240b73534abc1b8d3f0c6ad7",
-            "has_community_visible_stats": true,
-            "playtime_windows_forever": 0,
-            "playtime_mac_forever": 0,
-            "playtime_linux_forever": 0,
-            "playtime_deck_forever": 0,
-            "rtime_last_played": 0,
-            "content_descriptorids": [
-                1,
-                5
-            ],
-            "playtime_disconnected": 0
-        },
-        {
-            "appid": 230820,
-            "name": "The Night of the Rabbit",
-            "playtime_forever": 0,
-            "img_icon_url": "dd544720b32ab6e4239bcd75fe4569611ae99d76",
+            "img_icon_url": "b10f170738dc96144b7ff59b745cf52f5dcb1ae4",
             "has_community_visible_stats": true,
             "playtime_windows_forever": 0,
             "playtime_mac_forever": 0,
@@ -2715,10 +2710,10 @@ const game = {
             "playtime_disconnected": 0
         },
         {
-            "appid": 40390,
-            "name": "Risen 2 - Dark Waters",
+            "appid": 712730,
+            "name": "SIMULACRA",
             "playtime_forever": 0,
-            "img_icon_url": "874236eebecff1fe070032d137722ef3cdb47383",
+            "img_icon_url": "1d8d24a1b4de30ddbe4984c84ebee153b1f76eaa",
             "has_community_visible_stats": true,
             "playtime_windows_forever": 0,
             "playtime_mac_forever": 0,
@@ -2729,23 +2724,23 @@ const game = {
         }
     ],
     "newSequence": [
-        230820,
-        40390,
-        40390,
-        40390,
-        34270,
-        34270,
-        230820,
-        358750,
-        40390,
-        34270
+        265890,
+        265890,
+        712730,
+        712730,
+        482300,
+        712730,
+        265890,
+        482300,
+        712730,
+        265890
     ],
     "thisTurn": [],
     "playerMoves": [],
     "currentScore": 0,
     "allGamesMode": false,
     "computerTurn": true
-};
+}
 
 function updateTurn() {
     game.currentScore += 1;
@@ -2768,5 +2763,28 @@ function setComputerTurn(array) {
             break;
         case 5:
             game.thisTurn = array;
+    };
+};
+
+function createPlayerCards() {
+    for (let i = 0; i < 4; i++) {
+        let cardID = '#card' + (Number(i) + 1);
+        $(cardID).click(playerSelect)
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
+    };
+};
+
+function playerSelect() {
+    $(this).addClass('clicked');
+    setTimeout(() => {
+        $(this).removeClass('clicked')
+    }, 150);
+    if (game.computerTurn == false) {
+        if (game.playerMoves.length < (4 + game.currentScore)) {
+            game.playerMoves.push($(this).children(':first').attr('data-appid'));
+        } else {
+            game.computerTurn = true;
+            // callback function to check correct or not
+        };
     };
 };

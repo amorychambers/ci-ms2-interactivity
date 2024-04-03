@@ -141,6 +141,7 @@ function createCardImages(array) {
         $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0 }).css('opacity', 0).on('error', backupCard);
         $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1 }).on('error', backupCard);
     };
+    createPlayerCards()
 };
 
 // This function replaces the box cover art with a custom card that displays the game's title and icon from the Steam Web API, when the box art does not exist or fails to load
@@ -167,7 +168,7 @@ function createPlayerCards() {
         $(cardID).click(playerSelect)
         $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
     };
-}
+};
 
 
 function playerSelect() {
