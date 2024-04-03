@@ -2766,6 +2766,17 @@ function setComputerTurn(array) {
     };
 };
 
+function showComputerTurn(array) {
+    for (i in array) {
+        setTimeout(() => {
+            $(`img[data-appid|=${array[i]}]`).css('opacity', '1');
+        }, 1000);
+        setTimeout(() => {
+            $(`img[data-appid|=${array[i]}]`).css('opacity', '0');
+        }, 3000);
+    };
+};
+
 function runCountdown() {
     $('#counter').show()
     $('#counter').html('3')
@@ -2778,7 +2789,9 @@ function runCountdown() {
     setTimeout(() => {
         $('#counter').hide()
         $('#counter').html('3')
+        // start turn function
     }, 3000);
+
 }
 
 function createPlayerCards() {
