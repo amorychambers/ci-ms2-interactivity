@@ -2744,12 +2744,14 @@ const game = {
 
 $('#start').on('click', beginNextRound)
 
-function beginNextRound() {
+function beginNextRound(event) {
     updateTurn();
     setComputerTurn();
     runCountdown();
     showComputerTurn();
-    handleButton();
+    setTimeout(() => {
+        handleButton();
+    }, 1000);
 };
 
 function updateTurn() {
@@ -2843,7 +2845,9 @@ function playerSelect() {
 };
 
 function handleButton() {
-    $('#start').off('click', beginNextRound)
-    $('#start').attr('disabled', 'true')
-    $('#start').parent().attr('href', '');
-}
+    $('#start').off('click');
+    $('#start').attr('disabled', 'true');
+    $('#start').html('NEXT ROUND');
+    $('#start').parent().addClass('disabled');
+
+};
