@@ -77,11 +77,12 @@ function getGamesList() {
     let count = game.steamLibrary.length;
     let randomNums = [];
     while (randomNums.length < 4) {
-        debugger;
         let randomIndex = Math.floor(Math.random() * count);
         if (!randomNums.includes(randomIndex)) {
             randomNums.push(randomIndex);
-        };
+        } else {
+            return;
+        }
     };
     //Creates a list of random games to play with 
     for (let i of randomNums) {
@@ -157,7 +158,10 @@ function backupCard() {
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).click(playerSelect).mousedown(function () { $(cardID).addClass('clicked') }).mouseup(function () { $(cardID).removeClass('clicked') }).mouseenter(function () { $(cardID).children(':first').addClass('hover') }).mouseout(function () { $(cardID).children(':first').removeClass('hover') });
+        $(cardID).click(playerSelect)
+        $(cardID).mousedown(function () { $(cardID).addClass('clicked') });
+        $(cardID).mouseup(function () { $(cardID).removeClass('clicked') });
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
     };
 }
 
