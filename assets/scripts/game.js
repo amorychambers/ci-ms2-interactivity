@@ -2750,7 +2750,7 @@ function beginNextRound(event) {
     runCountdown();
     showComputerTurn();
     setTimeout(() => {
-        handleButton();
+        disableButton();
     }, 1000);
 };
 
@@ -2844,10 +2844,10 @@ function playerSelect() {
     };
 };
 
-function handleButton() {
+function disableButton() {
     $('#start').off('click');
     $('#start').attr('disabled', 'true');
     $('#start').html('NEXT ROUND');
-    $('#start').parent().addClass('disabled');
-
+    $('#focus').addClass('disabled');
+    $('#focus').attr({'aria-disabled':'true', 'tabindex':'-1'});
 };
