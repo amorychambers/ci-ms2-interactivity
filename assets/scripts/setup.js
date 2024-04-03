@@ -76,19 +76,18 @@ function getGamesList() {
     allGamesModeToggle();
     let count = game.steamLibrary.length;
     let randomNums = [];
-    for (let i = 0; i < 4; i++) {
+    while (randomNums.length < 4) {
+        debugger;
         let randomIndex = Math.floor(Math.random() * count);
-        if (randomNums.includes(randomIndex)) {
-            i--;
-            continue;
+        if (!randomNums.includes(randomIndex)) {
+            randomNums.push(randomIndex);
         };
-        randomNums.push(randomIndex);
-    }
+    };
     //Creates a list of random games to play with 
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
     };
-};
+}
 
 // This is an event handler to ensure the allGamesMode property of the game object is up to date with user input
 function checkAllGamesMode() {
@@ -132,14 +131,14 @@ function createCardImages(array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0}).css('opacity', 0).on('error', backupCard);
-        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1}).on('error', backupCard);
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0 }).css('opacity', 0).on('error', backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1 }).on('error', backupCard);
     };
 };
 
 // This function replaces the box cover art with a custom card that displays the game's title and icon from the Steam Web API, when the box art does not exist or fails to load
 function backupCard() {
-    if ($(this).height() < 50 ) {
+    if ($(this).height() < 50) {
         let title = $(this).attr('data-title');
         let appID = $(this).attr('data-appid');
         let imgURL = $(this).attr('data-icon');
@@ -156,9 +155,9 @@ function backupCard() {
 };
 
 function createPlayerCards() {
-    for (let i = 0; i <4; i++){
+    for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).click(playerSelect).mousedown(function(){$(cardID).addClass('clicked')}).mouseup(function(){$(cardID).removeClass('clicked')}).mouseenter(function(){$(cardID).children(':first').addClass('hover')}).mouseout(function(){$(cardID).children(':first').removeClass('hover')});
+        $(cardID).click(playerSelect).mousedown(function () { $(cardID).addClass('clicked') }).mouseup(function () { $(cardID).removeClass('clicked') }).mouseenter(function () { $(cardID).children(':first').addClass('hover') }).mouseout(function () { $(cardID).children(':first').removeClass('hover') });
     };
 }
 
@@ -170,4 +169,4 @@ function playerSelect() {
 
 
 
-module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence};
+module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };
