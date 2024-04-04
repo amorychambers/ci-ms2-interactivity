@@ -126,3 +126,7 @@ form input[type='textarea'] {
 .disabled {
     pointer-events: none;
 }
+
+.icons {
+    font-size: 3em;
+}

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="jquery-3.7.1.js"></script>
+    <script src="https://kit.fontawesome.com/ee31e6b5f8.js" crossorigin="anonymous"></script>
     <title>Lost in Library</title>
 </head>
 
@@ -49,7 +50,8 @@
             <div class="row">
                 <div class="col center">
                     <a href='#board' id='focus'>
-                        <button type='button' class="btn btn-outline-warning my-3" data-disabled='false' id='start'>START ROUND</button>
+                        <button type='button' class="btn btn-outline-warning my-3" data-disabled='false'
+                            id='start'>START ROUND</button>
                     </a>
                     <h2 id="countdown"></h2>
                 </div>
@@ -59,18 +61,26 @@
             <div class="row center my-4 position-relative">
                 <p class='position-absolute top-100' id='counter' style='display: none;'>3</p>
                 <div class="col card game" id="game1">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/21000/library_600x900_2x.jpg" data-title="LEGO® Batman™: The Videogame" data-appid="21000" data-game-id="21000" data-icon="51fee43ed4f78494e23bd3eaeec5be43635dbd4c" data-opacity="0" style="opacity: 0;">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/21000/library_600x900_2x.jpg"
+                        data-title="LEGO® Batman™: The Videogame" data-appid="21000" data-game-id="21000"
+                        data-icon="51fee43ed4f78494e23bd3eaeec5be43635dbd4c" data-opacity="0" style="opacity: 0;">
                 </div>
                 <div class="col card game" id="game2">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/482300/library_600x900_2x.jpg" data-title="Investigator" data-appid="482300" data-game-id="482300" data-icon="cda8ec752785ebe0b57d47cba4b2591bef25c45b" data-opacity="0" style="opacity: 0;">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/482300/library_600x900_2x.jpg"
+                        data-title="Investigator" data-appid="482300" data-game-id="482300"
+                        data-icon="cda8ec752785ebe0b57d47cba4b2591bef25c45b" data-opacity="0" style="opacity: 0;">
                 </div>
             </div>
             <div class="row">
                 <div class="col card game" id="game3">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/265890/library_600x900_2x.jpg" data-title="Hexcells" data-appid="265890" data-game-id="265890" data-icon="b10f170738dc96144b7ff59b745cf52f5dcb1ae4" data-opacity="0" style="opacity: 0;">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/265890/library_600x900_2x.jpg"
+                        data-title="Hexcells" data-appid="265890" data-game-id="265890"
+                        data-icon="b10f170738dc96144b7ff59b745cf52f5dcb1ae4" data-opacity="0" style="opacity: 0;">
                 </div>
                 <div class="col card game" id="game4">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/712730/library_600x900_2x.jpg" data-title="SIMULACRA" data-appid="712730" data-game-id="712730" data-icon="1d8d24a1b4de30ddbe4984c84ebee153b1f76eaa" data-opacity="0" style="opacity: 0;">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/712730/library_600x900_2x.jpg"
+                        data-title="SIMULACRA" data-appid="712730" data-game-id="712730"
+                        data-icon="1d8d24a1b4de30ddbe4984c84ebee153b1f76eaa" data-opacity="0" style="opacity: 0;">
                 </div>
             </div>
         </div>
@@ -79,18 +89,26 @@
             <div class="row center">
                 <h2 class="heading mb-4">Player Cards</h2>
                 <div class="col card player-card" id="card1">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/21000/library_600x900_2x.jpg" data-title="LEGO® Batman™: The Videogame" data-appid="21000" data-icon="51fee43ed4f78494e23bd3eaeec5be43635dbd4c" data-opacity="1">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/21000/library_600x900_2x.jpg"
+                        data-title="LEGO® Batman™: The Videogame" data-appid="21000"
+                        data-icon="51fee43ed4f78494e23bd3eaeec5be43635dbd4c" data-opacity="1">
                 </div>
                 <div class="col card player-card" id="card2">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/482300/library_600x900_2x.jpg" data-title="Investigator" data-appid="482300" data-icon="cda8ec752785ebe0b57d47cba4b2591bef25c45b" data-opacity="1">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/482300/library_600x900_2x.jpg"
+                        data-title="Investigator" data-appid="482300"
+                        data-icon="cda8ec752785ebe0b57d47cba4b2591bef25c45b" data-opacity="1">
                 </div>
             </div>
             <div class="row">
                 <div class="col card player-card" id="card3">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/265890/library_600x900_2x.jpg" data-title="Hexcells" data-appid="265890" data-icon="b10f170738dc96144b7ff59b745cf52f5dcb1ae4" data-opacity="1">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/265890/library_600x900_2x.jpg"
+                        data-title="Hexcells" data-appid="265890" data-icon="b10f170738dc96144b7ff59b745cf52f5dcb1ae4"
+                        data-opacity="1">
                 </div>
                 <div class="col card player-card" id="card4">
-                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/712730/library_600x900_2x.jpg" data-title="SIMULACRA" data-appid="712730" data-icon="1d8d24a1b4de30ddbe4984c84ebee153b1f76eaa" data-opacity="1">
+                    <img src="https://steamcdn-a.akamaihd.net/steam/apps/712730/library_600x900_2x.jpg"
+                        data-title="SIMULACRA" data-appid="712730" data-icon="1d8d24a1b4de30ddbe4984c84ebee153b1f76eaa"
+                        data-opacity="1">
                 </div>
             </div>
         </div>
@@ -104,6 +122,41 @@
             </div>
         </div>
     </main>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#playerSuccess">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header mx-auto">
+                    <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
+                </div>
+                <p class="sub-heading m-0">You have bested Lost in Library.</p>
+                <span class='center icons p-3'>&#129395; <i class="fa-solid fa-crown fa-xl" style="color: #FFD43B;"></i>
+                    &#129395;</span>
+                <p class='center'>Your games slink back to your Steam Library in gracious defeat to await their chance
+                    on another day.</p>
+                <div class="row">
+                    <div class="col card player-card" id="most-played">
+                        <img src="https://steamcdn-a.akamaihd.net/steam/apps/21000/library_600x900_2x.jpg"
+                            data-title="LEGO® Batman™: The Videogame" data-appid="21000"
+                            data-icon="51fee43ed4f78494e23bd3eaeec5be43635dbd4c" data-opacity="1">
+                    </div>
+                </div>
+                <div class='col center'>
+                    <p>Perhaps you would like to revisit an old favourite?</p>
+                </div>
+            </div>
+            <div class="modal-footer center">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
     <footer>
         <div class='center my-3'>
             <a href='privacy.html'>Privacy Policy</a>

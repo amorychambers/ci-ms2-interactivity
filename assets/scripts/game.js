@@ -2916,7 +2916,7 @@ function playerSuccess(){
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
     };
-
+    
 };
 
 function playerDefeat(){
