@@ -2742,9 +2742,10 @@ const game = {
     "computerTurn": true
 }
 
-$('#start').on('click', beginNextRound)
+$('#start').one('click', beginNextRound)
 
-function beginNextRound(event) {
+//This function calls all the necessary functions to set up and run the next turn
+function beginNextRound() {
     updateTurn();
     setComputerTurn();
     runCountdown();
@@ -2759,6 +2760,7 @@ function updateTurn() {
     $('#current-score').html(game.currentScore);
 };
 
+//This function changes the length of the sequence over the five rounds of the game
 function setComputerTurn() {
     let array = game.newSequence;
     switch (game.currentScore) {
@@ -2779,7 +2781,7 @@ function setComputerTurn() {
     };
 };
 
-
+//This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
 function showComputerTurn() {
     setTimeout(() => {
         for (let i = 0; i < game.thisTurn.length; i++) {
@@ -2788,6 +2790,7 @@ function showComputerTurn() {
     }, 3000);
 };
 
+//This function uses setTimeout functions to briefly show the game that the player has to remember
 function revealGame(index) {
     let showTime = (500 + (1500*(index)));
     let hideTime = (1000 + (1500*(index)));
@@ -2801,6 +2804,7 @@ function revealGame(index) {
     }, hideTime);
 }
 
+//This function runs a three second countdown before the round begins
 function runCountdown() {
     $('#counter').show()
     $('#counter').html('3')
@@ -2824,10 +2828,18 @@ function runCountdown() {
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).click(playerSelect)
-        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
+        $(cardID).on('click', playerSelect)
+        $(cardID).on('hover', function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
+
+function disablePlayerCards(){
+    for (let i = 0; i < 4; i++) {
+        let cardID = '#card' + (Number(i) + 1);
+        $(cardID).off('click', playerSelect)
+        $(cardID).off('hover', function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
+    };
+}
 
 function playerSelect() {
     $(this).addClass('clicked');
@@ -2844,8 +2856,8 @@ function playerSelect() {
     };
 };
 
+//This function disables the start or next round buttons so that it cannot be used during the computer turn or player turn, only in between rounds
 function disableButton() {
-    $('#start').off('click');
     $('#start').attr('disabled', 'true');
     $('#start').html('NEXT ROUND');
     $('#focus').addClass('disabled');
