@@ -2848,6 +2848,7 @@ function showComputerTurn() {
     }, 3000);
     setTimeout(() => {
         game.computerTurn = false;
+        createPlayerCards();
         alert('Now!');
     }, turnTime);
 };
@@ -2909,6 +2910,7 @@ function playerSelect() {
         } else if (game.playerMoves.length == (2 + game.currentScore)){
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
             game.computerTurn = true;
+            disablePlayerCards();
             checkIfCorrect();
         };
     };
@@ -2916,10 +2918,11 @@ function playerSelect() {
 
 //This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions 
 function checkIfCorrect() {
-    if (game.thisTurn == game.playerMoves) {
+    if (game.thisTurn.toString() == game.playerMoves.toString()) {
         if (game.currentScore < 5) {
             flashCorrectAnimation();
             handleButton();
+            game.playerMoves = [];
         } else {
             flashCorrectAnimation();
             finalGame.outcome = 'success';
