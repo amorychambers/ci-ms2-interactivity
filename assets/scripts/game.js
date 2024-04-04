@@ -2840,11 +2840,16 @@ function runCountdown() {
 
 //This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
 function showComputerTurn() {
+    let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500)
     setTimeout(() => {
         for (let i = 0; i < game.thisTurn.length; i++) {
             revealGame(i);
         }
     }, 3000);
+    setTimeout(() => {
+        game.computerTurn = false;
+        alert('Now!');
+    }, turnTime);
 };
 
 //This function uses setTimeout functions to briefly show the game that the player has to remember
@@ -2928,7 +2933,7 @@ function checkIfCorrect() {
     }
 };
 
-//This function plays a simple animation lighting up the card backgrounds green when the player's turn is successful
+//These functions play a simple animation lighting up the card backgrounds when the player's turn is over
 function flashCorrectAnimation() {
     for (let i of $('.player-card')) {
         setTimeout(() => {
@@ -2974,10 +2979,10 @@ function chooseFinalGame() {
         // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
-        finalGame.playtime = chosenGame.playtime_forever;
-        finalGame.title = chosenGame.name;
+        finalGame.playtime = chosenGame[0].playtime_forever;
+        finalGame.title = chosenGame[0].name;
+        finalGame.icon = chosenGame[0].img_icon_url;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
-        finalGame.icon = chosenGame.img_icon_url;
         chosenGameCard = $(finalGame.htmlID)[0];
     }
 }
@@ -3044,7 +3049,7 @@ function addModal() {
 <div class="modal-dialog">
     <div class="modal-content">
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-header mx-auto p-2">
+        <div class="modal-header mx-auto pt-2">
             <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
         </div>
         <p class="sub-heading m-0 pt-2 dark-bg">You have bested Lost in Library</p>
@@ -3080,7 +3085,7 @@ function addModal() {
         <div class="modal-dialog">
             <div class="modal-content">
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-header mx-auto p-2">
+                <div class="modal-header mx-auto pt-2">
                     <h5 class="modal-title heading" id="playerDefeatLabel">PLAYER DEFEAT</h5>
                 </div>
                 <p class="sub-heading m-0 pt-2 dark-bg">You have been defeated by Lost in Library</p>
