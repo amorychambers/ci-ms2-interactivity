@@ -2916,13 +2916,11 @@ function checkIfCorrect() {
         } else {
             flashCorrectAnimation();
             finalGame.outcome = 'success';
-            chooseFinalGame();
             playerSuccess();
         }
     } else {
         flashIncorrectAnimation();
         finalGame.outcome = 'defeat';
-        chooseFinalGame();
         playerDefeat();
 
     }
@@ -2989,7 +2987,8 @@ async function playerSuccess() {
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
     };
-    await fetchAppNews();
+    chooseFinalGame();
+    const appDataReceived = await fetchAppNews();
     addModal()
 };
 
@@ -3002,6 +3001,7 @@ async function playerDefeat() {
         $(i).addClass('wrong');
     };
     await fetchAppNews();
+    chooseFinalGame();
     addModal();
 };
 
@@ -3030,28 +3030,22 @@ function fetchAppNews() {
     });
 };
 
+const defeatModal = `oh no`;
+
 function addModal() {
+    debugger;
     let modal = document.createElement('div');
     let footer = document.getElementsByTagName('footer')[0];
-    if (finalGame.outcome == 'success'){
-        modal.innerHTML = victoryModal;
-    } else {
-        modal.innerHTML = defeatModal;
-    }
-    footer.insertAdjacentElement('beforebegin', modal);
-    $('#message-button').click();
-};
-
-
-const victoryModal = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
+    if (finalGame.outcome == 'success') {
+        modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
 <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-header mx-auto">
+        <div class="modal-header mx-auto p-2">
             <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
         </div>
-        <p class="sub-heading m-0 dark-bg">You have bested Lost in Library</p>
+        <p class="sub-heading m-0 pt-2 dark-bg">You have bested Lost in Library</p>
         <span class='center icons p-3 dark-bg'>&#129395; <i class="fa-solid fa-crown fa-xl" style="color: #FFD43B;"></i>
             &#129395;</span>
         <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
@@ -3078,5 +3072,9 @@ const victoryModal = `<button id='message-button' type="button" class='btn btn-o
         </div>
     </div>
     </div>`;
-
-    const defeatModal = `oh no`;
+    } else {
+        modal.innerHTML = defeatModal;
+    }
+    footer.insertAdjacentElement('beforebegin', modal);
+    $('#message-button').click();
+};
