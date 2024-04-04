@@ -2758,6 +2758,7 @@ const game = {
 const finalGame = {
     outcome: '',
     appid: 0,
+    icon: '',
     htmlID: '',
     title: '',
     playtime: 0,
@@ -2898,9 +2899,10 @@ function playerSelect() {
         $(this).removeClass('clicked')
     }, 150);
     if (game.computerTurn == false) {
-        if (game.playerMoves.length < (4 + game.currentScore)) {
+        if (game.playerMoves.length < (2 + game.currentScore)) {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
-        } else {
+        } else if (game.playerMoves.length == (2 + game.currentScore)){
+            game.playerMoves.push($(this).children(':first').attr('data-appid'));
             game.computerTurn = true;
             checkIfCorrect();
         };
@@ -2975,7 +2977,8 @@ function chooseFinalGame() {
         finalGame.playtime = chosenGame.playtime_forever;
         finalGame.title = chosenGame.name;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
-        chosenGameCard = $(finalGame.htmlID);
+        finalGame.icon = chosenGame.img_icon_url;
+        chosenGameCard = $(finalGame.htmlID)[0];
     }
 }
 
@@ -3000,8 +3003,8 @@ async function playerDefeat() {
     for (let i of $('.player-card')) {
         $(i).addClass('wrong');
     };
-    await fetchAppNews();
     chooseFinalGame();
+    const appDataReceived = await fetchAppNews();
     addModal();
 };
 
@@ -3033,7 +3036,6 @@ function fetchAppNews() {
 const defeatModal = `oh no`;
 
 function addModal() {
-    debugger;
     let modal = document.createElement('div');
     let footer = document.getElementsByTagName('footer')[0];
     if (finalGame.outcome == 'success') {
@@ -3073,7 +3075,39 @@ function addModal() {
     </div>
     </div>`;
     } else {
-        modal.innerHTML = defeatModal;
+        modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-danger my-3' data-bs-toggle="modal" data-bs-target="#playerDefeat">DEFEAT MESSAGE</button>
+        <div class="modal fade" id="playerDefeat" tabindex="-1" aria-labelledby="playerDefeatLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header mx-auto p-2">
+                    <h5 class="modal-title heading" id="playerDefeatLabel">PLAYER DEFEAT</h5>
+                </div>
+                <p class="sub-heading m-0 pt-2 dark-bg">You have been defeated by Lost in Library</p>
+                <span class='center icons p-3 dark-bg'>&#128532; <i class="fa-solid fa-person-falling fa-xl" style="color: #c70039;"></i> &#128532;</span>
+                <p class='center px-4 my-4'>Your games have rallied in a roguish mutiny and have overthrown you.</p>
+                <div class="row dark-bg">
+                <div class="col card player-card m-3" id="winning-game">
+                <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
+                    data-title=${finalGame.title} data-appid="${finalGame.appid}"
+                    data-icon=${finalGame.icon} data-opacity="1">
+                </div>
+                <div class='col center m-3'>
+                <p>Will you accept defeat and give the game that bested you a chance?</p>
+                <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
+                </div>
+                </div>
+                    <div class="col m-2" id='app-info'>
+                        <h3>Most Recent News</h3>
+                        <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
+                        <p>${finalGame.newsitems[0].contents}</p>
+                    </div>
+                </div>
+                <div class="modal-footer center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>`;
     }
     footer.insertAdjacentElement('beforebegin', modal);
     $('#message-button').click();
