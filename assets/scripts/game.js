@@ -2740,7 +2740,19 @@ const game = {
     "currentScore": 0,
     "allGamesMode": false,
     "computerTurn": true,
-    "mostPlayedGame": 0,
+    "mostPlayedGame": {
+        "appid": 286160,
+        "name": "Tabletop Simulator",
+        "playtime_forever": 19309,
+        "img_icon_url": "19f5b90e3c7084758f885ded843631b13929fa26",
+        "has_community_visible_stats": true,
+        "playtime_windows_forever": 2722,
+        "playtime_mac_forever": 16587,
+        "playtime_linux_forever": 0,
+        "playtime_deck_forever": 0,
+        "rtime_last_played": 1668207640,
+        "playtime_disconnected": 0
+    },
 };
 
 const finalGame = {
@@ -2848,7 +2860,7 @@ function revealGame(index) {
     }, hideTime);
 };
 
-//This function sets up the player cards to accept input during the player turn
+// This function sets up the player cards to accept input during the player turn
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
@@ -2937,19 +2949,27 @@ function flashIncorrectAnimation() {
 };
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
+let chosenGameCard = ``;
 function chooseFinalGame() {
     if (finalGame.outcome == 'success') {
-        //choose most played game, update finalGame
+        finalGame.appid = game.mostPlayedGame.appid;
+        finalGame.playtime = game.mostPlayedGame.playtime_forever;
+        finalGame.title = game.mostPlayedGame.name;
+        chosenGameCard = `
+        <div class="col card player-card m-3" id="most-played">
+        <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
+            data-title=${finalGame.title} data-appid="${finalGame.appid}"
+            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1">
+        </div>`;
     } else {
-        // Single line code snippet to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
+        // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
-
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
         finalGame.playtime = chosenGame.playtime_forever;
         finalGame.title = chosenGame.name;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
+        chosenGameCard = $(finalGame.htmlID)[0];
     }
-    chosenGameCard = $(finalGame.htmlID)[0];
 }
 
 async function playerSuccess() {
@@ -3016,11 +3036,20 @@ function fetchAppNews(chosenAppID) {
     });
 };
 
-let chosenGameCard = '';
+function addModal() {
+    let modal = document.createElement('div');
+    modal.innerHTML = victoryModal;
+    let main = document.getElementsByTagName('footer')[0];
+    main.insertAdjacentElement('beforebegin', modal)
+}
 
-const victoryModal = `<div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
+
+const victoryModal = `
+<button id='success-button' type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#playerSuccess">Success Message!</button>
+<div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-header mx-auto">
             <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
         </div>
@@ -3031,15 +3060,19 @@ const victoryModal = `<div class="modal fade" id="playerSuccess" tabindex="-1" a
             on another day.</p>
         <div class="row dark-bg">
         ${chosenGameCard}
-            </div>
-            <div class='col center m-3'>
-                <p>Perhaps you would like to revisit an old favourite?</p>
-                <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
+        <div class='col center m-3'>
+        <p>Perhaps you would like to revisit an old favourite?</p>
+        <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
+        </div>
+        </div>
+            <div class="col m-2" id='app-info'>
+                <h3>Most Recent News</h3>
+                <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
+                <p>${finalGame.newsitems[0].contents}</p>
             </div>
         </div>
-        <div class="col m-2" id='app-info'>
-            <h3>Most Recent News</h3>
-           <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
-           <p>${finalGame.newsitems[0].contents}</p>
+        <div class="modal-footer center">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
         </div>
+    </div>
     </div>`;

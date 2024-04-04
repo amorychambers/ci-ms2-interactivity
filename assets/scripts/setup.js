@@ -55,7 +55,7 @@ function fetchLibrary() {
             if (this.readyState == 4 && this.status == 200) {
                 steamData = JSON.parse(req.responseText);
                 newLibrary = steamData.response.games;
-                let playtimesArray = newLibrary.map((game) => game.playtime_forever);
+                let playtimesArray = newLibrary.map(game => game.playtime_forever);
                 let highestPlaytime = Math.max(...playtimesArray);
                 game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
                 resolve('Success');
@@ -167,6 +167,7 @@ function backupCard() {
     };
 };
 
+// This function sets up the player cards to accept input during the player turn
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
@@ -176,14 +177,6 @@ function createPlayerCards() {
         $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
-
-//This function removes the player input functionality during the computer turn
-function disablePlayerCards() {
-    for (let i = 0; i < 4; i++) {
-        let cardID = '#card' + (Number(i) + 1);
-        $(cardID).off('click', playerSelect)
-    };
-}
 
 //This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
 function playerSelect() {
