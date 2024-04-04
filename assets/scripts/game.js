@@ -2743,7 +2743,9 @@ const game = {
 };
 
 const finalGame = {
+    outcome: '',
     appid: 0,
+    htmlID: '',
     title: '',
     playtime: 0,
     newsitems: [
@@ -2888,10 +2890,14 @@ function checkIfCorrect() {
             handleButton();
         } else {
             flashCorrectAnimation();
+            finalGame.outcome = 'success';
+            chooseFinalGame();
             // Success function
         }
     } else {
         flashIncorrectAnimation();
+        finalGame.outcome = 'defeat';
+        chooseFinalGame();
         // Defeat function
     }
 };
@@ -2929,8 +2935,14 @@ function flashIncorrectAnimation() {
     }
 };
 
+//This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
 function chooseFinalGame(){
-
+    if (finalGame.outcome == 'success'){
+        //choose most played game, update finalGame
+    } else {
+        //next game in sequence, updatefinalGame
+    }   
+chosenGameCard = $(finalGame.htmlID)[0];
 }
 
 async function playerSuccess() {
@@ -2988,3 +3000,31 @@ function fetchAppNews(chosenAppID) {
         req.send();
     });
 };
+
+let chosenGameCard = '';
+
+const victoryModal = `<div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header mx-auto">
+            <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
+        </div>
+        <p class="sub-heading m-0 dark-bg">You have bested Lost in Library</p>
+        <span class='center icons p-3 dark-bg'>&#129395; <i class="fa-solid fa-crown fa-xl" style="color: #FFD43B;"></i>
+            &#129395;</span>
+        <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
+            on another day.</p>
+        <div class="row dark-bg">
+        ${chosenGameCard}
+            </div>
+            <div class='col center m-3'>
+                <p>Perhaps you would like to revisit an old favourite?</p>
+                <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
+            </div>
+        </div>
+        <div class="col m-2" id='app-info'>
+            <h3>Most Recent News</h3>
+           <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
+           <p>${finalGame.newsitems[0].contents}</p>
+        </div>
+    </div>`;
