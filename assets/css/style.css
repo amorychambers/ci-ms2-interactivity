@@ -108,6 +108,10 @@ form input[type='textarea'] {
     background-color: #DA0B94;
 }
 
+.wrong {
+    background-color: #C70039;
+}
+
 .hover {
     opacity: 0.8;
 }

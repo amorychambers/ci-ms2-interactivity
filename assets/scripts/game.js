@@ -2864,10 +2864,13 @@ function checkIfCorrect(){
     if (game.thisTurn == game.playerMoves) {
         if (game.currentScore < 5) {
             flashCorrectAnimation();
+            // Next round function
         } else {
+            flashCorrectAnimation();
             // Success function
         }
     } else {
+        flashIncorrectAnimation();
         // Defeat function
     }
 };
@@ -2875,15 +2878,32 @@ function checkIfCorrect(){
 //This function plays a simple animation lighting up the card backgrounds green when the player's turn is successfull
 function flashCorrectAnimation(){
     for (let i of $('.player-card')){
-        $(i).addClass('clicked');
         setTimeout(() => {
-            $(i).removeClass('clicked')
-        }, 150);
-        setTimeout(() => {
-            $(i).addClass('clicked')
+            $(i).addClass('clicked');
         }, 250);
         setTimeout(() => {
             $(i).removeClass('clicked')
+        }, 400);
+        setTimeout(() => {
+            $(i).addClass('clicked')
+        }, 500);
+        setTimeout(() => {
+            $(i).removeClass('clicked')
+        }, 650);
+    }
+};
+
+function flashIncorrectAnimation(){
+    for (let i of $('.player-card')){
+        $(i).addClass('wrong');
+        setTimeout(() => {
+            $(i).removeClass('wrong')
+        }, 150);
+        setTimeout(() => {
+            $(i).addClass('wrong')
+        }, 250);
+        setTimeout(() => {
+            $(i).removeClass('wrong')
         }, 400);
     }
 };
