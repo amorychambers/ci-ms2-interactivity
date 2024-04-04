@@ -2954,11 +2954,11 @@ function flashCorrectAnimation() {
             window.scrollTo(0, 0)
         }, 800);
         setTimeout(() => {
-            $('#start').removeClass('btn-outline-warning').addClass('btn-warning')
-        }, 850);
+            $('#start').addClass('active')
+        }, 1500);
         setTimeout(() => {
-            $('#start').removeClass('btn-warning').addClass('btn-outline-warning')
-        }, 875);
+            $('#start').removeClass('active')
+        }, 2000);
     }
 };
 

@@ -130,3 +130,8 @@ form input[type='textarea'] {
 .icons {
     font-size: 3em;
 }
+
+#start {
+    transition-property: background;
+    transition-duration: 500ms;
+}
