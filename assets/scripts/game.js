@@ -2904,9 +2904,9 @@ function playerSelect() {
         $(this).removeClass('clicked')
     }, 150);
     if (game.computerTurn == false) {
-        if (game.playerMoves.length < (2 + game.currentScore)) {
+        if (game.playerMoves.length < (game.thisTurn.length - 1)) {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
-        } else if (game.playerMoves.length == (2 + game.currentScore)){
+        } else if (game.playerMoves.length == (game.thisTurn.length - 1)){
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
             game.computerTurn = true;
             disablePlayerCards();
