@@ -2829,7 +2829,7 @@ function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).on('click', playerSelect)
-        $(cardID).on('hover', function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
 
@@ -2837,7 +2837,6 @@ function disablePlayerCards(){
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).off('click', playerSelect)
-        $(cardID).off('hover', function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 }
 
