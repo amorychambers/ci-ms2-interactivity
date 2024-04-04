@@ -2908,9 +2908,20 @@ function flashIncorrectAnimation(){
     }
 };
 
-function prepareNextRound() {
+function playerSuccess(){
+    for (let i of $('.game')) {
+        $(i).addClass('attention');
+        $(i).children(':first').css('opacity', '1');
+    };
+    for (let i of $('.player-card')) {
+        $(i).addClass('clicked');
+    };
 
-}
+};
+
+function playerDefeat(){
+
+};
 
 //This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
 function handleButton() {
@@ -2921,5 +2932,5 @@ function handleButton() {
         $('#start').removeClass('disabled').attr('data-disabled', 'false');
         $('#focus').removeClass('disabled').attr({'aria-disabled':'false', 'tabindex':'1'});
         $('#start').one('click', beginNextRound)
-    }
+    };
 };
