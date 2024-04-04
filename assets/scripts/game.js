@@ -2840,7 +2840,8 @@ function runCountdown() {
 
 //This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
 function showComputerTurn() {
-    let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500)
+    let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500);
+    let snapToPlayerCards = turnTime + 1;
     setTimeout(() => {
         for (let i = 0; i < game.thisTurn.length; i++) {
             revealGame(i);
@@ -2850,6 +2851,11 @@ function showComputerTurn() {
         game.computerTurn = false;
         createPlayerCards();
     }, turnTime);
+    setTimeout(() => {
+        let playerCards = document.getElementById('card1');
+        let rect = playerCards.getBoundingClientRect();
+        window.scrollTo(0, rect.y);
+    }, snapToPlayerCards);
 };
 
 //This function uses setTimeout functions to briefly show the game that the player has to remember
