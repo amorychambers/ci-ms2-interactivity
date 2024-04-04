@@ -2751,7 +2751,7 @@ function beginNextRound() {
     runCountdown();
     showComputerTurn();
     setTimeout(() => {
-        disableButton();
+        handleButton();
     }, 1000);
 };
 
@@ -2865,7 +2865,6 @@ function checkIfCorrect(){
         if (game.currentScore < 5) {
             flashCorrectAnimation();
             handleButton();
-            $('#start').one('click', beginNextRound)
         } else {
             flashCorrectAnimation();
             // Success function
@@ -2915,11 +2914,12 @@ function prepareNextRound() {
 
 //This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
 function handleButton() {
-    if ($('#start').attr('data-disabled') == false) {
+    if ($('#start').attr('data-disabled') == 'false') {
         $('#start').addClass('disabled').attr('data-disabled', 'true').html('NEXT ROUND');
         $('#focus').addClass('disabled').attr({'aria-disabled':'true', 'tabindex':'-1'});
     } else {
         $('#start').removeClass('disabled').attr('data-disabled', 'false');
         $('#focus').removeClass('disabled').attr({'aria-disabled':'false', 'tabindex':'1'});
+        $('#start').one('click', beginNextRound)
     }
 };
