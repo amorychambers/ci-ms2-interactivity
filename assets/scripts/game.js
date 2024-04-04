@@ -2916,7 +2916,7 @@ function playerSuccess(){
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
     };
-    
+
 };
 
 function playerDefeat(){
@@ -2933,4 +2933,30 @@ function handleButton() {
         $('#focus').removeClass('disabled').attr({'aria-disabled':'false', 'tabindex':'1'});
         $('#start').one('click', beginNextRound)
     };
+};
+
+function fetchAppNews() {
+
+    return new Promise(function (resolve, reject) {
+        
+        var baseURL = 'http://localhost:5500/getnews/?';
+        // var newsAppID = document.getElementById('').value;
+        // Using static ID for testing
+        var newsAppID = '21000'
+        var newURL = baseURL + newsAppID;
+        
+        var req = new XMLHttpRequest();
+        req.open('GET', newURL, true);
+        req.addEventListener('load', function () {
+            if (this.readyState == 4 && this.status == 200) {
+                appNewsData = JSON.parse(req.responseText);
+                console.log(appNewsData);
+                resolve('Success');
+            } else {
+                errorMessage = 'Error type: ' + this.status;
+                reject('Failure')
+            }
+        });
+        req.send();
+    });
 };
