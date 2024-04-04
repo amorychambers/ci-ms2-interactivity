@@ -16,6 +16,7 @@ const game = {
     currentScore: 0,
     allGamesMode: false,
     computerTurn: true,
+    mostPlayedGame: 0,
 };
 
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API

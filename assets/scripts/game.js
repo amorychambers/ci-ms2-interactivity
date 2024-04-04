@@ -2739,7 +2739,8 @@ const game = {
     "playerMoves": [],
     "currentScore": 0,
     "allGamesMode": false,
-    "computerTurn": true
+    "computerTurn": true,
+    "mostPlayedGame": 0,
 };
 
 const finalGame = {
@@ -2936,13 +2937,21 @@ function flashIncorrectAnimation() {
 };
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
-function chooseFinalGame(){
-    if (finalGame.outcome == 'success'){
+function chooseFinalGame() {
+    if (finalGame.outcome == 'success') {
         //choose most played game, update finalGame
     } else {
-        //next game in sequence, updatefinalGame
-    }   
-chosenGameCard = $(finalGame.htmlID)[0];
+        // Single line code snippet to negate .includes() method to find the choice the player should have picked taken from StackOverflow user jota3, linked in readme credits
+        finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
+
+        let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
+        finalGame.playtime = chosenGame.playtime_forever;
+        finalGame.title = chosenGame.name;
+        finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
+
+        //next game in sequence, update finalGame
+    }
+    chosenGameCard = $(finalGame.htmlID)[0];
 }
 
 async function playerSuccess() {
@@ -2954,12 +2963,22 @@ async function playerSuccess() {
         $(i).addClass('clicked');
     };
     // function scan steam library for most played and populate finalGame object, pull app ID, pass to fetchAppNews
-    await fetchAppNews();
+    await fetchAppNews(finalGame.appid);
+    // insert modal element and trigger
 
 };
 
-function playerDefeat() {
-
+async function playerDefeat() {
+    for (let i of $('.game')) {
+        $(i).addClass('wrong');
+        $(i).children(':first').css('opacity', '1');
+    };
+    for (let i of $('.player-card')) {
+        $(i).addClass('wrong');
+    };
+    // function to pick next correct game in sequence and populate finalGame object, pull app ID, pass to fetchAppNews
+    await fetchAppNews(finalGame.appid);
+    // insert modal element and trigger
 };
 
 //This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
@@ -2980,9 +2999,7 @@ function fetchAppNews(chosenAppID) {
     return new Promise(function (resolve, reject) {
 
         var baseURL = 'http://localhost:5500/getnews/?';
-        // var newsAppID = chosenAppID
-        // Using static ID for testing
-        var newsAppID = '21000'
+        var newsAppID = chosenAppID
         var newURL = baseURL + newsAppID;
 
         var req = new XMLHttpRequest();
