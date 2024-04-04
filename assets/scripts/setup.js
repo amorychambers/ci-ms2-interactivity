@@ -16,7 +16,7 @@ const game = {
     currentScore: 0,
     allGamesMode: false,
     computerTurn: true,
-    mostPlayedGame: 0,
+    mostPlayedGame: {},
 };
 
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
@@ -50,10 +50,14 @@ function fetchLibrary() {
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
         // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
+        // Code snippet for the three lines isolating the object for the game with the highest playtime in the games array taken from StackOverflow user Cristian S, linked in README
         req.addEventListener('load', function () {
             if (this.readyState == 4 && this.status == 200) {
                 steamData = JSON.parse(req.responseText);
                 newLibrary = steamData.response.games;
+                let playtimesArray = newLibrary.map((game) => game.playtime_forever);
+                let highestPlaytime = Math.max(...playtimesArray);
+                game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
                 resolve('Success');
             } else {
                 errorMessage = 'Error type: ' + this.status;
@@ -160,6 +164,40 @@ function backupCard() {
         <div class="card-body">
         <h5 class='card-title' style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)
+    };
+};
+
+function createPlayerCards() {
+    for (let i = 0; i < 4; i++) {
+        let cardID = '#card' + (Number(i) + 1);
+        if (game.currentScore > 0) {
+            $(cardID).on('click', playerSelect)
+        }
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
+    };
+};
+
+//This function removes the player input functionality during the computer turn
+function disablePlayerCards() {
+    for (let i = 0; i < 4; i++) {
+        let cardID = '#card' + (Number(i) + 1);
+        $(cardID).off('click', playerSelect)
+    };
+}
+
+//This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
+function playerSelect() {
+    $(this).addClass('clicked');
+    setTimeout(() => {
+        $(this).removeClass('clicked')
+    }, 150);
+    if (game.computerTurn == false) {
+        if (game.playerMoves.length < (4 + game.currentScore)) {
+            game.playerMoves.push($(this).children(':first').attr('data-appid'));
+        } else {
+            game.computerTurn = true;
+            checkIfCorrect();
+        };
     };
 };
 

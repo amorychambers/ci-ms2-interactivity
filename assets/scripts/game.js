@@ -2893,13 +2893,13 @@ function checkIfCorrect() {
             flashCorrectAnimation();
             finalGame.outcome = 'success';
             chooseFinalGame();
-            // Success function
+            // Success function to insert modal
         }
     } else {
         flashIncorrectAnimation();
         finalGame.outcome = 'defeat';
         chooseFinalGame();
-        // Defeat function
+        // Defeat function to insert modal
     }
 };
 
@@ -2941,15 +2941,13 @@ function chooseFinalGame() {
     if (finalGame.outcome == 'success') {
         //choose most played game, update finalGame
     } else {
-        // Single line code snippet to negate .includes() method to find the choice the player should have picked taken from StackOverflow user jota3, linked in readme credits
+        // Single line code snippet to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
 
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
         finalGame.playtime = chosenGame.playtime_forever;
         finalGame.title = chosenGame.name;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
-
-        //next game in sequence, update finalGame
     }
     chosenGameCard = $(finalGame.htmlID)[0];
 }
