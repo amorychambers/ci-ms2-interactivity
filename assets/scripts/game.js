@@ -2877,7 +2877,19 @@ function disablePlayerCards() {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).off('click', playerSelect)
     };
-}
+};
+
+//This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
+function handleButton() {
+    if ($('#start').attr('data-disabled') == 'false') {
+        $('#start').addClass('disabled').attr('data-disabled', 'true').html('NEXT ROUND');
+        $('#focus').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1' });
+    } else {
+        $('#start').removeClass('disabled').attr('data-disabled', 'false');
+        $('#focus').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1' });
+        $('#start').one('click', beginNextRound)
+    };
+};
 
 //This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
 function playerSelect() {
@@ -2905,17 +2917,18 @@ function checkIfCorrect() {
             flashCorrectAnimation();
             finalGame.outcome = 'success';
             chooseFinalGame();
-            // Success function to insert modal
+            playerSuccess();
         }
     } else {
         flashIncorrectAnimation();
         finalGame.outcome = 'defeat';
         chooseFinalGame();
-        // Defeat function to insert modal
+        playerDefeat();
+
     }
 };
 
-//This function plays a simple animation lighting up the card backgrounds green when the player's turn is successfull
+//This function plays a simple animation lighting up the card backgrounds green when the player's turn is successful
 function flashCorrectAnimation() {
     for (let i of $('.player-card')) {
         setTimeout(() => {
@@ -2955,12 +2968,8 @@ function chooseFinalGame() {
         finalGame.appid = game.mostPlayedGame.appid;
         finalGame.playtime = game.mostPlayedGame.playtime_forever;
         finalGame.title = game.mostPlayedGame.name;
-        chosenGameCard = `
-        <div class="col card player-card m-3" id="most-played">
-        <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
-            data-title=${finalGame.title} data-appid="${finalGame.appid}"
-            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1">
-        </div>`;
+        // chosenGameCard = ;
+        // AMORY: account for image failure later
     } else {
         // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
@@ -2968,7 +2977,7 @@ function chooseFinalGame() {
         finalGame.playtime = chosenGame.playtime_forever;
         finalGame.title = chosenGame.name;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
-        chosenGameCard = $(finalGame.htmlID)[0];
+        chosenGameCard = $(finalGame.htmlID);
     }
 }
 
@@ -2980,10 +2989,8 @@ async function playerSuccess() {
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
     };
-    // function scan steam library for most played and populate finalGame object, pull app ID, pass to fetchAppNews
-    await fetchAppNews(finalGame.appid);
-    // insert modal element and trigger
-
+    await fetchAppNews();
+    addModal()
 };
 
 async function playerDefeat() {
@@ -2994,30 +3001,17 @@ async function playerDefeat() {
     for (let i of $('.player-card')) {
         $(i).addClass('wrong');
     };
-    // function to pick next correct game in sequence and populate finalGame object, pull app ID, pass to fetchAppNews
-    await fetchAppNews(finalGame.appid);
-    // insert modal element and trigger
-};
-
-//This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
-function handleButton() {
-    if ($('#start').attr('data-disabled') == 'false') {
-        $('#start').addClass('disabled').attr('data-disabled', 'true').html('NEXT ROUND');
-        $('#focus').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1' });
-    } else {
-        $('#start').removeClass('disabled').attr('data-disabled', 'false');
-        $('#focus').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1' });
-        $('#start').one('click', beginNextRound)
-    };
+    await fetchAppNews();
+    addModal();
 };
 
 // This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the recent news items for the app ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
-function fetchAppNews(chosenAppID) {
+function fetchAppNews() {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
 
         var baseURL = 'http://localhost:5500/getnews/?';
-        var newsAppID = chosenAppID
+        var newsAppID = finalGame.appid;
         var newURL = baseURL + newsAppID;
 
         var req = new XMLHttpRequest();
@@ -3049,8 +3043,7 @@ function addModal() {
 };
 
 
-const victoryModal = `
-<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
+const victoryModal = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
 <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
@@ -3064,7 +3057,11 @@ const victoryModal = `
         <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
             on another day.</p>
         <div class="row dark-bg">
-        ${chosenGameCard}
+        <div class="col card player-card m-3" id="most-played">
+        <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
+            data-title=${finalGame.title} data-appid="${finalGame.appid}"
+            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1">
+        </div>
         <div class='col center m-3'>
         <p>Perhaps you would like to revisit an old favourite?</p>
         <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
@@ -3081,3 +3078,5 @@ const victoryModal = `
         </div>
     </div>
     </div>`;
+
+    const defeatModal = `oh no`;
