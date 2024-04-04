@@ -162,30 +162,5 @@ function backupCard() {
     };
 };
 
-function createPlayerCards() {
-    for (let i = 0; i < 4; i++) {
-        let cardID = '#card' + (Number(i) + 1);
-        $(cardID).click(playerSelect)
-        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') } );
-    };
-};
-
-
-function playerSelect() {
-    $(this).addClass('clicked');
-    setTimeout(() => {
-        $(this).removeClass('clicked')
-    }, 150);
-    if (game.computerTurn == false) {
-        if (game.playerMoves.length < (4 + game.currentScore)) {
-            game.playerMoves.push($(this).children(':first').attr('data-appid'));
-        } else {
-            game.computerTurn = true;
-            // callback function to check correct or not
-        };
-    };
-};
-
-
 
 // module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };

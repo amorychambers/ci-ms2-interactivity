@@ -2781,6 +2781,26 @@ function setComputerTurn() {
     };
 };
 
+//This function runs a three second countdown before the round begins
+function runCountdown() {
+    $('#counter').show()
+    $('#counter').html('3')
+    setTimeout(() => {
+        $('#counter').html('2')
+    }, 1000);
+    setTimeout(() => {
+        $('#counter').html('1')
+    }, 2000);
+    setTimeout(() => {
+        $('#counter').html('GO!')
+    }, 3000);
+    setTimeout(() => {
+        $('#counter').hide()
+        $('#counter').html('3')
+        // start turn function
+    }, 3500);
+};
+
 //This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
 function showComputerTurn() {
     setTimeout(() => {
@@ -2802,37 +2822,20 @@ function revealGame(index) {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().removeClass('attention');
     }, hideTime);
-}
+};
 
-//This function runs a three second countdown before the round begins
-function runCountdown() {
-    $('#counter').show()
-    $('#counter').html('3')
-    setTimeout(() => {
-        $('#counter').html('2')
-    }, 1000);
-    setTimeout(() => {
-        $('#counter').html('1')
-    }, 2000);
-    setTimeout(() => {
-        $('#counter').html('GO!')
-    }, 3000);
-    setTimeout(() => {
-        $('#counter').hide()
-        $('#counter').html('3')
-        // start turn function
-    }, 3500);
-
-}
-
+//This function sets up the player cards to accept input during the player turn
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).on('click', playerSelect)
+        if (game.currentScore > 0) {
+            $(cardID).on('click', playerSelect)
+        }
         $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
 
+//This function removes the player input functionality during the computer turn
 function disablePlayerCards(){
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
@@ -2840,6 +2843,7 @@ function disablePlayerCards(){
     };
 }
 
+//This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
 function playerSelect() {
     $(this).addClass('clicked');
     setTimeout(() => {
@@ -2850,12 +2854,41 @@ function playerSelect() {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
         } else {
             game.computerTurn = true;
-            // callback function to check correct or not
+            checkIfCorrect();
         };
     };
 };
 
-//This function disables the start or next round buttons so that it cannot be used during the computer turn or player turn, only in between rounds
+//This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions 
+function checkIfCorrect(){
+    if (game.thisTurn == game.playerMoves) {
+        if (game.currentScore < 5) {
+            flashCorrectAnimation();
+        } else {
+            // Success function
+        }
+    } else {
+        // Defeat function
+    }
+};
+
+//This function plays a simple animation lighting up the card backgrounds green when the player's turn is successfull
+function flashCorrectAnimation(){
+    for (let i of $('.player-card')){
+        $(i).addClass('clicked');
+        setTimeout(() => {
+            $(i).removeClass('clicked')
+        }, 150);
+        setTimeout(() => {
+            $(i).addClass('clicked')
+        }, 250);
+        setTimeout(() => {
+            $(i).removeClass('clicked')
+        }, 400);
+    }
+};
+
+//This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
 function disableButton() {
     $('#start').attr('disabled', 'true');
     $('#start').html('NEXT ROUND');
