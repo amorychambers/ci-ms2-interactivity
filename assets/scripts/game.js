@@ -2740,7 +2740,14 @@ const game = {
     "currentScore": 0,
     "allGamesMode": false,
     "computerTurn": true
-}
+};
+
+const finalGame = {
+    appid: 0,
+    title: '',
+    playtime: 0,
+    newsitems: [],
+};
 
 $('#start').one('click', beginNextRound)
 
@@ -2812,8 +2819,8 @@ function showComputerTurn() {
 
 //This function uses setTimeout functions to briefly show the game that the player has to remember
 function revealGame(index) {
-    let showTime = (500 + (1500*(index)));
-    let hideTime = (1000 + (1500*(index)));
+    let showTime = (500 + (1500 * (index)));
+    let hideTime = (1000 + (1500 * (index)));
     setTimeout(() => {
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().addClass('attention');
@@ -2836,7 +2843,7 @@ function createPlayerCards() {
 };
 
 //This function removes the player input functionality during the computer turn
-function disablePlayerCards(){
+function disablePlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         $(cardID).off('click', playerSelect)
@@ -2860,7 +2867,7 @@ function playerSelect() {
 };
 
 //This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions 
-function checkIfCorrect(){
+function checkIfCorrect() {
     if (game.thisTurn == game.playerMoves) {
         if (game.currentScore < 5) {
             flashCorrectAnimation();
@@ -2876,8 +2883,8 @@ function checkIfCorrect(){
 };
 
 //This function plays a simple animation lighting up the card backgrounds green when the player's turn is successfull
-function flashCorrectAnimation(){
-    for (let i of $('.player-card')){
+function flashCorrectAnimation() {
+    for (let i of $('.player-card')) {
         setTimeout(() => {
             $(i).addClass('clicked');
         }, 250);
@@ -2893,8 +2900,8 @@ function flashCorrectAnimation(){
     }
 };
 
-function flashIncorrectAnimation(){
-    for (let i of $('.player-card')){
+function flashIncorrectAnimation() {
+    for (let i of $('.player-card')) {
         $(i).addClass('wrong');
         setTimeout(() => {
             $(i).removeClass('wrong')
@@ -2908,7 +2915,7 @@ function flashIncorrectAnimation(){
     }
 };
 
-function playerSuccess(){
+async function playerSuccess() {
     for (let i of $('.game')) {
         $(i).addClass('attention');
         $(i).children(':first').css('opacity', '1');
@@ -2916,10 +2923,12 @@ function playerSuccess(){
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
     };
+    // function scan steam library for most played and populate finalGame object, pull app ID, pass to fetchAppNews
+    await fetchAppNews();
 
 };
 
-function playerDefeat(){
+function playerDefeat() {
 
 };
 
@@ -2927,30 +2936,31 @@ function playerDefeat(){
 function handleButton() {
     if ($('#start').attr('data-disabled') == 'false') {
         $('#start').addClass('disabled').attr('data-disabled', 'true').html('NEXT ROUND');
-        $('#focus').addClass('disabled').attr({'aria-disabled':'true', 'tabindex':'-1'});
+        $('#focus').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1' });
     } else {
         $('#start').removeClass('disabled').attr('data-disabled', 'false');
-        $('#focus').removeClass('disabled').attr({'aria-disabled':'false', 'tabindex':'1'});
+        $('#focus').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1' });
         $('#start').one('click', beginNextRound)
     };
 };
 
-function fetchAppNews() {
+// This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the recent news items for the app ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
+function fetchAppNews(chosenAppID) {
 
     return new Promise(function (resolve, reject) {
-        
+
         var baseURL = 'http://localhost:5500/getnews/?';
-        // var newsAppID = document.getElementById('').value;
+        // var newsAppID = chosenAppID
         // Using static ID for testing
         var newsAppID = '21000'
         var newURL = baseURL + newsAppID;
-        
+
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
         req.addEventListener('load', function () {
             if (this.readyState == 4 && this.status == 200) {
-                appNewsData = JSON.parse(req.responseText);
-                console.log(appNewsData);
+                appData = JSON.parse(req.responseText);
+                finalGame.newsitems = appData.appnews.newsitems;
                 resolve('Success');
             } else {
                 errorMessage = 'Error type: ' + this.status;

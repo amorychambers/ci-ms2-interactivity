@@ -35,7 +35,7 @@ let newLibrary = [];
 let errorMessage = '';
 
 
-// This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts
+// This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
 function fetchLibrary() {
 
     return new Promise(function (resolve, reject) {
