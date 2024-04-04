@@ -2849,7 +2849,6 @@ function showComputerTurn() {
     setTimeout(() => {
         game.computerTurn = false;
         createPlayerCards();
-        alert('Now!');
     }, turnTime);
 };
 
@@ -2951,6 +2950,15 @@ function flashCorrectAnimation() {
         setTimeout(() => {
             $(i).removeClass('clicked')
         }, 650);
+        setTimeout(() => {
+            window.scrollTo(0, 0)
+        }, 800);
+        setTimeout(() => {
+            $('#start').removeClass('btn-outline-warning').addClass('btn-warning')
+        }, 850);
+        setTimeout(() => {
+            $('#start').removeClass('btn-warning').addClass('btn-outline-warning')
+        }, 875);
     }
 };
 
