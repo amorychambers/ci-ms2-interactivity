@@ -3038,18 +3038,23 @@ function fetchAppNews(chosenAppID) {
 
 function addModal() {
     let modal = document.createElement('div');
-    modal.innerHTML = victoryModal;
-    let main = document.getElementsByTagName('footer')[0];
-    main.insertAdjacentElement('beforebegin', modal)
-}
+    let footer = document.getElementsByTagName('footer')[0];
+    if (finalGame.outcome == 'success'){
+        modal.innerHTML = victoryModal;
+    } else {
+        modal.innerHTML = defeatModal;
+    }
+    footer.insertAdjacentElement('beforebegin', modal);
+    $('#message-button').click();
+};
 
 
 const victoryModal = `
-<button id='success-button' type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#playerSuccess">Success Message!</button>
+<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
 <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="modal-header mx-auto">
             <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
         </div>
