@@ -2990,10 +2990,12 @@ function flashIncorrectAnimation() {
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
 function chooseFinalGame() {
+    debugger;
     if (finalGame.outcome == 'success') {
         finalGame.appid = game.mostPlayedGame.appid;
         finalGame.playtime = Math.floor((game.mostPlayedGame.playtime_forever / 60));
         finalGame.title = game.mostPlayedGame.name;
+        finalGame.icon = game.mostPlayedGame.img_icon_url
         // AMORY: account for image failure later
     } else {
         // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
@@ -3006,12 +3008,24 @@ function chooseFinalGame() {
     }
 };
 
-function replaceWithBackup(){
-    if ($('#modal-image').height < 50) {
-        if (finalGame.outcome == 'success'){
-            $('#most-played').html();
+// This function will replace the finalGame image with a backup card if box art does not load or isn't available
+function replaceWithBackup() {
+    if ($('#modal-image').height() < 5000) {
+        let title = finalGame.title;
+        let appID = finalGame.appid;
+        let imgURL = finalGame.icon;
+        if (finalGame.outcome == 'success') {
+            $('#most-played').html(`<img class='card-img-top'
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
+            <div class="card-body attention">
+            <h5 class='card-title' style='opacity: 1'>${title}</h5>
+            </div>`);
         } else {
-            $('#winning-game').html();
+            $('#winning-game').html(`<img class='card-img-top'
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
+            <div class="card-body attention">
+            <h5 class='card-title' style='opacity: 1'>${title}</h5>
+            </div>`);
         }
     }
 };
@@ -3066,8 +3080,6 @@ function fetchAppNews() {
         req.send();
     });
 };
-
-const defeatModal = `oh no`;
 
 function addModal() {
     let modal = document.createElement('div');
