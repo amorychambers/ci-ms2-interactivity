@@ -2759,24 +2759,9 @@ const finalGame = {
     outcome: '',
     appid: 0,
     icon: '',
-    htmlID: '',
     title: '',
     playtime: 0,
-    newsitems: [
-        {
-            "gid": "920166227483831292",
-            "title": "Midweek Madness - Lego Titles - Up to 75% off",
-            "url": "http://store.steampowered.com/news/13008/",
-            "is_external_url": false,
-            "author": "Valve",
-            "contents": "Save up to 75% on <a href='http://store.steampowered.com/sale/lego_midweek/'>Warner Brothers LEGO Titles</a> as part of this week's Midweek Madness*! *Offer ends Friday at 10AM Pacific Time. <a href=\"http://store.steampowered.com/app/249130/\"> </a> <a href=\"http://store.steampowered.com/app/214510/\"> </a> <a href=\"http://store.steampowered.com/app/21000/\"> </a> <a href=\"http://store.steampowered.com/app/213330/\"> </a> <a href=\"http://store.steampowered.com/app/21130/\"> </a> <a href=\"http://store.steampowered.com/app/204120/\"> </a> ",
-            "feedlabel": "Announcement",
-            "date": 1397581200,
-            "feedname": "steam_announce",
-            "feed_type": 0,
-            "appid": 21000
-        },
-    ],
+    newsitems: [],
 };
 
 $('#start').one('click', beginNextRound)
@@ -2916,9 +2901,9 @@ function playerSelect() {
     }, 150);
     if (game.computerTurn == false) {
         if (game.playerMoves.length < (game.thisTurn.length - 1)) {
-            game.playerMoves.push($(this).children(':first').attr('data-appid'));
+            game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
         } else if (game.playerMoves.length == (game.thisTurn.length - 1)) {
-            game.playerMoves.push($(this).children(':first').attr('data-appid'));
+            game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
             game.computerTurn = true;
             disablePlayerCards();
             checkIfCorrect();
@@ -2990,21 +2975,18 @@ function flashIncorrectAnimation() {
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
 function chooseFinalGame() {
-    debugger;
     if (finalGame.outcome == 'success') {
         finalGame.appid = game.mostPlayedGame.appid;
         finalGame.playtime = Math.floor((game.mostPlayedGame.playtime_forever / 60));
         finalGame.title = game.mostPlayedGame.name;
         finalGame.icon = game.mostPlayedGame.img_icon_url
-        // AMORY: account for image failure later
     } else {
-        // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
+        // Single line code snippet below to negate .includes() method to find the value the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
         finalGame.playtime = Math.floor((chosenGame[0].playtime_forever / 60));
         finalGame.title = chosenGame[0].name;
         finalGame.icon = chosenGame[0].img_icon_url;
-        finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
     }
 };
 
@@ -3017,15 +2999,15 @@ function replaceWithBackup() {
         if (finalGame.outcome == 'success') {
             $('#most-played').html(`<img class='card-img-top'
             src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
-            <div class="card-body attention">
+            <div class="card-body">
             <h5 class='card-title' style='opacity: 1'>${title}</h5>
-            </div>`);
+            </div>`).addClass('clicked');
         } else {
             $('#winning-game').html(`<img class='card-img-top'
             src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
-            <div class="card-body attention">
+            <div class="card-body">
             <h5 class='card-title' style='opacity: 1'>${title}</h5>
-            </div>`);
+            </div>`).addClass('attention');
         }
     }
 };
@@ -3085,41 +3067,43 @@ function addModal() {
     let modal = document.createElement('div');
     let endButtons = document.getElementById('end-buttons');
     if (finalGame.outcome == 'success') {
-        modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
-<div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-header mx-auto pt-2">
-            <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
-        </div>
-        <p class="sub-heading m-0 pt-2 dark-bg">You have bested Lost in Library</p>
-        <span class='center icons p-3 dark-bg'>&#129395; <i class="fa-solid fa-crown fa-xl" style="color: #FFD43B;"></i>
-            &#129395;</span>
-        <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
-            on another day.</p>
-        <div class="row dark-bg">
-        <div class="col card player-card m-3" id="most-played">
-        <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
-            data-title=${finalGame.title} data-appid="${finalGame.appid}"
-            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onload='replaceWithBackup'>
-        </div>
-        <div class='col center m-3'>
-        <p>Perhaps you would like to revisit an old favourite?</p>
-        <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
-        </div>
-        </div>
-            <div class="col m-2" id='app-info'>
-                <h3>Most Recent News</h3>
-                <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
-                <p>${finalGame.newsitems[0].contents}</p>
+    modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
+    <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header mx-auto pt-2">
+                <h5 class="modal-title heading" id="playerSuccessLabel">PLAYER VICTORY!</h5>
+            </div>
+            <p class="sub-heading m-0 pt-2 dark-bg">You have bested Lost in Library</p>
+            <span class='center icons p-3 dark-bg'>&#129395; <i class="fa-solid fa-crown fa-xl" style="color: #FFD43B;"></i>
+                &#129395;</span>
+            <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
+                on another day.</p>
+            <div class="row dark-bg">
+            <div class="col card player-card m-3" id="most-played">
+            <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
+                data-title=${finalGame.title} data-appid="${finalGame.appid}"
+                data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onload='replaceWithBackup'>
+            </div>
+            <div class='col center m-3'>
+            <p>Perhaps you would like to revisit an old favourite?</p>
+            <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col m-2 text-start" id='app-info'>
+                    <h3>Most Recent News</h3>
+                    <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
+                    <p>${finalGame.newsitems[0].contents}</p>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer center">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
-        <div class="modal-footer center">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-        </div>
-    </div>
-    </div>`;
+        </div>`;
     } else {
         modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-danger my-3' data-bs-toggle="modal" data-bs-target="#playerDefeat">DEFEAT MESSAGE</button>
         <div class="modal fade" id="playerDefeat" tabindex="-1" aria-labelledby="playerDefeatLabel" aria-hidden="true">
@@ -3143,11 +3127,13 @@ function addModal() {
                 <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
                 </div>
                 </div>
-                    <div class="col m-2" id='app-info'>
+                <div class='row'>
+                    <div class="col m-2 text-start" id='app-info'>
                         <h3>Most Recent News</h3>
                         <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
                         <p>${finalGame.newsitems[0].contents}</p>
                     </div>
+                 </div>   
                 </div>
                 <div class="modal-footer center">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
