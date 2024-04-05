@@ -18,17 +18,16 @@ function sendMail(form) {
         errorMessage.setAttribute('id', 'contact-error')
         errorMessage.style.display = 'none';
         errorMessage.innerHTML = `<i class="fa-solid fa-circle-xmark fa-2xl mb-4" style="color: #c70039;"></i>
-        <p>Oh dear! I'm afraid there was an error processing your response. Error type: ${error}<br>Here is the message you entered in case you'd like to save it somewhere and try again later!</p>
+        <p>Oh dear! I'm afraid there was an error processing your response. Error type: ${error.status} (${error.text})<br>Here is the message you entered in case you'd like to save it somewhere and try again later!</p>
         </div>
-        <div>
+        <div class='text-start'>
         <label for='message'>Message</label>
-        <input type='textarea' name='message' value=${form.message.value}>
+        <input type='textarea' id='message' name='message' value=${form.message.value}>
         <div>`;
         document.getElementById('contact-form').insertAdjacentElement('afterend', errorMessage);
         $('#contact-form').fadeOut(1500);
         $('#contact-error').delay(1500).fadeIn(1000);
         $('#contact-error').addClass('center m-4');
-        console.log(error);
     });
     return false;
 };

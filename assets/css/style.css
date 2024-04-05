@@ -75,7 +75,7 @@ form input {
     margin: 5px 0 20px 0;
 }
 
-form input[type='textarea'] {
+#message {
     min-height: 12vh;
 }
 
