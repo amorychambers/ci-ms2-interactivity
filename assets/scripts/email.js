@@ -13,20 +13,23 @@ function sendMail(form) {
         $('#contact-form').fadeOut(1500);
         $('#contact-success').delay(1500).fadeIn(1000);
         $('#contact-success').addClass('center m-4');
-    }), function(error){
+    }, function(error){
         let errorMessage = document.createElement('div');
         errorMessage.setAttribute('id', 'contact-error')
         errorMessage.style.display = 'none';
-        errorMessage.innerHTML = `<i class="fa-solid fa-circle-check fa-2xl mb-4" style="color: #0bda51;"></i><br>
-        <p>Oh dear. I'm afraid there was an error processing your response! Error type: ${error}</p>
-        <p>Here is the message you entered in case you'd like to save it somewhere and try again later!</p>
+        errorMessage.innerHTML = `<i class="fa-solid fa-circle-xmark fa-2xl mb-4" style="color: #c70039;"></i>
+        <p>Oh dear! I'm afraid there was an error processing your response. Error type: ${error}<br>Here is the message you entered in case you'd like to save it somewhere and try again later!</p>
+        </div>
+        <div>
         <label for='message'>Message</label>
-        <input type='textarea' name='message' value=${form.message.value}>`;
+        <input type='textarea' name='message' value=${form.message.value}>
+        <div>`;
         document.getElementById('contact-form').insertAdjacentElement('afterend', errorMessage);
         $('#contact-form').fadeOut(1500);
         $('#contact-error').delay(1500).fadeIn(1000);
         $('#contact-error').addClass('center m-4');
-    };
+        console.log(error);
+    });
     return false;
 };
 
