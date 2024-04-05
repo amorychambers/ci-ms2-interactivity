@@ -2833,7 +2833,6 @@ function runCountdown() {
     }, 3000);
     setTimeout(() => {
         $('#counter').hide()
-        $('#counter').html('3')
         // start turn function
     }, 3500);
 };
@@ -2841,7 +2840,8 @@ function runCountdown() {
 //This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
 function showComputerTurn() {
     let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500);
-    let snapToPlayerCards = turnTime + 1;
+    let yourTurn = turnTime + 800;
+    let snapToPlayerCards = turnTime + 1500;
     setTimeout(() => {
         for (let i = 0; i < game.thisTurn.length; i++) {
             revealGame(i);
@@ -2852,9 +2852,15 @@ function showComputerTurn() {
         createPlayerCards();
     }, turnTime);
     setTimeout(() => {
+        $('#counter').html('YOUR TURN!')
+        $('#counter').show()
+    }, yourTurn);
+    setTimeout(() => {
         let playerCards = document.getElementById('card1');
         let rect = playerCards.getBoundingClientRect();
         window.scrollTo(0, rect.y);
+        $('#counter').hide()
+        $('#counter').html('3')
     }, snapToPlayerCards);
 };
 
@@ -2912,7 +2918,7 @@ function playerSelect() {
     if (game.computerTurn == false) {
         if (game.playerMoves.length < (game.thisTurn.length - 1)) {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
-        } else if (game.playerMoves.length == (game.thisTurn.length - 1)){
+        } else if (game.playerMoves.length == (game.thisTurn.length - 1)) {
             game.playerMoves.push($(this).children(':first').attr('data-appid'));
             game.computerTurn = true;
             disablePlayerCards();
