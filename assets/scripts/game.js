@@ -3065,7 +3065,7 @@ const defeatModal = `oh no`;
 
 function addModal() {
     let modal = document.createElement('div');
-    let footer = document.getElementsByTagName('footer')[0];
+    let endButtons = document.getElementById('end-buttons');
     if (finalGame.outcome == 'success') {
         modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
 <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
@@ -3137,6 +3137,8 @@ function addModal() {
             </div>
             </div>`;
     }
-    footer.insertAdjacentElement('beforebegin', modal);
+    endButtons.insertAdjacentElement('beforeend', modal);
     $('#message-button').click();
+    $('#new-game').show();
+    // $('#new-game').click(startNewGame);
 };
