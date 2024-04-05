@@ -62,7 +62,7 @@
             </div>
             <div class="row dark-bg">
                 <div class="col mx-2 mt-4">
-                    <form onsubmit='return sendMail(this);' method='POST'>
+                    <form onsubmit='return sendMail(this);' method='POST' id='contact-form'>
                         <label for='name'>Name</label>
                         <input type='text' id='name' name='name' placeholder='Name...' required>
                         <label for='email'>Email</label>
@@ -71,7 +71,7 @@
                         <input type='textarea' id='message' name='message'
                             placeholder='Type your question/pitiful cry for mercy here...' required>
                         <div class='center'>
-                            <input type='submit' value='Submit' class='btn btn-outline-success'>
+                            <input id='contact-submit' type='submit' value='SUBMIT' class='btn btn-outline-success'>
                         </div>
                     </form>
                 </div>
