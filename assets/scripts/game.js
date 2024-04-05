@@ -2994,7 +2994,7 @@ let chosenGameCard = ``;
 function chooseFinalGame() {
     if (finalGame.outcome == 'success') {
         finalGame.appid = game.mostPlayedGame.appid;
-        finalGame.playtime = game.mostPlayedGame.playtime_forever;
+        finalGame.playtime = Math.floor((game.mostPlayedGame.playtime_forever / 60));
         finalGame.title = game.mostPlayedGame.name;
         // chosenGameCard = ;
         // AMORY: account for image failure later
@@ -3002,7 +3002,7 @@ function chooseFinalGame() {
         // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
         finalGame.appid = game.thisTurn.filter(choice => !game.playerMoves.includes(choice))[0];
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
-        finalGame.playtime = chosenGame[0].playtime_forever;
+        finalGame.playtime = Math.floor((chosenGame[0].playtime_forever / 60));
         finalGame.title = chosenGame[0].name;
         finalGame.icon = chosenGame[0].img_icon_url;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
