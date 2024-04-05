@@ -2833,11 +2833,10 @@ function runCountdown() {
     }, 3000);
     setTimeout(() => {
         $('#counter').hide()
-        // start turn function
     }, 3500);
 };
 
-//This function waits for the countdown to finish and then loops over each game in the game.thisTurn property to reveal each one in sequence
+//This function waits for the countdown to finish and then loops over each game in the game.thisTurn array to reveal each one in sequence. It displays a message to the user and then moves the screen to the player board
 function showComputerTurn() {
     let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500);
     let yourTurn = turnTime + 800;
@@ -2864,7 +2863,7 @@ function showComputerTurn() {
     }, snapToPlayerCards);
 };
 
-//This function uses setTimeout functions to briefly show the game that the player has to remember
+//This function uses setTimeout functions to briefly display the game that the player has to remember
 function revealGame(index) {
     let showTime = (500 + (1500 * (index)));
     let hideTime = (1000 + (1500 * (index)));
@@ -2947,7 +2946,7 @@ function checkIfCorrect() {
     }
 };
 
-//These functions play a simple animation lighting up the card backgrounds when the player's turn is over
+//These functions play a simple animation lighting up the card backgrounds when the player's turn is over. The flashCorrectAnimation also scrolls to the top of the screen and flashes the Next Turn button to communicate it is now active again
 function flashCorrectAnimation() {
     for (let i of $('.player-card')) {
         setTimeout(() => {
@@ -2990,13 +2989,11 @@ function flashIncorrectAnimation() {
 };
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
-let chosenGameCard = ``;
 function chooseFinalGame() {
     if (finalGame.outcome == 'success') {
         finalGame.appid = game.mostPlayedGame.appid;
         finalGame.playtime = Math.floor((game.mostPlayedGame.playtime_forever / 60));
         finalGame.title = game.mostPlayedGame.name;
-        // chosenGameCard = ;
         // AMORY: account for image failure later
     } else {
         // Single line code snippet below to negate .includes() method to find the choice the player should have picked, taken from StackOverflow user jota3, linked in readme credits
@@ -3006,9 +3003,18 @@ function chooseFinalGame() {
         finalGame.title = chosenGame[0].name;
         finalGame.icon = chosenGame[0].img_icon_url;
         finalGame.htmlID = '#' + $(`img[data-appid|=${finalGame.appid}]`).parent().attr('id');
-        chosenGameCard = $(finalGame.htmlID)[0];
     }
-}
+};
+
+function replaceWithBackup(){
+    if ($('#modal-image').height < 50) {
+        if (finalGame.outcome == 'success'){
+            $('#most-played').html();
+        } else {
+            $('#winning-game').html();
+        }
+    }
+};
 
 async function playerSuccess() {
     for (let i of $('.game')) {
@@ -3084,7 +3090,7 @@ function addModal() {
         <div class="col card player-card m-3" id="most-played">
         <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
             data-title=${finalGame.title} data-appid="${finalGame.appid}"
-            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1">
+            data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onload='replaceWithBackup'>
         </div>
         <div class='col center m-3'>
         <p>Perhaps you would like to revisit an old favourite?</p>
@@ -3118,7 +3124,7 @@ function addModal() {
                 <div class="col card player-card m-3" id="winning-game">
                 <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
                     data-title=${finalGame.title} data-appid="${finalGame.appid}"
-                    data-icon=${finalGame.icon} data-opacity="1">
+                    data-icon=${finalGame.icon} data-opacity="1" id='modal-image'>
                 </div>
                 <div class='col center m-3'>
                 <p>Will you accept defeat and give the game that bested you a chance?</p>
