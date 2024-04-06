@@ -242,21 +242,21 @@ function chooseFinalGame() {
 
 // This function will replace the finalGame image with a backup card if box art does not load or isn't available
 function replaceWithBackup() {
-    if ($('#modal-image').height() < 5000) {
+    if ($('#modal-image').height() < 50) {
         let title = finalGame.title;
         let appID = finalGame.appid;
         let imgURL = finalGame.icon;
         if (finalGame.outcome == 'success') {
             $('#most-played').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' data-game-id=${gameID} style='opacity: 1;'>
             <div class="card-body">
-            <h5 class='card-title' style='opacity: 1'>${title}</h5>
+            <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('clicked');
         } else {
             $('#winning-game').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: 1'>
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' data-game-id=${gameID} style='opacity: 1;'>
             <div class="card-body">
-            <h5 class='card-title' style='opacity: 1'>${title}</h5>
+            <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('attention');
         }
     }
