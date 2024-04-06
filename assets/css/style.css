@@ -61,6 +61,7 @@ input[type='textarea'] {
 
 .modal-body {
     padding: 0;
+    word-wrap: break-word;
 }
 
 .modal-content {
@@ -72,6 +73,9 @@ input[type='textarea'] {
     border: solid 1px #FFFFFF;
 }
 
+.modal-body.row {
+    width: 100%;
+}
 
 /* -------------------- Contact -------------------- */
 

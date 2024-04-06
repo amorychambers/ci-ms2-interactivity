@@ -336,7 +336,7 @@ function addModal() {
                 on another day.</p>
                 <div class='modal-body'>
                 <div class='container-fluid g-0'>
-            <div class="row dark-bg">
+            <div class="row g-0 dark-bg">
             <div class="col card player-card m-3" id="most-played">
             <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
                 data-title=${finalGame.title} data-appid="${finalGame.appid}"
@@ -347,7 +347,7 @@ function addModal() {
             <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
             </div>
             </div>
-            <div class="row">
+            <div class="row g-0">
                 <div class="col m-2 text-start" id='app-info'>
                     <h3>Most Recent News</h3>
                     <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
@@ -376,7 +376,7 @@ function addModal() {
                 <p class='center px-4 my-4'>Your games have rallied in a roguish mutiny and have overthrown you.</p>
                 <div class='modal-body'>
                 <div class='container-fluid g-0'>
-                <div class="row dark-bg">
+                <div class="row g-0 dark-bg">
                 <div class="col card player-card m-3" id="winning-game">
                 <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
                     data-title=${finalGame.title} data-appid="${finalGame.appid}"
@@ -387,7 +387,7 @@ function addModal() {
                 <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
                 </div>
                 </div>
-                <div class='row'>
+                <div class='row g-0'>
                     <div class="col m-2 text-start" id='app-info'>
                         <h3>Most Recent News</h3>
                         <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
