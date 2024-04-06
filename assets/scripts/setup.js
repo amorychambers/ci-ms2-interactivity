@@ -125,12 +125,12 @@ function checkAllGamesMode() {
     };
 }
 
-// This determined whether or not the user has selected All Games Mode, and filters for unplayed games only if not
+// This determines whether or not the user has selected All Games Mode, and filters for unplayed games only if not
 function allGamesModeToggle() {
-    if (game.allGamesMode == true) {
+    let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
+    if (game.allGamesMode == true || unplayedGames.length < 4) {
         game.steamLibrary = newLibrary;
     } else if (game.allGamesMode == false) {
-        let unplayedGames = newLibrary.filter(game => game.playtime_forever == 0);
         game.steamLibrary = unplayedGames;
     };
 };
@@ -141,8 +141,6 @@ function randomSequence(array) {
         game.newSequence.push(array[randomIndex].appid);
     };
 };
-
-// At this point I decided to start using jQuery to manipulate the DOM, as all of my tests for the API call and data manipulation are passing, and jQuery will be used to run the game later
 
 function newGameBoard() {
     $('#new-player').fadeOut(1500);
