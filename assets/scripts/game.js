@@ -168,11 +168,13 @@ function checkIfCorrect() {
             handleButton();
             game.playerMoves = [];
         } else {
+            $('h5').css('opacity', '1');
             flashCorrectAnimation();
             finalGame.outcome = 'success';
             playerSuccess();
         }
     } else {
+        $('h5').css('opacity', '1');
         flashIncorrectAnimation();
         finalGame.outcome = 'defeat';
         playerDefeat();
@@ -340,7 +342,7 @@ function addModal() {
             <div class="col card player-card m-3" id="most-played">
             <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
                 data-title=${finalGame.title} data-appid="${finalGame.appid}"
-                data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onload='replaceWithBackup'>
+                data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onerror='replaceWithBackup()'>
             </div>
             <div class='col center m-3'>
             <p>Perhaps you would like to revisit an old favourite?</p>
@@ -380,7 +382,7 @@ function addModal() {
                 <div class="col card player-card m-3" id="winning-game">
                 <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
                     data-title=${finalGame.title} data-appid="${finalGame.appid}"
-                    data-icon=${finalGame.icon} data-opacity="1" id='modal-image'>
+                    data-icon=${finalGame.icon} data-opacity="1" id='modal-image' onerror='replaceWithBackup()'>
                 </div>
                 <div class='col center m-3'>
                 <p>Will you accept defeat and give the game that bested you a chance?</p>
