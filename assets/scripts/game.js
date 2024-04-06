@@ -324,7 +324,6 @@ function addModal() {
     modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
     <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class='container'>
         <div class="modal-content">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-header mx-auto pt-2">
@@ -335,6 +334,8 @@ function addModal() {
                 &#129395;</span>
             <p class='center px-4 my-4'>Your games slink back to your Steam Library in gracious defeat to await their chance
                 on another day.</p>
+                <div class='modal-body'>
+                <div class='container-fluid g-0'>
             <div class="row dark-bg">
             <div class="col card player-card m-3" id="most-played">
             <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
@@ -354,17 +355,17 @@ function addModal() {
                 </div>
             </div>
             </div>
+            </div>
+            </div>
             <div class="modal-footer center">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
             </div>
-        </div>
         </div>
         </div>`;
     } else {
         modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-danger my-3' data-bs-toggle="modal" data-bs-target="#playerDefeat">DEFEAT MESSAGE</button>
         <div class="modal fade" id="playerDefeat" tabindex="-1" aria-labelledby="playerDefeatLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class='container'>
             <div class="modal-content">
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-header mx-auto pt-2">
@@ -373,6 +374,8 @@ function addModal() {
                 <p class="sub-heading m-0 pt-2 dark-bg">You have been defeated by Lost in Library</p>
                 <span class='center icons p-3 dark-bg'>&#128532; <i class="fa-solid fa-person-falling fa-xl" style="color: #c70039;"></i> &#128532;</span>
                 <p class='center px-4 my-4'>Your games have rallied in a roguish mutiny and have overthrown you.</p>
+                <div class='modal-body'>
+                <div class='container-fluid g-0'>
                 <div class="row dark-bg">
                 <div class="col card player-card m-3" id="winning-game">
                 <img src="https://steamcdn-a.akamaihd.net/steam/apps/${finalGame.appid}/library_600x900_2x.jpg"
@@ -392,10 +395,11 @@ function addModal() {
                     </div>
                  </div>   
                 </div>
+                </div>
+                </div>
                 <div class="modal-footer center">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                 </div>
-            </div>
             </div>
             </div>`;
     }
