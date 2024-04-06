@@ -24,7 +24,7 @@ const game = {
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
 async function setupNewGame() {
     newGameBoard();
-    const dataReceived = await fetchLibrary().then(addNewLibrary, throwError);
+    const dataReceived = await fetchLibrary().then(function(){console.log('Success!')}).catch(function(err){console.log(err.errorMessage)});
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
@@ -40,8 +40,6 @@ $('#userID').on('keydown', function(e) {
 });
 
 let newLibrary = [];
-let errorMessage = '';
-
 
 // This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
 function fetchLibrary() {
@@ -53,9 +51,11 @@ function fetchLibrary() {
         var userInput = document.getElementById('userID').value;
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
             userID = userInput;
+        } else if (!userInput) {
+            userID = '76561198033224422';
         } else {
             userID = '76561198033224422';
-            alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈")
+            alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈");
         }
 
         var newURL = baseURL + userID;
@@ -65,32 +65,29 @@ function fetchLibrary() {
         // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
         // Code snippet for the three lines isolating the object for the game with the highest playtime in the games array taken from StackOverflow user Cristian S, linked in README
         req.addEventListener('load', function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.status>= 200 && this.status<400) {
                 steamData = JSON.parse(req.responseText);
-                newLibrary = steamData.response.games;
-                let playtimesArray = newLibrary.map(game => game.playtime_forever);
-                let highestPlaytime = Math.max(...playtimesArray);
-                game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
-                resolve(console.log('Success!'));
+                if (steamData.response.games.length > 4) {
+                    newLibrary = steamData.response.games;
+                    let playtimesArray = newLibrary.map(game => game.playtime_forever);
+                    let highestPlaytime = Math.max(...playtimesArray);
+                    game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
+                    resolve('Success!');
+                } else if (steamData.response.games.length == 0) {
+                    reject({errorMessage: this.status});
+                    alert("Sorry old sport! It looks like there was an error loading your Steam Library. Be sure to check the details you entered or try again later!")
+                } else {
+                    reject({errorMessage: this.status});
+                    alert("Sorry old sport! It looks like there was an error, and Steam couldn't pull enough games from your library to successfully load. Be sure to check the details you entered or try again later!")
+                }
             } else {
-                errorMessage = 'Error type: ' + this.status;
-                reject(console.log('Failure'));
-            }
+                reject({errorMessage: this.status});
+            };
         });
         // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
         req.send();
     });
 };
-    
-// This ensures the steamLibrary property is empty before all allGamesModeToggle function determines whether it will select from all games or only unplayed ones
-function addNewLibrary() {
-    game.steamLibrary = [];
-}
-
-function throwError() {
-    console.log(errorMessage);
-}
-
 
 // This creates a list of four random games from the user's library to be used in the game
 function getGamesList() {
