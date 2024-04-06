@@ -7,6 +7,8 @@ const document = new JSDOM(fileContents).window.document;
 // The Node.js modules above are used to run the setup.test.js suite in Jest. In order to run the test suite, it is necessary to remove the comment notation and allow Node to create a virtual DOM to test.
 // At the bottom of the file, there is a line of module.exports to pass all the functions to the test suite in Node. The comment notation must be removed there as well for the test suite to run.
 
+// import { createPlayerCards, playerSelect } from './game.js';
+
 const game = {
     steamLibrary: [],
     randomGames: [],
@@ -133,7 +135,6 @@ function newGameBoard() {
     $('#intro').fadeOut(1500);
     $('#requirements').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
-    createPlayerCards();
 };
 
 // This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API. 
@@ -167,7 +168,6 @@ function backupCard() {
     };
 };
 
-// This function sets up the player cards to accept input during the player turn
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
@@ -178,21 +178,21 @@ function createPlayerCards() {
     };
 };
 
-//This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
 function playerSelect() {
     $(this).addClass('clicked');
     setTimeout(() => {
         $(this).removeClass('clicked')
     }, 150);
     if (game.computerTurn == false) {
-        if (game.playerMoves.length < (4 + game.currentScore)) {
-            game.playerMoves.push($(this).children(':first').attr('data-appid'));
-        } else {
+        if (game.playerMoves.length < (game.thisTurn.length - 1)) {
+            game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
+        } else if (game.playerMoves.length == (game.thisTurn.length - 1)) {
+            game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
             game.computerTurn = true;
+            disablePlayerCards();
             checkIfCorrect();
         };
     };
 };
-
 
 // module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };

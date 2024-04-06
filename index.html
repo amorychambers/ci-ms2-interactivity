@@ -72,7 +72,7 @@
                     </p>
                     <p class='aside-text'>Or leave the box blank and hit SUMMON to play with the creator's forgotten titles...
                     </p>
-                    <input type='text' class='my-3' placeholder='1234567890...' id='userID'>
+                    <input type='text' class='my-3' placeholder='76561198033224422...' id='userID'>
                     <button class='btn btn-outline-warning my-3' id='summon'>SUMMON</button>
                     <p class='border border-warning m-3'>All Games Mode
                         <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal" data-bs-target="#explainAllGamesMode"></i></sup>
@@ -84,30 +84,33 @@
         </div>
     </main>
     <!-- There is a second main element here which represents the game board. Initially I had this created and inserted by JavaScript, but the performance was improved having it hidden on the page instead -->
-    <main id="gameboard" style="">
+    <main id="gameboard" style='display: none;'>
         <div class="container">
             <div class="row">
                 <div class="col center">
-                    <a href='#board'><button class="btn btn-outline-warning my-3" id='start'>START ROUND</button></a>
+                    <a href='#countdown' id='focus'>
+                        <button type='button' class="btn btn-outline-warning my-3" data-disabled='false'
+                            id='start'>START ROUND</button>
+                    </a>
                     <h2 id="countdown"></h2>
                 </div>
                 <hr>
             </div>
             <h2 class="heading my-4" id='board'>Board</h2>
             <div class="row center my-4 position-relative">
-                <p class='position-absolute top-100' id='counter'>3</p>
-                <div class="col card" id="game1">
+                <p class='position-absolute top-100' id='counter' style='display: none;'>3</p>
+                <div class="col card game" id="game1">
                     <img>
                 </div>
-                <div class="col card" id="game2">
+                <div class="col card game" id="game2">
                     <img>
                 </div>
             </div>
             <div class="row">
-                <div class="col card" id="game3">
+                <div class="col card game" id="game3">
                     <img>
                 </div>
-                <div class="col card" id="game4">
+                <div class="col card game" id="game4">
                     <img>
                 </div>
             </div>
@@ -115,7 +118,7 @@
         <hr>
         <div class="container">
             <div class="row center">
-                <h2 class='heading mb-4'>Player Cards</h2>
+                <h2 class="heading mb-4">Player Cards</h2>
                 <div class="col card player-card" id="card1">
                     <img>
                 </div>
@@ -137,7 +140,7 @@
                 <div id='end-buttons' class="col center m-4">
                     <h3 class='heading'>Current Score</h3>
                     <h4 class='sub-heading'><span id='current-score'>0</span>/5</h4>
-                    <button class='btn btn-outline-warning my-3' style='display: none;'>NEW GAME</button>
+                    <button id='new-game' class='btn btn-outline-warning my-3' style='display: none;'>NEW GAME</button>
                 </div>
             </div>
         </div>
@@ -223,7 +226,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
     <script src="server.js"></script>
     <script src="assets/scripts/setup.js"></script>
-    <!-- <script src="assets/scripts/game.js"></script> -->
+    <script src="assets/scripts/game.js"></script>
 </body>
 
 </html>
