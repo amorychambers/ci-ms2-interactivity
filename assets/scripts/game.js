@@ -324,6 +324,7 @@ function addModal() {
     modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
     <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
     <div class="modal-dialog">
+        <div class='container'>
         <div class="modal-content">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-header mx-auto pt-2">
@@ -357,11 +358,13 @@ function addModal() {
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
+        </div>
         </div>`;
     } else {
         modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-danger my-3' data-bs-toggle="modal" data-bs-target="#playerDefeat">DEFEAT MESSAGE</button>
         <div class="modal fade" id="playerDefeat" tabindex="-1" aria-labelledby="playerDefeatLabel" aria-hidden="true">
         <div class="modal-dialog">
+            <div class='container'>
             <div class="modal-content">
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-header mx-auto pt-2">
@@ -392,6 +395,7 @@ function addModal() {
                 <div class="modal-footer center">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                 </div>
+            </div>
             </div>
             </div>`;
     }
