@@ -54,7 +54,8 @@ function fetchLibrary() {
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
             userID = userInput;
         } else {
-            userID = '76561198033224422'
+            userID = '76561198033224422';
+            alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈")
         }
 
         var newURL = baseURL + userID;
