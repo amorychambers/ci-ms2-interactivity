@@ -163,7 +163,7 @@ function backupCard() {
         <img class='card-img-top'
         src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} style='opacity: ${transparencyToggle}'>
         <div class="card-body">
-        <h5 class='card-title' style='opacity: ${transparencyToggle}'>${title}</h5>
+        <h5 class='card-title' data-heading-id=${appID} style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)
     };
 };

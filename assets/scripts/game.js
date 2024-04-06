@@ -98,10 +98,14 @@ function revealGame(index) {
     let showTime = (500 + (1500 * (index)));
     let hideTime = (1000 + (1500 * (index)));
     setTimeout(() => {
+        let heading = $(`h5[data-heading-id|=${game.thisTurn[index]}]`)[0];
+        $(heading).css('opacity', '1')
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().addClass('attention');
     }, showTime)
     setTimeout(() => {
+        let heading = $(`h5[data-heading-id|=${game.thisTurn[index]}]`)[0];
+        $(heading).css('opacity', '0')
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().removeClass('attention');
     }, hideTime);
@@ -248,13 +252,13 @@ function replaceWithBackup() {
         let imgURL = finalGame.icon;
         if (finalGame.outcome == 'success') {
             $('#most-played').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' data-game-id=${gameID} style='opacity: 1;'>
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
             <div class="card-body">
             <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('clicked');
         } else {
             $('#winning-game').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' data-game-id=${gameID} style='opacity: 1;'>
+            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
             <div class="card-body">
             <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('attention');
