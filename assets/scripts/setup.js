@@ -24,7 +24,8 @@ const game = {
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
 async function setupNewGame() {
     newGameBoard();
-    const dataReceived = await fetchLibrary().then(function(){console.log('Success!')}).catch(function(err){console.log(err.errorMessage)});
+    checkForResponse();
+    const dataReceived = await fetchLibrary();
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
@@ -62,7 +63,7 @@ function fetchLibrary() {
         
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
-        // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
+        // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable after checking the requirements for the game are met
         // Code snippet for the three lines isolating the object for the game with the highest playtime in the games array taken from StackOverflow user Cristian S, linked in README
         req.addEventListener('load', function () {
             if (this.status>= 200 && this.status<400) {
@@ -75,18 +76,25 @@ function fetchLibrary() {
                     resolve('Success!');
                 } else if (steamData.response.games.length == 0) {
                     reject({errorMessage: this.status});
-                    alert("Sorry old sport! It looks like there was an error loading your Steam Library. Be sure to check the details you entered or try again later!")
+                    alert("Sorry old sport! It looks like there was an error loading your Steam Library. Be sure to check the requirements and the details you entered, or try again later!")
                 } else {
                     reject({errorMessage: this.status});
-                    alert("Sorry old sport! It looks like there was an error, and Steam couldn't pull enough games from your library to successfully load. Be sure to check the details you entered or try again later!")
+                    alert("Sorry old sport! It looks like there was an error, and Steam couldn't pull enough games from your library to successfully load. Be sure to check the requirements and the details you entered, or try again later!")
                 }
             } else {
                 reject({errorMessage: this.status});
             };
         });
-        // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
         req.send();
     });
+};
+
+function checkForResponse(){
+    setTimeout(() => {
+        if (game.steamLibrary.length == 0){
+            alert("Sorry old sport! It looks like there was an error loading your Steam Library. Be sure to check the requirements and the details you entered, or try again later!")
+        };
+    }, 6000);
 };
 
 // This creates a list of four random games from the user's library to be used in the game
