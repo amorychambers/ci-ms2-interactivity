@@ -24,7 +24,7 @@ const game = {
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
 async function setupNewGame() {
     newGameBoard();
-    const dataReceived = await fetchLibrary();
+    const dataReceived = await fetchLibrary().then(addNewLibrary, throwError);
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
@@ -33,6 +33,11 @@ async function setupNewGame() {
 
 $('#summon').click(setupNewGame);
 $('#all-games').on('change', checkAllGamesMode);
+$('#userID').on('keydown', function(e) {
+    if (e.key == 'Enter') {
+        setupNewGame();
+    };
+});
 
 let newLibrary = [];
 let errorMessage = '';
@@ -44,9 +49,14 @@ function fetchLibrary() {
     return new Promise(function (resolve, reject) {
         
         var baseURL = 'http://localhost:5500/getlibrary/?';
-        // var userID = document.getElementById('userID').value;
-        // Using static ID for testing
-        var userID = '76561198033224422'
+        let userID;
+        var userInput = document.getElementById('userID').value;
+        if (typeof(Number(userInput)) == 'number' && userInput > 0) {
+            userID = userInput;
+        } else {
+            userID = '76561198033224422'
+        }
+
         var newURL = baseURL + userID;
         
         var req = new XMLHttpRequest();
@@ -60,10 +70,10 @@ function fetchLibrary() {
                 let playtimesArray = newLibrary.map(game => game.playtime_forever);
                 let highestPlaytime = Math.max(...playtimesArray);
                 game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
-                resolve('Success');
+                resolve(console.log('Success!'));
             } else {
                 errorMessage = 'Error type: ' + this.status;
-                reject('Failure')
+                reject(console.log('Failure'));
             }
         });
         // AMORY: Check Steam API status options for different incorrect data inputs later and account for them with alerts
@@ -79,8 +89,6 @@ function addNewLibrary() {
 function throwError() {
     console.log(errorMessage);
 }
-
-fetchLibrary().then(addNewLibrary, throwError);
 
 
 // This creates a list of four random games from the user's library to be used in the game
