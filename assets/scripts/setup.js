@@ -155,13 +155,13 @@ function backupCard() {
     if ($(this).height() < 50) {
         let title = $(this).attr('data-title');
         let appID = $(this).attr('data-appid');
+        let gameID = $(this).attr('data-game-id')
         let imgURL = $(this).attr('data-icon');
         let transparencyToggle = $(this).attr('data-opacity');
 
-
         $(this).parent().html(`
         <img class='card-img-top'
-        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' style='opacity: ${transparencyToggle}'>
+        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} style='opacity: ${transparencyToggle}'>
         <div class="card-body">
         <h5 class='card-title' style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)

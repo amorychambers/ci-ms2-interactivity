@@ -240,10 +240,6 @@ function chooseFinalGame() {
     }
 };
 
-for (let i of game.thisTurn){
-    let correctNextGame = game.thisTurn.filter(() => game.thisTurn[i] != game.playerMoves[i]);
-}
-
 // This function will replace the finalGame image with a backup card if box art does not load or isn't available
 function replaceWithBackup() {
     if ($('#modal-image').height() < 5000) {
