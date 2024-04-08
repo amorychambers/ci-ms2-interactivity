@@ -318,8 +318,8 @@ function fetchAppNews() {
 };
 
 function startAnotherGame() {
-    $('.card').removeClass('wrong clicked');
-    $('h2').html('');
+    $('.card').removeClass('wrong attention clicked');
+    $('h5').remove();
     $('#endgamemodal').remove();
     $('#start').html('START GAME');
     $('#new-game').hide();
@@ -430,5 +430,6 @@ function addModal() {
     endButtons.insertAdjacentElement('beforeend', modal);
     $('#message-button').click();
     $('#new-game').show();
-    $('#new-game').on('click', startAnotherGame);
 };
+
+$('#new-game').on('click', startAnotherGame);
