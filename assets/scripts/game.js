@@ -1,5 +1,3 @@
-// import { game } from './setup.js';
-
 const finalGame = {
     outcome: '',
     appid: 0,
@@ -233,9 +231,9 @@ function chooseFinalGame() {
         finalGame.icon = game.mostPlayedGame.img_icon_url
     } else {
         let gameChoices = [];
-        for (let i in game.thisTurn){
+        for (let i in game.thisTurn) {
             if (game.thisTurn[i] != game.playerMoves[i]) {
-            gameChoices.push(game.thisTurn[i]);
+                gameChoices.push(game.thisTurn[i]);
             };
         };
         finalGame.appid = gameChoices[0];
@@ -320,8 +318,12 @@ function fetchAppNews() {
 };
 
 function startAnotherGame() {
-    $('.card').removeClass('wrong clicked')
-    $('h2').remove();
+    $('.card').removeClass('wrong clicked');
+    $('h2').html('');
+    $('#endgamemodal').remove();
+    $('#start').html('START GAME');
+    $('#new-game').hide();
+    clearFinalGame();
     handleButton();
     newGameBoard();
     getGamesList();
@@ -329,11 +331,21 @@ function startAnotherGame() {
     randomSequence(game.randomGames);
 };
 
+function clearFinalGame() {
+    finalGame.outcome = '';
+    finalGame.appid = 0;
+    finalGame.icon = '';
+    finalGame.title = '';
+    finalGame.playtime = 0;
+    finalGame.newsitems = [];
+};
+
 function addModal() {
     let modal = document.createElement('div');
+    modal.setAttribute('id', 'endgamemodal')
     let endButtons = document.getElementById('end-buttons');
     if (finalGame.outcome == 'success') {
-    modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
+        modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
     <div class="modal fade" id="playerSuccess" tabindex="-1" aria-labelledby="playerSuccessLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
