@@ -68,14 +68,17 @@
                     <p class='aside-text p-3 position-relative'>Enter your Steam ID here to summon some games from the
                         shadowy backlogs of
                         your Steam library!
-                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal" data-bs-target="#findMyID"></i></sup>
+                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"
+                                data-bs-target="#findMyID"></i></sup>
                     </p>
-                    <p class='aside-text'>Or leave the box blank and hit SUMMON to play with the creator's forgotten titles...
+                    <p class='aside-text'>Or leave the box blank and hit SUMMON to play with the creator's forgotten
+                        titles...
                     </p>
                     <input type='text' class='my-3' placeholder='76561198033224422...' id='userID'>
                     <button class='btn btn-outline-warning my-3' id='summon'>SUMMON</button>
                     <p class='border border-warning m-3'>All Games Mode
-                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal" data-bs-target="#explainAllGamesMode"></i></sup>
+                        <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"
+                                data-bs-target="#explainAllGamesMode"></i></sup>
                         <input class='m-3' type='checkbox' id='all-games'>
                     </p>
 
@@ -99,18 +102,17 @@
             <h2 class="heading my-4" id='board'>Board</h2>
             <div class="row center my-4 position-relative">
                 <p class='position-absolute top-100' id='counter' style='display: none;'>3</p>
-                <div class="col card game" id="game1">
+                <div class="col col-lg-3 card game" id="game1">
                     <img>
                 </div>
-                <div class="col card game" id="game2">
+                <div class="col col-lg-3 card game" id="game2">
                     <img>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col card game" id="game3">
+                <div class="w-100"></div>
+                <div class="col col-lg-3 card game" id="game3">
                     <img>
                 </div>
-                <div class="col card game" id="game4">
+                <div class="col col-lg-3 card game" id="game4">
                     <img>
                 </div>
             </div>
@@ -125,8 +127,7 @@
                 <div class="col card player-card" id="card2">
                     <img>
                 </div>
-            </div>
-            <div class="row">
+                <div class="w-100"></div>
                 <div class="col card player-card" id="card3">
                     <img>
                 </div>
@@ -147,24 +148,26 @@
     </main>
     <section id='info'>
         <div class="container">
-            <div class="row">
-                <div id='requirements' class="col-12 my-4">
-                    <h2 class='heading mb-4'>Requirements</h2>
+            <div class="row m-lg-5">
+                <div id='requirements' class="col-12 col-lg-6 my-4">
+                    <h2 class='heading mb-4 '>Requirements</h2>
                     <ul>
                         <li>A public Steam account</li>
                         <li>At least four games in your Steam library</li>
                         <li>Your Steam ID</li>
                     </ul>
                 </div>
-                <div class="col-12 dark-bg py-4">
+                <div class="col-12 col-lg-6 dark-bg py-4">
                     <h2 class="heading">About</h2>
                     <p id='test'></p>
                     <p class='m-2'>Lost in Library will select four random unplayed games from your Steam Library and
                         add them to
                         the board. When you select New Game, you will see a sequence of these games presented on the
-                        screen. Once the sequence is complete, you must remember the pattern and select the correct games
+                        screen. Once the sequence is complete, you must remember the pattern and select the correct
+                        games
                         in the same order using the buttons below. If you succeed, the next round will start with one
-                        additional turn in the sequence. If you fail, you must restart the round, or go download the game
+                        additional turn in the sequence. If you fail, you must restart the round, or go download the
+                        game
                         that beat you and give it a chance!</p><br>
                     <p class='m-2'>
                         The player wins if they successfully complete round ten. The prize for your victory is that you
@@ -190,12 +193,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 heading" id="findMyIDLabel">Where is my Steam ID?</h1>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body dark-bg">
-                    <p>Your Steam ID is a unique string of numbers that is paired with your Steam profile. Lost in Library uses this to select games from your personal library to play with in the memory game.
-                    If you have a Steam account, you can find your Steam ID by clicking on your profile; your unique Steam ID is in the URL underneath the navigation bar!</p>
-                        <img src='assets/images/steamID.png' alt="Screenshot showing a profile's user ID">
+                    <p>Your Steam ID is a unique string of numbers that is paired with your Steam profile. Lost in
+                        Library uses this to select games from your personal library to play with in the memory game.
+                        If you have a Steam account, you can find your Steam ID by clicking on your profile; your unique
+                        Steam ID is in the URL underneath the navigation bar!</p>
+                    <img src='assets/images/steamID.png' alt="Screenshot showing a profile's user ID">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -204,18 +210,24 @@
         </div>
     </div>
 
-    <div class="modal fade" id="explainAllGamesMode" tabindex="-1" aria-labelledby="explainAllGamesModeLabel" aria-hidden="true">
+    <div class="modal fade" id="explainAllGamesMode" tabindex="-1" aria-labelledby="explainAllGamesModeLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 heading" id="explainAllGamesModeLabel">What is All Games Mode?</h1>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body dark-bg">
-                    <p>In a normal round of Lost in Library, you will only face the games from your Steam Library with a playtime of 0. Those games you have ignored and who are granted the chance to pique your interest, demand your attention, or exact their just vengeance. If you'd like to instead randomly select from every game in your Steam Library, check the All Games Mode option!</p>
+                    <p>In a normal round of Lost in Library, you will only face the games from your Steam Library with a
+                        playtime of 0. Those games you have ignored and who are granted the chance to pique your
+                        interest, demand your attention, or exact their just vengeance. If you'd like to instead
+                        randomly select from every game in your Steam Library, check the All Games Mode option!</p>
                 </div>
                 <div class="modal-footer">
-                    <a href='contact.html' target='_blank'><button type="button" class="btn btn-secondary">I Resent This</button></a>
+                    <a href='contact.html' target='_blank'><button type="button" class="btn btn-secondary">I Resent
+                            This</button></a>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
