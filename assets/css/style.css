@@ -144,9 +144,10 @@ form input {
     transition-duration: 500ms;
 }
 
+/* ---------------------------------------- Tablet Styles ---------------------------------------- */
 
 @media(min-width: 768px) {
-
+    
     img {
         object-fit: contain;
     }
