@@ -143,3 +143,17 @@ form input {
     transition-property: background;
     transition-duration: 500ms;
 }
+
+
+@media(min-width: 768px) {
+
+    img {
+        object-fit: contain;
+    }
+
+
+}
+
+@media(min-width: 992px) {
+
+}
