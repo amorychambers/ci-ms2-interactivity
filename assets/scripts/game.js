@@ -320,6 +320,9 @@ function fetchAppNews() {
 };
 
 function startAnotherGame() {
+    $('.card').removeClass('wrong clicked')
+    $('h2').remove();
+    handleButton();
     newGameBoard();
     getGamesList();
     createCardImages(game.randomGames);
