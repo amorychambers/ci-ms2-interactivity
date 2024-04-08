@@ -125,6 +125,7 @@ form input {
 }
 
 #counter {
+    top: 47% !important;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2em;
     color:#ffc107;
@@ -150,6 +151,10 @@ form input {
 
     img {
         object-fit: contain;
+    }
+
+    #counter {
+        top: 50% !important;
     }
 
 }

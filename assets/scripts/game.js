@@ -319,6 +319,13 @@ function fetchAppNews() {
     });
 };
 
+function startAnotherGame() {
+    newGameBoard();
+    getGamesList();
+    createCardImages(game.randomGames);
+    randomSequence(game.randomGames);
+};
+
 function addModal() {
     let modal = document.createElement('div');
     let endButtons = document.getElementById('end-buttons');
@@ -408,5 +415,5 @@ function addModal() {
     endButtons.insertAdjacentElement('beforeend', modal);
     $('#message-button').click();
     $('#new-game').show();
-    // $('#new-game').click(startNewGame);
+    $('#new-game').on('click', startAnotherGame);
 };

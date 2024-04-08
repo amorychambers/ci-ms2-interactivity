@@ -143,6 +143,12 @@ function randomSequence(array) {
 };
 
 function newGameBoard() {
+    game.computerTurn = true;
+    game.currentScore = 0;
+    game.newSequence = [];
+    game.playerMoves = [];
+    game.randomGames = [];
+    game.thisTurn = [];
     $('#new-player').fadeOut(1500);
     $('#intro').fadeOut(1500);
     $('#info').fadeOut(1500);
