@@ -345,7 +345,7 @@ function addModal() {
                 data-icon=${game.mostPlayedGame.img_icon_url} data-opacity="1" id='modal-image' onerror='replaceWithBackup()'>
             </div>
             <div class='col center m-3'>
-            <p>Perhaps you would like to revisit an old favourite?</p>
+            <p class='mt-md-5'>Perhaps you would like to revisit an old favourite?</p>
             <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
             </div>
             </div>
@@ -385,7 +385,7 @@ function addModal() {
                     data-icon=${finalGame.icon} data-opacity="1" id='modal-image' onerror='replaceWithBackup()'>
                 </div>
                 <div class='col center m-3'>
-                <p>Will you accept defeat and give the game that bested you a chance?</p>
+                <p class='mt-md-5'>Will you accept defeat and give the game that bested you a chance?</p>
                 <p class='sub-heading'>${finalGame.title} - PLAYTIME: ${finalGame.playtime}</p>
                 </div>
                 </div>

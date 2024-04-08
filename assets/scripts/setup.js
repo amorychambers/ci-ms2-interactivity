@@ -145,7 +145,7 @@ function randomSequence(array) {
 function newGameBoard() {
     $('#new-player').fadeOut(1500);
     $('#intro').fadeOut(1500);
-    $('#requirements').fadeOut(1500);
+    $('#info').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
 };
 

@@ -158,4 +158,10 @@ form input {
     .card {
         width: 25%;
     }
+
+    #counter {
+        top: 30% !important;
+        font-size: 10em;
+        z-index: 1;
+    }
 }
