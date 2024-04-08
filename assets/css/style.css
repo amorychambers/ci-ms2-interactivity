@@ -147,14 +147,15 @@ form input {
 /* ---------------------------------------- Tablet Styles ---------------------------------------- */
 
 @media(min-width: 768px) {
-    
+
     img {
         object-fit: contain;
     }
 
-
 }
 
 @media(min-width: 992px) {
-
+    .card {
+        width: 25%;
+    }
 }
