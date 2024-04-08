@@ -152,6 +152,15 @@ form input {
 
 @media(min-width: 768px) {
 
+    #userID {
+        width: 50%;
+        margin: auto;
+    }
+
+    #game-options {
+        width: 30%;
+    }
+
     img {
         object-fit: contain;
     }
@@ -163,6 +172,7 @@ form input {
 }
 
 @media(min-width: 992px) {
+
     .card {
         width: 25%;
     }
