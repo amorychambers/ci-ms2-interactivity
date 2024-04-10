@@ -1,6 +1,6 @@
 // This file represents the express.js server required to run the application in Node.js, as the Steam Web API only accepts server-side calls.
 
-const api = '26FA80586DC69C8E4A594C852FFE3A7D'
+const api = 'EC249E704C9C50C5ACBDF149A4A180E5'
 
 var express = require('express');
 var app = express();
@@ -42,7 +42,7 @@ app.get('/getnews', function(req, res) {
 	for (var p in req.query) {
 		qParams.push({'name':p, 'value':req.query[p]})
 	}
-	var url = 'https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=' + qParams[0].name + '&count=3&maxlength=300&format=json';
+	var url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${qParams[0].name}&count=3&maxlength=300&format=json`;
 	request(url, function(err, response, body) {
 		if(!err && response.statusCode < 400) {
 			console.log(body);
