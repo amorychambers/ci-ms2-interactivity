@@ -42,12 +42,11 @@ $('#userID').on('keydown', function(e) {
 
 let newLibrary = [];
 
-// This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
+// This function makes use of a promise to make a server-side call to the Steam Web API. The relevant data it provides is the Steam games library of the user whose ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
 function fetchLibrary() {
 
     return new Promise(function (resolve, reject) {
         
-        var baseURL = 'http://localhost:5500/getlibrary/?';
         let userID;
         var userInput = document.getElementById('userID').value;
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
@@ -58,8 +57,7 @@ function fetchLibrary() {
             userID = '76561198033224422';
             alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈");
         }
-
-        var newURL = baseURL + userID;
+        var newURL = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0D8BF8A074559485F9D281D0660EBAA6&steamid=${userID}&include_appinfo=true&format=json`;
         
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);

@@ -1,6 +1,7 @@
 // Code for creating a server to make server side HTTP calls taken from Dan Beyer's How-To-Guide for the Steam Web API on Github, linked in readme. Code snippet represents entire file
+// This file represents the express.js server required to run the application locally, as the Steam Web API only accepts server-side calls. In the deployed version of the app, it instead accepts calls from the github Pages url
 
-const api = '7F628B225D36370C83401694DA2CEC9C'
+const api = ''
 
 var express = require('express');
 var app = express();
