@@ -297,7 +297,7 @@ function fetchAppNews() {
 
     return new Promise(function (resolve) {
 
-        var baseURL = 'http://localhost:5500/getnews/?';
+        var baseURL = `http://localhost:${process.env.port}/getlibrary/?`;
         var newsAppID = finalGame.appid;
         var newURL = baseURL + newsAppID;
 
