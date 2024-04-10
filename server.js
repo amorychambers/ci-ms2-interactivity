@@ -6,8 +6,16 @@ const api = '26FA80586DC69C8E4A594C852FFE3A7D'
 var express = require('express');
 var app = express();
 var request = require('request');
+var path = require('path');
 
+// Code snippet to set up server to work on a deployed Heroku app taken from Heroku Docs, linked in readme
 app.set('port', process.env.PORT || 5500);
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname));
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => res.render('index.html'))
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -15,7 +23,6 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.get("/");
 
 app.get('/getlibrary', function(req, res){
     var qParams = [];
