@@ -42,7 +42,7 @@ app.get('/getnews', function(req, res) {
 	for (var p in req.query) {
 		qParams.push({'name':p, 'value':req.query[p]})
 	}
-	var url = 'http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=' + qParams[0].name + '&count=3&maxlength=300&format=json';
+	var url = 'https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=' + qParams[0].name + '&count=3&maxlength=300&format=json';
 	request(url, function(err, response, body) {
 		if(!err && response.statusCode < 400) {
 			console.log(body);

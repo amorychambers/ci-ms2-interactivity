@@ -252,13 +252,13 @@ function replaceWithBackup() {
         let imgURL = finalGame.icon;
         if (finalGame.outcome == 'success') {
             $('#most-played').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
+            src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
             <div class="card-body">
             <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('clicked');
         } else {
             $('#winning-game').html(`<img class='card-img-top'
-            src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
+            src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity='1' style='opacity: 1;'>
             <div class="card-body">
             <h5 class='card-title' style='opacity: 1;'>${title}</h5>
             </div>`).addClass('attention');

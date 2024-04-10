@@ -7,8 +7,6 @@ const document = new JSDOM(fileContents).window.document;
 // The Node.js modules above are used to run the setup.test.js suite in Jest. In order to run the test suite, it is necessary to remove the comment notation and allow Node to create a virtual DOM to test.
 // At the bottom of the file, there is a line of module.exports to pass all the functions to the test suite in Node. The comment notation must be removed there as well for the test suite to run.
 
-// import { createPlayerCards, playerSelect } from './game.js';
-
 const game = {
     steamLibrary: [],
     randomGames: [],
@@ -179,7 +177,7 @@ function backupCard() {
 
         $(this).parent().html(`
         <img class='card-img-top'
-        src='http://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} style='opacity: ${transparencyToggle}'>
+        src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} style='opacity: ${transparencyToggle}'>
         <div class="card-body">
         <h5 class='card-title' data-heading-id=${appID} style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)
