@@ -57,7 +57,7 @@ function fetchLibrary() {
             userID = '76561198033224422';
             alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈");
         }
-        var newURL = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=0D8BF8A074559485F9D281D0660EBAA6&steamid=${userID}&include_appinfo=true&format=json`;
+        var newURL = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=79703A76DE42CFC34799BB5F59A6C4E7steamid=${userID}&include_appinfo=true&format=json`;
         
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
