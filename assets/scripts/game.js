@@ -297,8 +297,9 @@ function fetchAppNews() {
 
     return new Promise(function (resolve) {
 
+        var baseURL = 'http://localhost:5500/getnews/?';
         var newsAppID = finalGame.appid;
-        var newURL = `http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${newsAppID}&count=3&maxlength=300&format=json`;
+        var newURL = baseURL + newsAppID;
 
         var req = new XMLHttpRequest();
         req.open('GET', newURL, true);
