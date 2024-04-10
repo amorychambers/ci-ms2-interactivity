@@ -295,9 +295,9 @@ async function playerDefeat() {
 // This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the recent news items for the app ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
 function fetchAppNews() {
 
-    return new Promise(function (resolve) {
+    return new Promise(function (resolve, reject) {
 
-        var baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getlibrary/?`;
+        var baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getnews/?`;
         var newsAppID = finalGame.appid;
         var newURL = baseURL + newsAppID;
 
