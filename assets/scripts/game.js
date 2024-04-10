@@ -297,7 +297,7 @@ function fetchAppNews() {
 
     return new Promise(function (resolve) {
 
-        var baseURL = `http://localhost:${process.env.port}/getlibrary/?`;
+        var baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getlibrary/?`;
         var newsAppID = finalGame.appid;
         var newURL = baseURL + newsAppID;
 

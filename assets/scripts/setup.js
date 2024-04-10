@@ -47,7 +47,7 @@ function fetchLibrary() {
 
     return new Promise(function (resolve, reject) {
         
-        var baseURL = `http://localhost:${process.env.port}/getlibrary/?`;
+        var baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getlibrary/?`;
         let userID;
         var userInput = document.getElementById('userID').value;
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
