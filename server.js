@@ -15,7 +15,9 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.get(`${process.env.PORT}/getlibrary`, function(req, res){
+app.get("/");
+
+app.get('/getlibrary', function(req, res){
     var qParams = [];
     for (var p in req.query) {
         qParams.push({'name': p, 'value': req.query[p]})
