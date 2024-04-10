@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 
-app.set('port', 5500);
+app.set('port', process.env.PORT || 5500);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
