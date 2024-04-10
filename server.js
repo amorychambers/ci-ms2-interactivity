@@ -10,7 +10,7 @@ var path = require('path');
 
 // Code snippet to set up server to work on a deployed Heroku app taken from Heroku Docs, linked in readme
 app.set('port', process.env.PORT || 5500);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname)));
 app.set('views', path.join(__dirname));
 app.set('view engine', 'ejs');
 
