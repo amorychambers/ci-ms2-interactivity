@@ -47,7 +47,7 @@ function fetchLibrary() {
 
     return new Promise(function (resolve, reject) {
         
-        var baseURL = 'http://localhost:5500/getlibrary/?';
+        var baseURL = 'http://localhost:44868/getlibrary/?';
         let userID;
         var userInput = document.getElementById('userID').value;
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
