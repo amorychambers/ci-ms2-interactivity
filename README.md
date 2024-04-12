@@ -43,8 +43,7 @@ This is a memory game that challenges the player to remember a sequence of ten g
 - A clear and concise understanding of the game experience the website offers
 - A visually clean and uncluttered presentation that focuses the user's attention on the parts of the page they can interact with to personalise or engage with the game
 - The site accounts for all interactive elements of the user's experiences, particularly when there is an error or incompatibility with user input
-- The website looks good and functions properly in all interactive and non-interactive elements on a range of devices
-- The game functions well on all devices and is clear and consistent to play
+
 
 ### Site Goals
 
@@ -55,21 +54,41 @@ This is a memory game that challenges the player to remember a sequence of ten g
 
 ### Developer Goals
 
-
-
+- The website looks good and functions properly in all interactive and non-interactive elements on a range of devices
+- The game functions well on all devices and is clear and consistent to play
+- The site is accessible to a wide range of users and is easy to navigate
+- Offer a personalised experience and communicate clearly to the user how they can interact with the application
 
 ## User Experience
 
 ### Target Audience
 
-
+- Steam users and games enthusiasts
+- Any user that wants to play a simple memory game
 
 ### User Stories 
 
 #### First-time User
+As a first-time user, I want to:
 
+1. Understand what the site is offering and why at first glance
+2. Grasp the rules of the game before starting to play
+3. Be able to easily decide what parameters of the game I want to change
+4. Still be able to play the game if I am not a Steam user or am not seeking a personalised game experience
+5. Know how the game works and how it is processing my personal data
+6. Play on whatever device I am using
+7. Easily contact the creator of the site if I have questions or feedback
+8. Navigate around the site with ease and clarity
 
 #### Returning User
+As a returning user, I want to:
+
+9. Start the game quickly, as I already understand the rules
+10. Start a new game when the first game is finished
+11. Choose how I want to play the game 
+12. Have a new experience each time I play
+13. Be surprised by games in my game library that I haven't played
+14. Be able to easily check out one of those games at the end of the memory game
 
 
 #### Site Owner
