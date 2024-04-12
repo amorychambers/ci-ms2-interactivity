@@ -105,14 +105,23 @@ As the site owner, I want to:
 
 ### Design Choices
 
-
+I've aimed to create as simple and clear a design as I can, in order to make the important information and interactive elements as clear as possible, to focus on the visuals of user feedback, and to not distract from the game. Additionally, I have themed the game around recognisable Steam design principles, in order to create a cohesive and intuitive experience.
 
 ### Colours
 
+I have used a colour scheme that evokes the theming and usage of Steam as a platform, both being familiar background colours for Steam community pages. Additionally, I used some bright and complementary colours for the gameboard page; I chose a bright green colour both to indicate when a player has made a selection by highlighting the background of the image and to evoke success upon correct input; I chose a contrasting pink colour to draw the user's attention more to the next game being displayed in the sequence; I used a complementary red colour to indicate an incorrect input.
+
+Main theme colour: #1b2838
+
+Darker theme colour for contrast: #0c1620
 
 ### Fonts
 
+I chose two fonts to use on the website; one for bold, attention grabbing headings, and one for clear, accessible, simple communicative text. Both fonts are sans-serif as I wanted them to look cohesive and easy-to-read; both were selected to fit in with the minimalistic aesthetic.
 
+[Bebas Neue](https://fonts.google.com/specimen/Bebas+Neue) - Headings
+
+[Roboto](https://fonts.google.com/specimen/Roboto) - Plain text
 
 ### Structure 
 
