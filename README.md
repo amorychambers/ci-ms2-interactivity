@@ -36,14 +36,21 @@ Developed by Benedict Amory Chambers
 
 ## Project Goals
 
-
+This is a memory game that challenges the player to remember a sequence of ten games that are briefly shown on screen before they are prompted to enter the same sequence again. The game makes use of an API provided by the gaming platform and distributor, Steam, to access a user's public profile data and generate the sequence using only games they own, which adds a layer of familiarity to the challenge. The website aims to be engaging by focusing on interactivity, user feedback, and a personalised experience. It is intended to be a fun, accessible experience showcasing interactivity between a user and a website.
 
 ### User Goals
 
-
+- A clear and concise understanding of the game experience the website offers
+- A visually clean and uncluttered presentation that focuses the user's attention on the parts of the page they can interact with to personalise or engage with the game
+- The site accounts for all interactive elements of the user's experiences, particularly when there is an error or incompatibility with user input
+- The website looks good and functions properly in all interactive and non-interactive elements on a range of devices
+- The game functions well on all devices and is clear and consistent to play
 
 ### Site Goals
 
+- Uses interactivity to focus and hold a user's attention
+- Offers a personalised and thus more memorable experience
+- Connects with the user demographic and communicates the experience offered in a fitting and appropriate way
 
 
 ### Developer Goals
