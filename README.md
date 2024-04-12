@@ -92,6 +92,13 @@ As a returning user, I want to:
 
 
 #### Site Owner
+As the site owner, I want to:
+
+15. Create an accessible and responsive website that works well and looks good on a wide range of devices
+16. Design a fun, simple memory game
+17. Tailor the game and website experience to the target demographic
+18. Encourage users to have fun, and to explore their unplayed games
+19. Aim for as simple an experience as possible and be direct about how the game accesses and uses personal data
 
 
 ## Design
