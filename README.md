@@ -329,9 +329,16 @@ No errors listed
 No errors listed
 
 
-[404.html]()
+[404.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Flost-in-library-da89e4798031.herokuapp.com%2F404.html)
+No errors listed
 
 ### CSS Validation
+
+Validated with the W3C CSS Validation Service
+
+[index.html](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flost-in-library-da89e4798031.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+
+No errors listed
 
 ### JavaScript Validation
 
