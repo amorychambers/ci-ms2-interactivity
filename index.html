@@ -69,7 +69,7 @@
             <div class="row">
                 <h2 class='heading mb-4'>Play</h2>
                 <div class="col center dark-bg">
-                    <p class='aside-text p-3 position-relative'>Enter your Steam ID here to summon some games from the
+                    <p class='aside-text p-3 position-relative' id='id-info-text'>Enter your Steam ID here to summon some games from the
                         shadowy backlogs of
                         your Steam library!
                         <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"
@@ -79,11 +79,11 @@
                         titles...
                     </p>
                     <input type='text' class='my-3' placeholder='76561198033224422...' id='userID'>
-                    <button class='btn btn-outline-warning my-3' id='summon'>SUMMON</button>
+                    <button class='btn btn-outline-warning my-3' aria-labelledby='id-info-text' id='summon'>SUMMON</button>
                     <p class='border border-warning m-3 mx-auto' id='game-options'>All Games Mode
                         <sup><i class="fa-regular fa-circle-question help-icon" data-bs-toggle="modal"
                                 data-bs-target="#explainAllGamesMode"></i></sup>
-                        <input class='m-3' type='checkbox' id='all-games'>
+                        <input class='m-3' type='checkbox' aria-labelledby='game-options' id='all-games'>
                     </p>
 
                 </div>
