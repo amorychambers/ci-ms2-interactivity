@@ -1,8 +1,8 @@
 const finalGame = {
     appid: 0,
-    outcome: '',
     icon: '',
     newsitems: [],
+    outcome: '',
     playtime: 0,
     title: ''
 };
@@ -15,7 +15,7 @@ function beginNextRound() {
     setComputerTurn();
     runCountdown();
     showComputerTurn();
-    setTimeout(() => {
+    setTimeout(function() {
         handleButton();
     }, 1000);
 }
@@ -43,33 +43,34 @@ function setComputerTurn() {
             break;
         case 5:
             game.thisTurn = array;
-    };
-};
+            break;
+    }
+}
 
 //This function runs a three second countdown before the round begins
 function runCountdown() {
-    $('#counter').show()
-    $('#counter').html('3')
-    setTimeout(() => {
-        $('#counter').html('2')
+    $('#counter').show();
+    $('#counter').html('3');
+    setTimeout(function() {
+        $('#counter').html('2');
     }, 1000);
-    setTimeout(() => {
-        $('#counter').html('1')
+    setTimeout(function() {
+        $('#counter').html('1');
     }, 2000);
-    setTimeout(() => {
-        $('#counter').html('GO!')
+    setTimeout(function() {
+        $('#counter').html('GO!');
     }, 3000);
-    setTimeout(() => {
-        $('#counter').hide()
+    setTimeout(function() {
+        $('#counter').hide();
     }, 3500);
-};
+}
 
 //This function waits for the countdown to finish and then loops over each game in the game.thisTurn array to reveal each one in sequence. It displays a message to the user and then moves the screen to the player board
 function showComputerTurn() {
     let turnTime = 4500 + ((game.thisTurn.length - 1) * 1500);
     let yourTurn = turnTime + 800;
     let snapToPlayerCards = turnTime + 1500;
-    setTimeout(() => {
+    setTimeout(function() {
         for (let i = 0; i < game.thisTurn.length; i++) {
             revealGame(i);
         }

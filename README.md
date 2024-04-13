@@ -344,7 +344,7 @@ No errors listed
 
 setup.js - One warning listed for use of a for...of loop on line 107, which I have decided is the clearest and most efficient iteration to use 
 
-game.js - 
+game.js - One warning listed for use of a for loop on line 74, which I have again decided is the clearest and most efficient iteration to use 
 
 
 ### Accessibility
