@@ -22,7 +22,7 @@ function sendMail(form) {
         </div>
         <div class='text-start'>
         <label for='message'>Message</label>
-        <input type='textarea' id='message' name='message' value=${form.message.value}>
+        <input type='text' id='message' name='message' value=${form.message.value}>
         <div>`;
         document.getElementById('contact-form').insertAdjacentElement('afterend', errorMessage);
         $('#contact-form').fadeOut(1500);

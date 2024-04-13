@@ -45,8 +45,7 @@ footer a {
 /* -------------------- Homepage -------------------- */
 
 
-input[type='text'],
-input[type='textarea'] {
+input[type='text'] {
     display: block;
     width: 100%;
 }
