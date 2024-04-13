@@ -315,7 +315,13 @@ User stories: 8
 
 Validated with the W3C Markup Validation Service
 
+[index.html]()
 
+The validator here lists several errors for the homepage that are related to elements being present on the page before they are populated with data provided by the Steam Web API. As part of the validation, I have checked each error listed and confirmed it is due to the game elements present and not yet visible on the page that will be transitioned to visible with the correct data and attributes once the game has begun. The error related to the presence of two 'main' elements on the page states that a document must not include more than one visible main element, which is the case at all times when using the site. I am therefore confident to consider the page validated.
+
+[contact.html]()
+
+[privacy.html]()
 
 
 ### CSS Validation

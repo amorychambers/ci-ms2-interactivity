@@ -131,11 +131,9 @@ function disablePlayerCards() {
 //This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
 function handleButton() {
     if ($('#start').attr('data-disabled') == 'false') {
-        $('#start').addClass('disabled').attr('data-disabled', 'true').html('NEXT ROUND');
-        $('#focus').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1' });
+        $('#start').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1', 'data-disabled': 'true' }).html('NEXT ROUND');
     } else {
-        $('#start').removeClass('disabled').attr('data-disabled', 'false');
-        $('#focus').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1' });
+        $('#start').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1', 'data-disabled': 'false' });
         $('#start').one('click', beginNextRound)
     };
 };

@@ -135,11 +135,6 @@ form input {
     margin-bottom: 0;
 }
 
-button a {
-    color: #ffc107;
-    text-decoration: none;
-}
-
 .disabled {
     pointer-events: none;
 }
