@@ -9,10 +9,10 @@ const document = new JSDOM(fileContents).window.document;
 
 const game = {
     allGamesMode: false,
-    currentScore: 0,
     computerTurn: true,
-    newSequence: [],
+    currentScore: 0,
     mostPlayedGame: {},
+    newSequence: [],
     playerMoves: [],
     randomGames: [],
     steamLibrary: [],

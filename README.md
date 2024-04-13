@@ -342,6 +342,10 @@ No errors listed
 
 ### JavaScript Validation
 
+setup.js - One warning listed for use of a for...of loop on line 107, which I have decided is the clearest and most efficient iteration to use 
+
+game.js - 
+
 
 ### Accessibility
 

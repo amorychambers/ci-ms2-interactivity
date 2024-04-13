@@ -1,13 +1,13 @@
 const finalGame = {
-    outcome: '',
     appid: 0,
+    outcome: '',
     icon: '',
-    title: '',
-    playtime: 0,
     newsitems: [],
+    playtime: 0,
+    title: ''
 };
 
-$('#start').one('click', beginNextRound)
+$('#start').one('click', beginNextRound);
 
 //This function calls all the necessary functions to set up and run the next turn
 function beginNextRound() {
@@ -18,12 +18,12 @@ function beginNextRound() {
     setTimeout(() => {
         handleButton();
     }, 1000);
-};
+}
 
 function updateTurn() {
     game.currentScore += 1;
     $('#current-score').html(game.currentScore);
-};
+}
 
 //This function changes the length of the sequence over the five rounds of the game
 function setComputerTurn() {
@@ -156,7 +156,7 @@ function playerSelect() {
     };
 };
 
-//This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions 
+//This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions
 function checkIfCorrect() {
     if (game.thisTurn.toString() == game.playerMoves.toString()) {
         if (game.currentScore < 5) {
@@ -415,7 +415,7 @@ function addModal() {
                         <a href=${finalGame.newsitems[0].url} target='_blank'>${finalGame.newsitems[0].title}</a>
                         <p>${finalGame.newsitems[0].contents}</p>
                     </div>
-                 </div>   
+                 </div>
                 </div>
                 </div>
                 </div>
