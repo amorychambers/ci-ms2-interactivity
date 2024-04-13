@@ -288,15 +288,26 @@ User stories: 1, 2, 3
 - Makes the relationship between the site and the service provided by Valve and Steam as clear as possible
 - Linked at the bottom of each page of the website
 
+![Privacy policy](docs/features/privacy.png)
 
-
+User stories: 5, 19
 
 ### Contact Form
 
+- Simple contact form with clear labels and information, allowing the user to get in touch via email using EmailJS
+- All fields validated
 
+![Contact form](docs/features/contact.png)
+
+User stories: 7
 
 ### 404 Error
 
+- Custom error page to allow the user to navigate back to the homepage or contact page without using browser buttons
+
+![404 page](docs/features/404.png)
+
+User stories: 8
 
 ## Testing
 
