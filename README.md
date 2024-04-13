@@ -164,16 +164,18 @@ I used Node.js in developing this project for two reasons; firstly, I wanted to 
 I used Express.js to make server-side calls to the Steam Web API
 
 [Jest](https://jestjs.io/)
-I used Jest as a testing suite when developing the above-mentioned data elements of the game
+I used Jest as a testing suite when developing the above-mentioned data resourcing elements of the game
 
 [jQuery](https://jquery.com/)
-
+During development I decided to include the jQuery library to standardise the animations and transitions between different elements of the game. This was largely for the usage of the fadeIn and fadeOut methods which create a consistent transition animation, as opposed to using different CSS transition properties for each element that changes during the game. Additionally, I then used other jQuery methods in looping over arrays of elements that required simple animations and to create cleaner, shorter, more efficient code for some of the user interactions with the game cards.
 
 [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
 [Visual Studio Code](https://code.visualstudio.com/)
 
 [Git](github.com)
+
+[Heroku](heroku.com)
 
 [Google Fonts](https://fonts.google.com/)
 
@@ -182,10 +184,6 @@ I used Jest as a testing suite when developing the above-mentioned data elements
 [Obsidian](https://obsidian.md/)
 
 [Pexels](https://www.pexels.com/)
-
-[Imagemin](https://github.com/imagemin/imagemin-cli)
-
-[cwebp Encoder](https://developers.google.com/speed/webp/docs/cwebp)
 
 [Font Awesome](https://fontawesome.com/)
 
@@ -208,15 +206,40 @@ I used Jest as a testing suite when developing the above-mentioned data elements
 
 ### Header and Navigation
 
+- The navigation bar is present at the top of every page to allow intuitive and easy navigation between the two main pages
+- The stylised header logo expands to include a subheading on larger screen sizes, creating a more balanced look
+- The navbar collapses into a convenient hamburger menu on smaller screen sizes
 
+![Desktop header](docs/features/header-desktop.png)
+
+![Mobile header](docs/features/header-mobile.png)
+
+User stories: 8, 15
 
 ### Landing Page
 
+- Introduction text that explains what the game is
+- 'Play' section that invites the user to personalise the experience by inputting their Steam ID
+- 'All Games Mode' section to tailor the experience to the user's choice
+- 'Summon' button to start a new game and transition the page to the ready to play state
 
-### Ethos Images
+![Desktop landing page](docs/features/landing-page-desktop.png)
+
+![Mobile landing page](docs/features/landing-page-mobile.png)
+
+User stories: 1, 3, 4, 9, 11, 
+
+### Info modals
+
+- Info modal with Help icon to explain what the Steam ID is for the user input and how it can be found
+- Info modal with Help icon to explain what All Games Mode is and how it differs from the regular game
+
+![Steam ID info modal](docs/features/id-modal.png)
+
+![All Games Mode info modal](docs/features/all-games-modal.png)
 
 
-### Visiting Information
+### Game board
 
 
 ### Map
