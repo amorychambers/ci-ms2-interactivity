@@ -135,6 +135,11 @@ form input {
     margin-bottom: 0;
 }
 
+#focus {
+    color: #ffc107;
+    text-decoration: none;
+}
+
 .disabled {
     pointer-events: none;
 }
