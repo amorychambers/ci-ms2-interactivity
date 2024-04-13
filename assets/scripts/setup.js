@@ -160,8 +160,8 @@ function createCardImages(array) {
         let gameID = '#game' + (Number(i) + 1);
         let cardID = '#card' + (Number(i) + 1);
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
-        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0, 'data-game-id': array[i].appid }).css('opacity', 0).on('error', backupCard);
-        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1 }).on('error', backupCard);
+        $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0, 'data-game-id': array[i].appid, 'alt': 'Game cover art' }).css('opacity', 0).on('error', backupCard);
+        $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1, 'alt': 'Game cover art' }).on('error', backupCard);
     };
     createPlayerCards()
 };
@@ -177,7 +177,7 @@ function backupCard() {
 
         $(this).parent().html(`
         <img class='card-img-top'
-        src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} style='opacity: ${transparencyToggle}'>
+        src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} alt='Game cover art' style='opacity: ${transparencyToggle}'>
         <div class="card-body">
         <h5 class='card-title' data-heading-id=${appID} style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`)
