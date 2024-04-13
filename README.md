@@ -385,6 +385,12 @@ privacy.html
 
 ### Compatibility 
 
+The website was tested and proved fully functional on the following devices;
+
+- Macbook Pro
+- Windows 10 PC
+- iPhone 13
+
 
 ### Testing User Stories
 

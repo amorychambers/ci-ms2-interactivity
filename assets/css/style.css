@@ -99,6 +99,7 @@ form input {
     min-height: 60%;
     margin: 10px;
     padding: 10px;
+    align-items: flex-start;
 }
 
 .card-body {
