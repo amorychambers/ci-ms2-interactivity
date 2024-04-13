@@ -227,7 +227,7 @@ User stories: 8, 15
 
 ![Mobile landing page](docs/features/landing-page-mobile.png)
 
-User stories: 1, 3, 4, 9, 11, 
+User stories: 1, 3, 4, 9, 11, 17
 
 ### Info modals
 
@@ -238,23 +238,56 @@ User stories: 1, 3, 4, 9, 11,
 
 ![All Games Mode info modal](docs/features/all-games-modal.png)
 
+User stories: 2, 3, 4
+
 
 ### Game board
 
+- Clear separation of the section that displays the games and the section where the player makes their choices
+- Simple visual design to focus on the gameplay elements
+- Clear JavaScript functions to prevent incorrect player input and to ensure the games runs smoothly regardless of user error; player input is disabled whenever innappropriate, is clearly highlighted by animations that lighten the card on hover and change the background upon selection, and only allows for the correct sequence length
+- A countdown timer to focus attention on the board before the sequence begins
+- Window scrolls to the appropriate section for viewing the sequence and for making player selections, further informing and guiding user input
+- Light up animation draws user attention to the Next Round button when it is activated and ready to start the next round
+- Current Score section that is automatically updated after each round to show how far the game has progressed
 
-### Map
+![Countdown and scroll animation after first round](docs/features/countdown.gif)
 
+![Player input animation](docs/features/player-input.gif)
 
-### Footer
+User stories: 4, 6, 9, 13, 16, 18
 
+### End Screen
 
-### Tea Menu
+- Customised end screen for player success and player failure
+- Simple animations that play upon the end of the game
+- On failure, automatically displays the next game they should have chosen in the sequence with cover art, title, and current total playtime
+- On success, automatically displays the player's most played game with cover art, title, and current total playtime
+- The most recent news item for the game displayed is listed beneath the game, providing a direct link to the Steam community page where the news is hosted
+- A custom button to display the defeat or success modal message again once the player has clicked away
+- A new game button that restarts the game ready to play again with new games
 
+![End screen on player failure](docs/features/end-screen.gif)
 
-### Upcoming Events
+![New game button](docs/features/new-game.gif)
 
+User stories: 6, 10, 12, 13, 14, 18
 
-### Past Events
+### Game information  
+
+- Clear, easy-to-read description of the gameplay
+- Direct and simple requirements list to play the game with user's own Steam account data
+
+![Game information](docs/features/game-info.png)
+
+User stories: 1, 2, 3
+
+### Privacy Policy
+
+- Clear description of how the game works, how the game uses the Steam Web API, and how the data accessed is handled by the application
+- Makes the relationship between the site and the service provided by Valve and Steam as clear as possible
+- Linked at the bottom of each page of the website
+
 
 
 
