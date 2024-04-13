@@ -351,6 +351,13 @@ email.js - Fifteen warnings listed, which all relate to JSLint not recognising t
 
 ### Accessibility
 
+Validated with the WAVE Web Accessibility Evaluation Tools
+
+[index.html](https://wave.webaim.org/report#/https://lost-in-library-da89e4798031.herokuapp.com/index.html)
+
+The accessibility tool lists nine errors on the homepage. As detailed in the HTML validation section, these are all due to empty img and heading elements that are all hidden on the page before the transition to the game screen, and which are all subsequently populated and labelled with the appropriate attributes. As these are nominal errors only, I have decided no further revisions are necessary.
+
+[contact.html]()
 
 
 

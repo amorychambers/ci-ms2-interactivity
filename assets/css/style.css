@@ -86,6 +86,10 @@ form input {
     min-height: 12vh;
 }
 
+#contact-submit {
+    color: #0BDA51;
+}
+
 
 /* -------------------- Game -------------------- */
 
