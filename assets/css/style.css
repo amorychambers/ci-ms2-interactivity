@@ -135,7 +135,7 @@ form input {
     margin-bottom: 0;
 }
 
-#focus {
+button a {
     color: #ffc107;
     text-decoration: none;
 }

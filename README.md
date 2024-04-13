@@ -313,6 +313,10 @@ User stories: 8
 
 ### HTML Validation
 
+Validated with the W3C Markup Validation Service
+
+
+
 
 ### CSS Validation
 
