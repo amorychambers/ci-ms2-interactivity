@@ -2,10 +2,10 @@
 
 const api = 'EC249E704C9C50C5ACBDF149A4A180E5'
 
-var express = require('express');
-var app = express();
-var request = require('request');
-var path = require('path');
+const express = require('express');
+const app = express();
+const request = require('request');
+const path = require('path');
 
 // Code snippet to set up application to work on a deployed Heroku app taken from Heroku Docs, linked in readme
 app.use(express.static(path.join(__dirname)));
@@ -24,11 +24,11 @@ app.use(function(req, res, next) {
 
 
 app.get('/getlibrary', function(req, res){
-    var qParams = [];
-    for (var p in req.query) {
+    const qParams = [];
+    for (let p in req.query) {
         qParams.push({'name': p, 'value': req.query[p]})
     }
-    var url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${api}&steamid=${qParams[0].name}&include_appinfo=true&format=json`;
+    const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${api}&steamid=${qParams[0].name}&include_appinfo=true&format=json`;
     request(url, function(err, response, body){
         if (!err && response.statusCode < 400) {
             console.log(body);
@@ -38,11 +38,11 @@ app.get('/getlibrary', function(req, res){
 });
 
 app.get('/getnews', function(req, res) {
-	var qParams = [];
-	for (var p in req.query) {
+	const qParams = [];
+	for (let p in req.query) {
 		qParams.push({'name':p, 'value':req.query[p]})
 	}
-	var url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${qParams[0].name}&count=3&maxlength=300&format=json`;
+	const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=${qParams[0].name}&count=3&maxlength=300&format=json`;
 	request(url, function(err, response, body) {
 		if(!err && response.statusCode < 400) {
 			console.log(body);

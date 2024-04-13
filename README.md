@@ -342,9 +342,11 @@ No errors listed
 
 ### JavaScript Validation
 
-setup.js - One warning listed for use of a for...of loop on line 107, which I have decided is the clearest and most efficient iteration to use 
+setup.js - One warning listed for use of a for...of loop on line 107, which I have decided is the clearest and most efficient iteration to use.
 
-game.js - One warning listed for use of a for loop on line 74, which I have again decided is the clearest and most efficient iteration to use 
+game.js - One warning listed for use of a for loop on line 74, which I have again decided is the clearest and most efficient iteration to use.
+
+email.js - Fifteen warnings listed, which all relate to JSLint not recognising the use of the jQuery '$' selector, and flagging the emailjs object as undeclared. I have decided no further revisions are necessary on these two matters.
 
 
 ### Accessibility
