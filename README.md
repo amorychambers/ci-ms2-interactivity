@@ -391,6 +391,18 @@ The website was tested and proved fully functional on the following devices;
 - Windows 10 PC
 - iPhone 13
 
+The website was tested and proved fully functional on the following browsers;
+
+- Google Chrome
+- Safari
+- Firefox
+- Opera
+- Microsoft Edge
+
+However, there is a minor bug in the desktop version of the Safari browser that causes the cover art images to stretch and extend the containers further than needed. I have added the -webkit-max-logical-height property to the CSS file to account somewhat for this bug, and this property minimises the additional extra padding on the card containers, though it is still noticeable. This does not affect the function of the website, only the visual design. 
+
+Additionally, it has been tested on all device options using Google Chrome Developer Tools and proved responsive on all device sizes. 
+
 
 ### Testing User Stories
 
