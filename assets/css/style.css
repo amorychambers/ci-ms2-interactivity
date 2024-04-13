@@ -107,6 +107,10 @@ form input {
     text-align: center;
 }
 
+.card img {
+    -webkit-max-logical-height: -webkit-fill-available;
+}
+
 .card-img-top {
     object-fit: cover;
 }
