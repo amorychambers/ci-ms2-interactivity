@@ -8,15 +8,15 @@ const document = new JSDOM(fileContents).window.document;
 // At the bottom of the file, there is a line of module.exports to pass all the functions to the test suite in Node. The comment notation must be removed there as well for the test suite to run.
 
 const game = {
-    steamLibrary: [],
-    randomGames: [],
     newSequence: [],
-    thisTurn: [],
-    playerMoves: [],
-    currentScore: 0,
+    randomGames: [],
     allGamesMode: false,
+    steamLibrary: [],
+    currentScore: 0,
+    playerMoves: [],
     computerTurn: true,
-    mostPlayedGame: {},
+    thisTurn: [],
+    mostPlayedGame: {}
 };
 
 // Main setup function runs when the 'Summon' button is clicked and prepares the page for a new game to start using data from the Steam Web API
@@ -27,7 +27,7 @@ async function setupNewGame() {
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
-};
+}
 
 
 $('#summon').click(setupNewGame);
@@ -36,7 +36,7 @@ $('#userID').on('keydown', function(e) {
     if (e.key == 'Enter') {
         setupNewGame();
     };
-});
+})
 
 let newLibrary = [];
 
@@ -44,10 +44,9 @@ let newLibrary = [];
 function fetchLibrary() {
 
     return new Promise(function (resolve, reject) {
-        
-        var baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getlibrary/?`;
+        let baseURL = `https://lost-in-library-da89e4798031.herokuapp.com/getlibrary/?`;
         let userID;
-        var userInput = document.getElementById('userID').value;
+        let userInput = document.getElementById('userID').value;
         if (typeof(Number(userInput)) == 'number' && userInput > 0) {
             userID = userInput;
         } else if (!userInput) {
@@ -57,9 +56,9 @@ function fetchLibrary() {
             alert("Sorry! That wasn't recognised as a Steam ID, so the game has defaulted to another user's library. Whose library? MINE 😈");
         }
 
-        var newURL = baseURL + userID;
+        let newURL = baseURL + userID;
         
-        var req = new XMLHttpRequest();
+        let req = new XMLHttpRequest();
         req.open('GET', newURL, true);
         // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable after checking the requirements for the game are met
         // Code snippet for the three lines isolating the object for the game with the highest playtime in the games array taken from StackOverflow user Cristian S, linked in README
@@ -68,7 +67,7 @@ function fetchLibrary() {
                 steamData = JSON.parse(req.responseText);
                 if (steamData.response.games.length > 4) {
                     newLibrary = steamData.response.games;
-                    let playtimesArray = newLibrary.map(game => game.playtime_forever);
+                    let playtimesArray = newLibrary.map((game) => game.playtime_forever);
                     let highestPlaytime = Math.max(...playtimesArray);
                     game.mostPlayedGame = newLibrary.filter(game => game.playtime_forever === highestPlaytime)[0];
                     resolve('Success!');
