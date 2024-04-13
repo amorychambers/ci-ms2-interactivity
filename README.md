@@ -357,13 +357,30 @@ Validated with the WAVE Web Accessibility Evaluation Tools
 
 The accessibility tool lists nine errors on the homepage. As detailed in the HTML validation section, these are all due to empty img and heading elements that are all hidden on the page before the transition to the game screen, and which are all subsequently populated and labelled with the appropriate attributes. As these are nominal errors only, I have decided no further revisions are necessary.
 
-[contact.html]()
+[contact.html](https://wave.webaim.org/report#/https://lost-in-library-da89e4798031.herokuapp.com/contact.html)
 
+No errors listed
 
+[privacy.html](https://wave.webaim.org/report#/https://lost-in-library-da89e4798031.herokuapp.com/privacy.html)
+
+No errors listed
+
+[404.html](https://wave.webaim.org/report#/https://lost-in-library-da89e4798031.herokuapp.com/404.html)
+
+No errors listed
 
 ### Performance
 
+Performance testing by Google Lighthouse in Google Chrome Developer Tools
 
+index.html
+![Homepage performance](docs/performance/performance-homepage.png)
+
+contact.html
+![Contact performance](docs/performance/performance-contact.png)
+
+privacy.html
+![Privacy policy performance](docs/performance/performance-privacy.png)
 
 
 ### Compatibility 
