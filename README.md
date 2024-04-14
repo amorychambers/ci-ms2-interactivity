@@ -251,7 +251,7 @@ User stories: 2, 3, 4, 11
 
 ![Player input animation](docs/features/player-input.gif)
 
-User stories: 4, 6, 9, 13, 16, 18
+User stories: 4, 6, 9, 13, 16
 
 ### End Screen
 
@@ -569,37 +569,51 @@ As the site owner, I want to:
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Header and Navigation | Click on page links in navbar from any page | Website navigates to the correct page | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-fifteen.gif">
+</details>
 
 16. Design a fun, simple memory game
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Game Board | Start a new game | Game focuses on board, plays countdown, and displays first sequence on starting round | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-sixteen.gif">
+</details>
 
 17. Tailor the game and website experience to the target demographic
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-seventeen.png">
+</details>
 
 18. Encourage users to have fun, and to explore their unplayed games
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| End Screen | Make the final selection of any game | End screen displays most recent news item from Steam with a convenient link | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-fourteen.gif">
+</details>
 
 19. Aim for as simple an experience as possible and be direct about how the game accesses and uses personal data
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Privacy Policy | Click on Privacy Policy link at the bottom of any page | Loads privacy policy | Works as expected |
 
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-nineteen.png">
+</details>
 
 
 ## Bugs
