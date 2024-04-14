@@ -50,7 +50,7 @@ app.get('/getnews', function(req, res) {
 });
 
 app.get('*', (req, res) => {
-    res.status(404).render('404.html').send(body);
+    res.status(404).sendFile('404.html');
   })
 
 app.listen(app.get('port'), function(){
