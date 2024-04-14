@@ -183,8 +183,6 @@ During development I decided to include the jQuery library to standardise the an
 
 [Obsidian](https://obsidian.md/)
 
-[Pexels](https://www.pexels.com/)
-
 [Font Awesome](https://fontawesome.com/)
 
 [Favicon](https://favicon.io/)
@@ -195,11 +193,9 @@ During development I decided to include the jQuery library to standardise the an
 
 [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 
-[Accessible Color Generator](https://www.learnui.docs/tools/accessible-color-generator.html)
+[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)
 
 [Am I Responsive?](https://ui.dev/amiresponsive)
-
-[WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)
 
 
 ## Features
@@ -408,12 +404,186 @@ Additionally, it has been tested on all device options using Google Chrome Devel
 
 #### First-Time User
 
+As a first-time user, I want to:
 
+1. Understand what the site is offering and why at first glance
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+| Game Information | Scroll to info section on homepage | Presented with About and Requirements for the game | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-one.gif">
+</details>
+
+2. Grasp the rules of the game before starting to play
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Info Modals | Click on Help icons | Modal opens with relevant explanation | Works as expected |
+| Game Information | Scroll to info section on homepage | Presented with About and Requirements for the game | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-two.gif">
+</details>
+
+3. Be able to easily decide what parameters of the game I want to change
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+| Info Modals | Click on Help icons | Modal opens with relevant explanation | Works as expected |
+| Game Information | Scroll to info section on homepage | Presented with About and Requirements for the game | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-two.gif">
+</details>
+
+4. Still be able to play the game if I am not a Steam user or am not seeking a personalised game experience
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+| Info Modals | Click on Help icons | Modal opens with relevant explanation | Works as expected |
+| Game Board | Start a new game | Page transitions to the game board state, ready to play | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-four.gif">
+</details>
+
+5. Know how the game works and how it is processing my personal data
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Privacy Policy | Click on Privacy Policy link at the bottom of any page | Loads privacy policy | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-five.gif">
+</details>
+
+6. Play on whatever device I am using
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Game Board | Start a new game | Page transitions to the game board state, ready to play | Works as expected |
+| End Screen | Make the final selection of any game | End screen modal opens with defeat or success message | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-six.gif">
+</details>
+
+7. Easily contact the creator of the site if I have questions or feedback
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Contact Form | Click on Contact page link in navbar of any page | Opens a functional contact form with info and labels | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-seven.gif">
+</details>
 
 #### Returning User
+As a returning user, I want to:
 
+8. Navigate around the site with ease and clarity
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Header and Navigation | Click on page links in navbar from any page | Website navigates to the correct page | Works as expected |
+| 404 Page | Navigate to a page that doesn't exist | Custom 404 page loads redirecting user to homepage | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-eight.gif">
+</details>
+
+9. Start the game quickly, as I already understand the rules
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+| Game Board | Start a new game | Page transitions to the game board state, ready to play | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-nine.gif">
+</details>
+
+10. Start a new game when the first game is finished
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| End Screen | Make the final selection of any game | End screen offers custom New Game button to restart | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-ten.gif">
+</details>
+
+11. Choose how I want to play the game
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+12. Have a new experience each time I play
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+13. Be surprised by games in my game library that I haven't played
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+14. Be able to easily check out one of those games at the end of the memory game
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
 
 #### Site Owner
+As the site owner, I want to:
+
+15. Create an accessible and responsive website that works well and looks good on a wide range of devices
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+16. Design a fun, simple memory game
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+17. Tailor the game and website experience to the target demographic
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+18. Encourage users to have fun, and to explore their unplayed games
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
+19. Aim for as simple an experience as possible and be direct about how the game accesses and uses personal data
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** |
+| ---- | ---- | ---- | ---- |
+| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
+| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+
 
 
 ## Bugs
@@ -425,9 +595,6 @@ Additionally, it has been tested on all device options using Google Chrome Devel
 - [twilio.com](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment) guide on creating an Express.js application 
 - https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
 - [jestjs.io](https://jestjs.io/docs/) 
-
-
-### Media Content
 
 
 ### External Code
