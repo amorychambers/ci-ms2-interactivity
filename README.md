@@ -128,7 +128,9 @@ I chose two fonts to use on the website; one for bold, attention grabbing headin
 The site consists of three pages and a unique 404 error page. These are navigated between using a navbar at the top of the screen, and a link to the Privacy Policy in the footer of all pages.
 
 1. Homepage - This is the landing page for the user. It explains what the site offers, the rules of the game, and the parameters that can be chosen by the user. It contains several points of user input, an information section that gives a full breakdown of necessary info, and a button that takes the player to a new game. This transition takes place on the homepage, even though it clears the previous content and displays a gameboard. 
+
 2. Contact - This is a contact form allowing the user to get in touch with the site owner, which is then emailed directly to the owner's inbox using EmailJS.
+
 3. Privacy policy - A page detailing the terms of use of the application, how it accesses and uses personal data, and declaring the site's relationship to Valve and to Steam
 
 
@@ -158,15 +160,19 @@ JavaScript
 ### Frameworks and Tools
 
 [Node.js](https://nodejs.org/en)
+
 I used Node.js in developing this project for two reasons; firstly, I wanted to use Test Driven Development when developing the setup.js file which makes a call to the Steam Web API and populates the game with all the necessary data and content for a personalised experience. Secondly, as I discovered during development, the Steam Web API does not accept client-side calls, and so both during development and in deployment I used Node.js with the Express.js web framework to create a small simple server from which to make API calls. 
 
 [Express.js](https://expressjs.com/)
+
 I used Express.js to make server-side calls to the Steam Web API
 
 [Jest](https://jestjs.io/)
+
 I used Jest as a testing suite when developing the above-mentioned data resourcing elements of the game
 
 [jQuery](https://jquery.com/)
+
 During development I decided to include the jQuery library to standardise the animations and transitions between different elements of the game. This was largely for the usage of the fadeIn and fadeOut methods which create a consistent transition animation, as opposed to using different CSS transition properties for each element that changes during the game. Additionally, I then used other jQuery methods in looping over arrays of elements that required simple animations and to create cleaner, shorter, more efficient code for some of the user interactions with the game cards.
 
 [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
