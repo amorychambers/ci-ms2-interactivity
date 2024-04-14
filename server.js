@@ -13,7 +13,6 @@ app.set('port', process.env.PORT || 5500);
 app.set('views', path.join(__dirname));
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('index.html'));
-app.get('/', (req, res) => res.status(404).res.render('404.html'));
 
 // Code for creating a server to make server side CORS passing calls taken from Dan Beyer's How-To-Guide for the Steam Web API on Github, linked in readme. Code snippet represents rest of file, tailored for this application
 app.use(function(req, res, next) {
@@ -50,10 +49,9 @@ app.get('/getnews', function(req, res) {
 	});
 });
 
-app.use(function(req, res, next) {
-    res.status(404);
+app.get('*', (req, res) => {
     res.render('404.html');
-});
+  })
 
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
