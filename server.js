@@ -49,9 +49,9 @@ app.get('/getnews', function(req, res) {
 	});
 });
 
-app.get('*', (req, res) => {
-    res.status(404).sendFile('404.html');
-  })
+app.use((req, res, next) => {
+    res.status(404).sendFile('404.html')
+  });
 
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
