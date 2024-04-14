@@ -51,7 +51,7 @@ app.get('/getnews', function(req, res) {
 
 app.use(function(req, res, next) {
     res.status(404);
-    res.send('404: File Not Found');
+    res.render('404.html');
 });
 
 app.listen(app.get('port'), function(){
