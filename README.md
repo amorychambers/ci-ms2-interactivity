@@ -234,7 +234,7 @@ User stories: 1, 3, 4, 9, 11, 17
 
 ![All Games Mode info modal](docs/features/all-games-modal.png)
 
-User stories: 2, 3, 4
+User stories: 2, 3, 4, 11
 
 
 ### Game board
@@ -522,29 +522,45 @@ As a returning user, I want to:
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Landing Page | Open homepage | Presented with information on the game | Works as expected |
+| Info Modals | Click on Help icons | Modal opens with relevant explanation | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-eleven.gif">
+</details>
 
 12. Have a new experience each time I play
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Game Board | Start a new game | A new selection of games each time you play a new game | Works as expected |
+| End Screen | Make the final selection of any game | New Game button selects different games and restarts | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-twelve.gif">
+</details>
 
 13. Be surprised by games in my game library that I haven't played
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| Game Board | Start a new game | The game selects unplayed games only by default | Works as expected |
+| End Screen | Make the final selection of any game | On failure end screen displays game info and playtime | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-thirteen.gif">
+</details>
 
 14. Be able to easily check out one of those games at the end of the memory game
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
-| Ethos Images | Open homepage | Presented with text and images conveying intended experience | Works as expected |
-| Tea Menu | Click on Our Teas page in the navigation bar | Browse full menu of products the business offers | Works as expected |
+| End Screen | Make the final selection of any game | End screen displays most recent news item from Steam with a convenient link | Works as expected |
+
+<details><summary>Screen Capture</summary>
+<img src="docs/user-stories/testing-story-fourteen.gif">
+</details>
+
 
 #### Site Owner
 As the site owner, I want to:
