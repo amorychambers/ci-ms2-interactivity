@@ -497,7 +497,7 @@ As a returning user, I want to:
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 | ---- | ---- | ---- | ---- |
 | Header and Navigation | Click on page links in navbar from any page | Website navigates to the correct page | Works as expected |
-| 404 Page | Navigate to a page that doesn't exist | Custom 404 page loads redirecting user to homepage | Works as expected |
+| 404 Page | Navigate to a page that doesn't exist | Custom 404 page loads redirecting user to homepage |  |
 
 <details><summary>Screen Capture</summary>
 <img src="docs/user-stories/testing-story-eight.gif">
