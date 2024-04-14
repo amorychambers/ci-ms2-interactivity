@@ -49,12 +49,14 @@ app.get('/getnews', function(req, res) {
 	});
 });
 
+app.use(function(req, res, next) {
+    res.status(404);
+    res.send('404: File Not Found');
+});
+
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
 
-app.use(function(req, res, next){
-    res.status(404).render('404.html');
-  });
 
 
