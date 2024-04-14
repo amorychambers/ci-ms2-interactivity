@@ -51,6 +51,7 @@ app.get('/getnews', function(req, res) {
 
 app.get('*', (req, res) => {
     res.render('404.html');
+    res.send(body);
   })
 
 app.listen(app.get('port'), function(){
