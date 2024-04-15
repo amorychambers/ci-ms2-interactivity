@@ -712,6 +712,7 @@ alert(errorMessage);
 }
 fetchLibrary.then(addNewLibrary, throwError);
 ~~~
+</details>
 
 2. During the Test Driven Development part of the project, focusing on the Steam Web API call and how it managed the data, I ran into an issue with tests not being able to complete functions and clear properties for the next text in line, as they overlapped. Overlapping tests were causing the randomGames array to be twice as long as it should be, or were clearing the steamLibrary property before the getList function could run. This was resolved by adding beforeEach and afterEach functions to the test suite.
 
@@ -785,9 +786,89 @@ expect(game.randomGames.length).toBe(4);
 });
 });
 ~~~
-
 </details>
 
+3. In the setupNewGame function, the code to create a new game board was running before the API call had returned the necessary data. To resolve this, I changed the setupNewGame function to run the newGameBoard function first, which uses timeouts to gradually animate the page changing. As this provides a small window of seamless transition space for the API call to run in the background, I then changed the fetchLibrary function next in the list to be an asynchronous function that returns the Promise containing the API call. The old code demonstrates here that I did not have a real grasp of how the async/await keywords interact with a Promise. After studying the concept more on mdn web docs, the new code makes use of a function that returns the Promise that makes the call to the Steam Web API, and the setupNewGame function is now a working asynchronous function that populates the game object with the API data before creating the gameboard.
+
+<details><summary>Old Code</summary>
+
+~~~
+function setupNewGame() {
+    waitForFetchLibrary();
+    getGamesList();
+    newGameBoard();
+    createCardImages(game.randomGames);
+    randomSequence(game.randomGames);
+};
+
+async function waitForFetchLibrary() {
+    const dataReceived = await Promise.resolve('Success');
+}
+
+let fetchLibrary = new Promise(function (resolve, reject) {
+
+    let baseURL = 'http://localhost:5500/getlibrary/?';
+    // let userID = document.getElementById('userID').value;
+    // Using static ID for testing
+    let userID = '76561198033224422'
+    let newURL = baseURL + userID;
+
+    let req = new XMLHttpRequest();
+    req.open('GET', newURL, true);
+    // This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable 
+    req.addEventListener('load', function () {
+        if (this.readyState == 4 && this.status == 200) {
+            steamData = JSON.parse(req.responseText);
+            newLibrary = steamData.response.games;
+            resolve('Success');
+        } else {
+            errorMessage = 'Error type: ' + this.status;
+            reject('Failure')
+        }
+    });
+    req.send();
+});
+~~~
+</details>
+
+<details><summary>New Code</summary>
+
+~~~
+async function setupNewGame() {
+newGameBoard();
+const dataReceived = await fetchLibrary();
+getGamesList();
+createCardImages(game.randomGames);
+randomSequence(game.randomGames);
+};
+
+function fetchLibrary() {
+
+return new Promise(function (resolve, reject) {
+let baseURL = 'http://localhost:5500/getlibrary/?';
+// let userID = document.getElementById('userID').value;
+// Using static ID for testing
+let userID = '76561198033224422'
+let newURL = baseURL + userID;
+let req = new XMLHttpRequest();
+req.open('GET', newURL, true);
+
+// This function isolates the games array from the Steam Web API response and assigns it to the newLibrary global variable
+req.addEventListener('load', function () {
+if (this.readyState == 4 && this.status == 200) {
+steamData = JSON.parse(req.responseText);
+newLibrary = steamData.response.games;
+resolve('Success');
+} else {
+errorMessage = 'Error type: ' + this.status;
+reject('Failure')
+}
+});
+req.send();
+});
+};
+~~~
+</details>
 
 ## Credits
 
