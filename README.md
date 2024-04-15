@@ -713,6 +713,80 @@ alert(errorMessage);
 fetchLibrary.then(addNewLibrary, throwError);
 ~~~
 
+2. During the Test Driven Development part of the project, focusing on the Steam Web API call and how it managed the data, I ran into an issue with tests not being able to complete functions and clear properties for the next text in line, as they overlapped. Overlapping tests were causing the randomGames array to be twice as long as it should be, or were clearing the steamLibrary property before the getList function could run. This was resolved by adding beforeEach and afterEach functions to the test suite.
+
+<details><summary>Old Code</summary>
+
+~~~
+describe('setup.js does not filter for unplayed games only in All Games Mode', () => {
+
+test('getAllGamesList creates a list of any four games to play with in All Games Mode', async () => {
+
+return fetchLibrary.then(() => {
+
+getAllGamesList(game.steamLibrary);
+expect(game.randomGames.length).toBe(4);
+let playtimeList = [];
+
+for (i in game.randomGames) {
+playtimeList.push(game.randomGames[i].playtime_forever);
+};
+
+expect(playtimeList.reduce((acc, curr) => acc + curr)).toBeGreaterThan(0);
+});
+});
+
+test('getAllGamesList does not remove played games in All Games Mode', () => {
+
+return fetchLibrary.then(() => {
+const length = game.steamLibrary.length;
+getAllGamesList(game.steamLibrary);
+expect(game.steamLibrary.length).toBe(length);
+expect(game.steamLibrary.length).toBeGreaterThan(0);
+});
+});
+});
+~~~
+</details>
+
+<details><summary>New Code</summary>
+
+~~~
+describe('setup.js does not filter for unplayed games only in All Games Mode', () => {
+beforeEach(() => {
+
+return fetchLibrary;
+
+});
+
+afterEach(() => {
+
+game.randomGames = [];
+
+});
+
+test('getAllGamesList creates a list of any four games to play with in All Games Mode', () => {
+
+getAllGamesList(game.steamLibrary);
+expect(game.randomGames.length).toBe(4);
+let playtimeList = [];
+for (i in game.randomGames) {
+playtimeList.push(game.randomGames[i].playtime_forever);
+};
+expect(playtimeList.reduce((acc, curr) => acc + curr)).toBeGreaterThan(0);
+});
+
+test('getAllGamesList does not remove played games in All Games Mode',() => {
+const length = game.steamLibrary.length;
+getAllGamesList(game.steamLibrary);
+expect(game.steamLibrary.length).toBe(length);
+expect(game.steamLibrary.length).toBeGreaterThan(0);
+expect(game.randomGames.length).toBe(4);
+});
+});
+~~~
+
+</details>
 
 
 ## Credits
