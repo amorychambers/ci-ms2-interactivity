@@ -870,6 +870,46 @@ req.send();
 ~~~
 </details>
 
+4. During development on the game.js that runs the game after setup, I discovered an issue with the program wherein it could add the same game to the randomGames list twice, creating a duplicate on the game board. I experimented with ways to fix this, and settled on the use of the continue keyword and a conditional within the for loop as the most efficient solution to prevent the same game appearing in the list twice.
+
+<details><summary>Old Code</summary>
+
+~~~
+let count = game.steamLibrary.length;
+
+let randomNums = [];
+
+for (let i = 0; i < 4; i++) {
+randomNums.push(Math.floor(Math.random) * count);
+};
+~~~
+</details>
+
+<details><summary>New Code</summary>
+
+~~~
+let count = game.steamLibrary.length;
+
+let randomNums = [];
+
+for (let i = 0; i < 4; i++) {
+
+let randomIndex = Math.floor(Math.random() * count);
+
+if (randomNums.includes(randomIndex)) {
+
+i--;
+
+continue;
+};
+
+randomNums.push(randomIndex);
+
+};
+~~~
+</details>
+
+
 ## Credits
 
 - [Dan Beyer's](https://danbeyer.github.io/) useful guide on creating server side HTTP calls to the Steam Web API
