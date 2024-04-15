@@ -109,11 +109,11 @@ I've aimed to create as simple and clear a design as I can, in order to make the
 
 ### Colours
 
-I have used a colour scheme that evokes the theming and usage of Steam as a platform, both being familiar background colours for Steam community pages. Additionally, I used some bright and complementary colours for the gameboard page; I chose a bright green colour both to indicate when a player has made a selection by highlighting the background of the image and to evoke success upon correct input; I chose a contrasting pink colour to draw the user's attention more to the next game being displayed in the sequence; I used a complementary red colour to indicate an incorrect input.
+I have used a colour scheme that evokes the theming of Steam as a platform, with familiar background colours for Steam community pages. Additionally, I used some bright and complementary colours for the gameboard page; I chose a bright green colour both to indicate when a player has made a selection by highlighting the background of the image and to evoke success upon correct input; I chose a contrasting pink colour to draw the user's attention more to the next game being displayed in the sequence; I used a complementary red colour to indicate an incorrect input.
 
-Main theme colour: #1b2838
+Main theme colour: <span style='color: #1b2838'>#1b2838</span>
 
-Darker theme colour for contrast: #0c1620
+Darker theme colour for contrast: <span style='color: #0c1620'>#0c1620</span>
 
 ### Fonts
 
@@ -165,11 +165,11 @@ I used Node.js in developing this project for two reasons; firstly, I wanted to 
 
 [Express.js](https://expressjs.com/)
 
-I used Express.js to make server-side calls to the Steam Web API
+I used Express.js to make server-side calls to the Steam Web API, both during development and in the deployed application on Heroku.
 
 [Jest](https://jestjs.io/)
 
-I used Jest as a testing suite when developing the above-mentioned data resourcing elements of the game
+I used Jest as a testing suite when developing the above-mentioned data resourcing elements of the game.
 
 [jQuery](https://jquery.com/)
 
@@ -247,7 +247,7 @@ User stories: 2, 3, 4, 11
 
 - Clear separation of the section that displays the games and the section where the player makes their choices
 - Simple visual design to focus on the gameplay elements
-- Clear JavaScript functions to prevent incorrect player input and to ensure the games runs smoothly regardless of user error; player input is disabled whenever innappropriate, is clearly highlighted by animations that lighten the card on hover and change the background upon selection, and only allows for the correct sequence length
+- Clear JavaScript functions to prevent incorrect player input and to ensure the game runs smoothly regardless of user error; player input is disabled whenever innappropriate, is clearly highlighted by animations that lighten the card on hover and change the background upon selection, and only allows for the correct sequence length
 - A countdown timer to focus attention on the board before the sequence begins
 - Window scrolls to the appropriate section for viewing the sequence and for making player selections, further informing and guiding user input
 - Light up animation draws user attention to the Next Round button when it is activated and ready to start the next round
@@ -319,7 +319,7 @@ Validated with the W3C Markup Validation Service
 
 [index.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Flost-in-library-da89e4798031.herokuapp.com%2F)
 
-The validator here lists several errors for the homepage that are related to elements being present on the page before they are populated with data provided by the Steam Web API. As part of the validation, I have checked each error listed and confirmed it is due to the game elements present and not yet visible on the page that will be transitioned to visible with the correct data and attributes once the game has begun. The error related to the presence of two 'main' elements on the page states that a document must not include more than one visible main element, which is the case at all times when using the site. The errors relating to the missing src and alt attributes are due to the img elements being present but not yet updated with those attributes by the functions that call the Steam Web API and populate the site with data. I am therefore confident to consider the page validated.
+The validator here lists several errors for the homepage that are related to elements being present on the page before they are populated with data provided by the Steam Web API. As part of the validation, I have checked each error listed and confirmed it is due to the game elements present and not yet visible on the page that will be transitioned to visible with the correct data and attributes once the game has begun. The error related to the presence of two 'main' elements on the page states that a document must not include more than one visible main element, which is the case at all times when using the site. The errors relating to the missing src and alt attributes are due to the img elements being present but not yet updated with those attributes by the functions that call the Steam Web API and populate the site with data. When those elements are displayed and no longer hidden, they are then compliant with the standards of accessibility and syntactical accuracy set by the validation service. I am therefore confident to consider the page validated.
 
 [contact.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Flost-in-library-da89e4798031.herokuapp.com%2Fcontact.html)
 
@@ -914,7 +914,6 @@ randomNums.push(randomIndex);
 
 - [Dan Beyer's](https://danbeyer.github.io/) useful guide on creating server side HTTP calls to the Steam Web API
 - [twilio.com](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment) guide on creating an Express.js application 
-- [jestjs.io](https://jestjs.io/docs/) 
 - Stackoverflow user Shog9 for the [suggestion to use :first-child selector in jQuery when looping over array](https://stackoverflow.com/questions/2275702/jquery-first-child-of-this)
 - Stackoverflow user Pointy for highlighting the issue with a for loop I wrote with setTimeout functions, relating to [using separate instances of the index 'i'](https://stackoverflow.com/questions/5226285/settimeout-in-for-loop-does-not-print-consecutive-values)
 
