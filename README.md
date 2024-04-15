@@ -627,6 +627,93 @@ As the site owner, I want to:
 
 ## Bugs
 
+1. The first notable bug I ran into during development was with the getSteamLibrary() function, which uses an express.js server to make a call to the Steam Web API and populate the game object with relevant data. Initially, in both the testing environment and in the browser, the function would complete before the API call had returned the data it needed, leaving the game object blank. As I was developing using TDD at the time and still working in Jest, I experimented there with using a promise instead in order to make the code await the successful retrieval of data from the Steam Web API, and upon promise resolution, then continue with the function that used that data to prepare a new game.
+
+<details><summary>Old Code</summary>
+
+~~~
+function getSteamLibrary() {
+
+document.getElementById('summon').addEventListener('click', () => {
+
+var baseURL = 'http://localhost:5500/getlibrary/?';
+
+// var userID = document.getElementById('userID').value;
+
+// Using static ID for testing
+
+var userID = '76561198033224422'
+
+var newURL = baseURL + userID;
+
+var req = new XMLHttpRequest();
+
+req.open('GET', newURL, true);
+
+req.addEventListener('load', function () {
+if (this.readyState == 4 && this.status == 200) {
+const steamData = JSON.parse(req.responseText);
+game.steamLibrary = steamData.response.games;
+game.steamConnect = true;
+console.log(game.steamLibrary);
+} else {
+console.log('Error type: ' + this.status)
+}
+});
+req.send();
+});
+};
+~~~ 
+</details>
+
+<details><summary>New Code</summary>
+
+~~~
+var newLibrary = '';
+
+var errorMessage = '';
+
+let fetchLibrary = new Promise(function (resolve, reject) {
+
+let baseURL = 'http://localhost:5500/getlibrary/?';
+
+// let userID = document.getElementById('userID').value;
+
+// Using static ID for testing
+
+let userID = '76561198033224422'
+
+let newURL = baseURL + userID;
+
+let req = new XMLHttpRequest();
+
+req.open('GET', newURL, true);
+
+req.addEventListener('load', function () {
+
+if (this.readyState == 4 && this.status == 200) {
+steamData = JSON.parse(req.responseText);
+newLibrary = steamData.response.games;
+resolve('Success');
+} else {
+errorMessage = 'Error type: ' + this.status;
+reject('Failure')
+}
+});
+req.send();
+});
+
+function addNewLibrary() {
+game.steamLibrary = newLibrary;
+}
+
+function throwError(errorMessage) {
+alert(errorMessage);
+}
+fetchLibrary.then(addNewLibrary, throwError);
+~~~
+
+
 
 ## Credits
 
@@ -635,7 +722,6 @@ As the site owner, I want to:
 - [jestjs.io](https://jestjs.io/docs/) 
 - Stackoverflow user Shog9 for the [suggestion to use :first-child selector in jQuery when looping over array](https://stackoverflow.com/questions/2275702/jquery-first-child-of-this)
 - Stackoverflow user Pointy for highlighting the issue with a for loop I wrote with setTimeout functions, relating to [using separate instances of the index 'i'](https://stackoverflow.com/questions/5226285/settimeout-in-for-loop-does-not-print-consecutive-values)
-
 
 
 ### External Code
@@ -670,3 +756,9 @@ To deploy on Heroku:
 
 
 ## Acknowledgements
+
+For their support and advice, I would like to thank a few people who contributed to the completion of this project.
+
+ - My classmates from Coleg Y Cymoedd and Cardiff and Vale College, for their input and optimism
+ - My mentor, Mo Shami, for his excellent advice and support
+ - My class facilitator at Code Institute, Amy Richardson, whose advice and assistance is swift and merciless
