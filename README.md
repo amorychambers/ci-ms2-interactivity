@@ -632,6 +632,9 @@ As the site owner, I want to:
 - [twilio.com](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment) guide on creating an Express.js application 
 - https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
 - [jestjs.io](https://jestjs.io/docs/) 
+- Stackoverflow user Shog9 for the [suggestion to use :first-child selector in jQuery when looping over array](https://stackoverflow.com/questions/2275702/jquery-first-child-of-this)
+- Stackoverflow user Pointy for highlighting the issue with a for loop I wrote with setTimeout functions, relating to [using separate instances of the index 'i'](https://stackoverflow.com/questions/5226285/settimeout-in-for-loop-does-not-print-consecutive-values)
+
 
 
 ### External Code
