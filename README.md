@@ -355,6 +355,8 @@ email.js - Fifteen warnings listed, which all relate to JSLint not recognising t
 
 Validated with the WAVE Web Accessibility Evaluation Tools
 
+All justified text was amended to left-aligned text to adhere to modern standards for better accessibility.
+
 [index.html](https://wave.webaim.org/report#/https://lost-in-library-da89e4798031.herokuapp.com/index.html)
 
 The accessibility tool lists nine errors on the homepage. As detailed in the HTML validation section, these are all due to empty img and heading elements that are all hidden on the page before the transition to the game screen, and which are all subsequently populated and labelled with the appropriate attributes. As these are nominal errors only, I have decided no further revisions are necessary.
@@ -628,9 +630,8 @@ As the site owner, I want to:
 
 ## Credits
 
-- [Dan Beyer](https://danbeyer.github.io/) for a useful guide on creating server side HTTP calls to the Steam Web API
+- [Dan Beyer's](https://danbeyer.github.io/) useful guide on creating server side HTTP calls to the Steam Web API
 - [twilio.com](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-node-js-and-express-development-environment) guide on creating an Express.js application 
-- https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
 - [jestjs.io](https://jestjs.io/docs/) 
 - Stackoverflow user Shog9 for the [suggestion to use :first-child selector in jQuery when looping over array](https://stackoverflow.com/questions/2275702/jquery-first-child-of-this)
 - Stackoverflow user Pointy for highlighting the issue with a for loop I wrote with setTimeout functions, relating to [using separate instances of the index 'i'](https://stackoverflow.com/questions/5226285/settimeout-in-for-loop-does-not-print-consecutive-values)
@@ -646,6 +647,26 @@ As the site owner, I want to:
 - Server code snippet for creating server side HTTP calls to the Steam Web API from [Dan Beyer](https://danbeyer.github.io/steamapi/page2.html)
 
 ## Deployment
+
+The website is deployed on Heroku.
+
+To fork the repository:
+
+1. Navigate to the Github repository [here](https://github.com/amorychambers/ci-ms2-interactivity)
+2. Click on the 'Fork' option towards the top of the page
+
+To deploy on Heroku:
+
+1. Navigate to your [Heroku Dashboard](https://dashboard.heroku.com/apps)
+2. Select the 'New' button in the top right hand side of the screen, and select 'Create New App'
+3. Give the new application a name of your choosing and select your region
+4. Click the 'Create App button'
+5. Select the 'GitHub' option in the Deployment Method section
+6. Sign in with Github
+7. Search for your forked repository and select it once located
+8. Choose automatic or manual deploys
+    1. For automatic deploys, choose the main branch and select Enable Automatic Deloys
+    2. For manual deploys, choose the main branch and select Deploy Branch
 
 
 ## Acknowledgements
