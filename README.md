@@ -139,12 +139,29 @@ The site consists of three pages and a unique 404 error page. These are navigate
 
 Wireframes created in Balsamiq 
 
-<details><summary>Homepage</summary>
+<details><summary>Home</summary>
 <img src="docs/wireframes/mobile-homepage.png">
 <img src="docs/wireframes/tablet-homepage.png">
 <img src="docs/wireframes/desktop-homepage.png">
 </details>
 
+<details><summary>Contact</summary>
+<img src="docs/wireframes/mobile-contact.png">
+<img src="docs/wireframes/tablet-contact.png">
+<img src="docs/wireframes/desktop-contact.png">
+</details>
+
+<details><summary>Privacy</summary>
+<img src="docs/wireframes/mobile-privacy.png">
+<img src="docs/wireframes/tablet-privacy.png">
+<img src="docs/wireframes/desktop-privacy.png">
+</details>
+
+<details><summary>404</summary>
+<img src="docs/wireframes/mobile-404.png">
+<img src="docs/wireframes/tablet-404.png">
+<img src="docs/wireframes/desktop-404.png">
+</details>
 
 
 ## Technologies 
