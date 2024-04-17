@@ -23,7 +23,7 @@ const game = {
 async function setupNewGame() {
     newGameBoard();
     checkForResponse();
-    const dataReceived = await fetchLibrary();
+    await fetchLibrary();
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
@@ -60,7 +60,7 @@ function fetchLibrary() {
         // Code snippet for the three lines isolating the object for the game with the highest playtime in the games array taken from StackOverflow user Cristian S, linked in README
         req.addEventListener('load', function () {
             if (this.status>= 200 && this.status<400) {
-                steamData = JSON.parse(req.responseText);
+                let steamData = JSON.parse(req.responseText);
                 if (steamData.response.games.length > 4) {
                     newLibrary = steamData.response.games;
                     let playtimesArray = newLibrary.map((game) => game.playtime_forever);
@@ -130,7 +130,7 @@ function allGamesModeToggle() {
 
 function randomSequence(array) {
     for (let i = 0; i < 10; i++) {
-        let randomIndex = Math.floor(Math.random() * 4)
+        let randomIndex = Math.floor(Math.random() * 4);
         game.newSequence.push(array[randomIndex].appid);
     };
 };
@@ -158,7 +158,7 @@ function createCardImages(array) {
         $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0, 'data-game-id': array[i].appid, 'alt': 'Game cover art' }).css('opacity', 0).on('error', backupCard);
         $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1, 'alt': 'Game cover art' }).on('error', backupCard);
     };
-    createPlayerCards()
+    createPlayerCards();
 };
 
 // This function replaces the box cover art with a custom card that displays the game's title and icon from the Steam Web API, when the box art does not exist or fails to load
@@ -166,7 +166,7 @@ function backupCard() {
     if ($(this).height() < 50) {
         let title = $(this).attr('data-title');
         let appID = $(this).attr('data-appid');
-        let gameID = $(this).attr('data-game-id')
+        let gameID = $(this).attr('data-game-id');
         let imgURL = $(this).attr('data-icon');
         let transparencyToggle = $(this).attr('data-opacity');
 
@@ -175,7 +175,7 @@ function backupCard() {
         src='https://media.steampowered.com/steamcommunity/public/images/apps/${appID}/${imgURL}.jpg' data-title=${title} data-appid=${appID} data-icon=${imgURL} data-opacity=${transparencyToggle} data-game-id=${gameID} alt='Game cover art' style='opacity: ${transparencyToggle}'>
         <div class="card-body">
         <h5 class='card-title' data-heading-id=${appID} style='opacity: ${transparencyToggle}'>${title}</h5>
-        </div>`)
+        </div>`);
     };
 };
 
@@ -183,8 +183,8 @@ function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         if (game.currentScore > 0) {
-            $(cardID).on('click', playerSelect)
-        }
+            $(cardID).on('click', playerSelect);
+        };
         $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
     };
 };
@@ -192,7 +192,7 @@ function createPlayerCards() {
 function playerSelect() {
     $(this).addClass('clicked');
     setTimeout(() => {
-        $(this).removeClass('clicked')
+        $(this).removeClass('clicked');
     }, 150);
     if (game.computerTurn == false) {
         if (game.playerMoves.length < (game.thisTurn.length - 1)) {
@@ -200,8 +200,6 @@ function playerSelect() {
         } else if (game.playerMoves.length == (game.thisTurn.length - 1)) {
             game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
             game.computerTurn = true;
-            disablePlayerCards();
-            checkIfCorrect();
         };
     };
 };
