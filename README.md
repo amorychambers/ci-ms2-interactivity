@@ -981,4 +981,4 @@ For their support and advice, I would like to thank a few people who contributed
 
  - My classmates from Coleg Y Cymoedd and Cardiff and Vale College, for their input and optimism
  - My mentor, Mo Shami, for his excellent advice and support
- - My class facilitator at Code Institute, Amy Richardson, whose advice and assistance is swift and merciless
+ - My class facilitator at Code Institute, Amy Richardson, whose advice and assistance is swift and unyielding
