@@ -80,17 +80,17 @@ function showComputerTurn() {
         createPlayerCards();
     }, turnTime);
     setTimeout(() => {
-        $('#counter').html('YOUR TURN!')
-        $('#counter').show()
+        $('#counter').html('YOUR TURN!');
+        $('#counter').show();
     }, yourTurn);
     setTimeout(() => {
         let playerCards = document.getElementById('card1');
         let rect = playerCards.getBoundingClientRect();
         window.scrollTo(0, rect.y);
-        $('#counter').hide()
-        $('#counter').html('3')
+        $('#counter').hide();
+        $('#counter').html('3');
     }, snapToPlayerCards);
-};
+}
 
 //This function uses setTimeout functions to briefly display the game that the player has to remember
 function revealGame(index) {
@@ -98,36 +98,36 @@ function revealGame(index) {
     let hideTime = (1000 + (1500 * (index)));
     setTimeout(() => {
         let heading = $(`h5[data-heading-id|=${game.thisTurn[index]}]`)[0];
-        $(heading).css('opacity', '1')
+        $(heading).css('opacity', '1');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '1');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().addClass('attention');
-    }, showTime)
+    }, showTime);
     setTimeout(() => {
         let heading = $(`h5[data-heading-id|=${game.thisTurn[index]}]`)[0];
-        $(heading).css('opacity', '0')
+        $(heading).css('opacity', '0');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).css('opacity', '0');
         $(`img[data-game-id|=${game.thisTurn[index]}]`).parent().removeClass('attention');
     }, hideTime);
-};
+}
 
 // This function sets up the player cards to accept input during the player turn
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         if (game.currentScore > 0) {
-            $(cardID).on('click', playerSelect)
+            $(cardID).on('click', playerSelect);
         }
-        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
-    };
-};
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8'); }, function () { $(cardID).children(':first').css('opacity', '1'); });
+    }
+}
 
 //This function removes the player input functionality during the computer turn
 function disablePlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
-        $(cardID).off('click', playerSelect)
-    };
-};
+        $(cardID).off('click', playerSelect);
+    }
+}
 
 //This function disables the start/next round button so that it cannot be used during the computer turn or player turn, only in between rounds
 function handleButton() {
@@ -135,15 +135,15 @@ function handleButton() {
         $('#start').addClass('disabled').attr({ 'aria-disabled': 'true', 'tabindex': '-1', 'data-disabled': 'true' }).html('NEXT ROUND');
     } else {
         $('#start').removeClass('disabled').attr({ 'aria-disabled': 'false', 'tabindex': '1', 'data-disabled': 'false' });
-        $('#start').one('click', beginNextRound)
-    };
-};
+        $('#start').one('click', beginNextRound);
+    }
+}
 
 //This function provides visual feedback to the player input, and if it is the player's turn, adds the selection to the game.playerMoves array
 function playerSelect() {
     $(this).addClass('clicked');
     setTimeout(() => {
-        $(this).removeClass('clicked')
+        $(this).removeClass('clicked');
     }, 150);
     if (game.computerTurn == false) {
         if (game.playerMoves.length < (game.thisTurn.length - 1)) {
@@ -153,9 +153,9 @@ function playerSelect() {
             game.computerTurn = true;
             disablePlayerCards();
             checkIfCorrect();
-        };
-    };
-};
+        }
+    }
+}
 
 //This function checks if the player input this round matches the sequence that was played at the beginning, and handles success and defeat conditions
 function checkIfCorrect() {
@@ -177,7 +177,7 @@ function checkIfCorrect() {
         playerDefeat();
 
     }
-};
+}
 
 //These functions play a simple animation lighting up the card backgrounds when the player's turn is over. The flashCorrectAnimation also scrolls to the top of the screen and flashes the Next Turn button to communicate it is now active again
 function flashCorrectAnimation() {
@@ -186,40 +186,40 @@ function flashCorrectAnimation() {
             $(i).addClass('clicked');
         }, 250);
         setTimeout(() => {
-            $(i).removeClass('clicked')
+            $(i).removeClass('clicked');
         }, 400);
         setTimeout(() => {
-            $(i).addClass('clicked')
+            $(i).addClass('clicked');
         }, 500);
         setTimeout(() => {
-            $(i).removeClass('clicked')
+            $(i).removeClass('clicked');
         }, 650);
         setTimeout(() => {
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         }, 800);
         setTimeout(() => {
-            $('#start').addClass('active')
+            $('#start').addClass('active');
         }, 1500);
         setTimeout(() => {
-            $('#start').removeClass('active')
+            $('#start').removeClass('active');
         }, 2000);
     }
-};
+}
 
 function flashIncorrectAnimation() {
     for (let i of $('.player-card')) {
         $(i).addClass('wrong');
         setTimeout(() => {
-            $(i).removeClass('wrong')
+            $(i).removeClass('wrong');
         }, 150);
         setTimeout(() => {
-            $(i).addClass('wrong')
+            $(i).addClass('wrong');
         }, 250);
         setTimeout(() => {
-            $(i).removeClass('wrong')
+            $(i).removeClass('wrong');
         }, 400);
     }
-};
+}
 
 //This function picks a final game to show the player at the end of the game. If they win it populates the finalGame object with their most played Steam game; if they lose, it populates the finalGame object with the game they should have clicked next
 function chooseFinalGame() {
@@ -227,21 +227,21 @@ function chooseFinalGame() {
         finalGame.appid = game.mostPlayedGame.appid;
         finalGame.playtime = Math.floor((game.mostPlayedGame.playtime_forever / 60));
         finalGame.title = game.mostPlayedGame.name;
-        finalGame.icon = game.mostPlayedGame.img_icon_url
+        finalGame.icon = game.mostPlayedGame.img_icon_url;
     } else {
         let gameChoices = [];
         for (let i in game.thisTurn) {
             if (game.thisTurn[i] != game.playerMoves[i]) {
                 gameChoices.push(game.thisTurn[i]);
-            };
-        };
+            }
+        }
         finalGame.appid = gameChoices[0];
         let chosenGame = game.randomGames.filter(game => game.appid == finalGame.appid);
         finalGame.playtime = Math.floor((chosenGame[0].playtime_forever / 60));
         finalGame.title = chosenGame[0].name;
         finalGame.icon = chosenGame[0].img_icon_url;
     }
-};
+}
 
 // This function will replace the finalGame image with a backup card if box art does not load or isn't available
 function replaceWithBackup() {
@@ -263,33 +263,33 @@ function replaceWithBackup() {
             </div>`).addClass('attention');
         }
     }
-};
+}
 
 async function playerSuccess() {
     for (let i of $('.game')) {
         $(i).addClass('attention');
         $(i).children(':first').css('opacity', '1');
-    };
+    }
     for (let i of $('.player-card')) {
         $(i).addClass('clicked');
-    };
+    }
     chooseFinalGame();
-    const appDataReceived = await fetchAppNews();
-    addModal()
-};
+    await fetchAppNews();
+    addModal();
+}
 
 async function playerDefeat() {
     for (let i of $('.game')) {
         $(i).addClass('wrong');
         $(i).children(':first').css('opacity', '1');
-    };
+    }
     for (let i of $('.player-card')) {
         $(i).addClass('wrong');
-    };
+    }
     chooseFinalGame();
-    const appDataReceived = await fetchAppNews();
+    await fetchAppNews();
     addModal();
-};
+}
 
 // This promise makes use of an Express.js server to make a server-side call to the Steam Web API. The relevant data it provides is the recent news items for the app ID it accepts. Code snippet for the server call from Dan Beyer's guide, noted in README
 function fetchAppNews() {
@@ -308,13 +308,13 @@ function fetchAppNews() {
                 finalGame.newsitems = appData.appnews.newsitems;
                 resolve('Success');
             } else {
-                errorMessage = 'Error type: ' + this.status;
-                reject('Failure')
+                console.log('Error type: ' + this.status);
+                reject('Failure');
             }
         });
         req.send();
     });
-};
+}
 
 function startAnotherGame() {
     $('.card').removeClass('wrong attention clicked');
@@ -328,7 +328,7 @@ function startAnotherGame() {
     getGamesList();
     createCardImages(game.randomGames);
     randomSequence(game.randomGames);
-};
+}
 
 function clearFinalGame() {
     finalGame.outcome = '';
@@ -337,11 +337,11 @@ function clearFinalGame() {
     finalGame.title = '';
     finalGame.playtime = 0;
     finalGame.newsitems = [];
-};
+}
 
 function addModal() {
     let modal = document.createElement('div');
-    modal.setAttribute('id', 'endgamemodal')
+    modal.setAttribute('id', 'endgamemodal');
     let endButtons = document.getElementById('end-buttons');
     if (finalGame.outcome == 'success') {
         modal.innerHTML = `<button id='message-button' type="button" class='btn btn-outline-success my-3' data-bs-toggle="modal" data-bs-target="#playerSuccess">VICTORY MESSAGE</button>
@@ -429,6 +429,6 @@ function addModal() {
     endButtons.insertAdjacentElement('beforeend', modal);
     $('#message-button').click();
     $('#new-game').show();
-};
+}
 
 $('#new-game').on('click', startAnotherGame);
