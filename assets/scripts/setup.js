@@ -106,8 +106,8 @@ function getGamesList() {
     //Creates a list of random games to play with
     for (let i of randomNums) {
         game.randomGames.push(game.steamLibrary[i]);
-    };
-};
+    }
+}
 
 // This is an event handler to ensure the allGamesMode property of the game object is up to date with user input
 function checkAllGamesMode() {
@@ -115,8 +115,8 @@ function checkAllGamesMode() {
         game.allGamesMode = true;
     } else {
         game.allGamesMode = false;
-    };
-};
+    }
+}
 
 // This determines whether or not the user has selected All Games Mode, and filters for unplayed games only if not
 function allGamesModeToggle() {
@@ -125,15 +125,15 @@ function allGamesModeToggle() {
         game.steamLibrary = newLibrary;
     } else if (game.allGamesMode == false) {
         game.steamLibrary = unplayedGames;
-    };
-};
+    }
+}
 
 function randomSequence(array) {
     for (let i = 0; i < 10; i++) {
         let randomIndex = Math.floor(Math.random() * 4);
         game.newSequence.push(array[randomIndex].appid);
-    };
-};
+    }
+}
 
 function newGameBoard() {
     game.computerTurn = true;
@@ -146,7 +146,7 @@ function newGameBoard() {
     $('#intro').fadeOut(1500);
     $('#info').fadeOut(1500);
     $('#gameboard').delay(1490).fadeIn(1500);
-};
+}
 
 // This function loops through each set of four cards and assigns a src URL to each that should provide Steam's cover art for that game, using the app ID provided by the API.
 // The board images are set to transparent for the game, and I have used a data-type attribute to supply API data to the backupCard function if there is a loading error
@@ -157,9 +157,9 @@ function createCardImages(array) {
         let imageURL = `https://steamcdn-a.akamaihd.net/steam/apps/${array[i].appid}/library_600x900_2x.jpg`;
         $(gameID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 0, 'data-game-id': array[i].appid, 'alt': 'Game cover art' }).css('opacity', 0).on('error', backupCard);
         $(cardID).children(':first').attr({ 'src': imageURL, 'data-title': array[i].name, 'data-appid': array[i].appid, 'data-icon': array[i].img_icon_url, 'data-opacity': 1, 'alt': 'Game cover art' }).on('error', backupCard);
-    };
+    }
     createPlayerCards();
-};
+}
 
 // This function replaces the box cover art with a custom card that displays the game's title and icon from the Steam Web API, when the box art does not exist or fails to load
 function backupCard() {
@@ -176,18 +176,18 @@ function backupCard() {
         <div class="card-body">
         <h5 class='card-title' data-heading-id=${appID} style='opacity: ${transparencyToggle}'>${title}</h5>
         </div>`);
-    };
-};
+    }
+}
 
 function createPlayerCards() {
     for (let i = 0; i < 4; i++) {
         let cardID = '#card' + (Number(i) + 1);
         if (game.currentScore > 0) {
             $(cardID).on('click', playerSelect);
-        };
-        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8') }, function () { $(cardID).children(':first').css('opacity', '1') });
-    };
-};
+        }
+        $(cardID).hover(function () { $(cardID).children(':first').css('opacity', '0.8'); }, function () { $(cardID).children(':first').css('opacity', '1'); });
+    }
+}
 
 function playerSelect() {
     $(this).addClass('clicked');
@@ -200,8 +200,8 @@ function playerSelect() {
         } else if (game.playerMoves.length == (game.thisTurn.length - 1)) {
             game.playerMoves.push(Number($(this).children(':first').attr('data-appid')));
             game.computerTurn = true;
-        };
-    };
-};
+        }
+    }
+}
 
 // module.exports = { game, fetchLibrary, newLibrary, getGamesList, randomSequence };

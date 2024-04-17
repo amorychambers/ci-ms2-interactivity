@@ -214,6 +214,8 @@ During development I decided to include the jQuery library to standardise the an
 
 [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 
+[JSLint](https://www.jslint.com/)
+
 [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 
 [WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)
@@ -360,6 +362,8 @@ Validated with the W3C CSS Validation Service
 No errors listed
 
 ### JavaScript Validation
+
+Validated with JSLint
 
 setup.js - One warning listed for use of a for...of loop on line 107, which I have decided is the clearest and most efficient iteration to use.
 
@@ -956,14 +960,19 @@ To deploy on Heroku:
 
 1. Navigate to your [Heroku Dashboard](https://dashboard.heroku.com/apps)
 2. Select the 'New' button in the top right hand side of the screen, and select 'Create New App'
+![Step Two](docs/deployment/deploy-2.png)
 3. Give the new application a name of your choosing and select your region
 4. Click the 'Create App button'
+![Step four](docs/deployment/deploy-4.png)
 5. Select the 'GitHub' option in the Deployment Method section
+![Step five](docs/deployment/deploy-5.png)
 6. Sign in with Github
-7. Search for your forked repository and select it once located
+7. Search for your forked repository and select the 'Connect' button once located
+![Step seven](docs/deployment/deploy-7.png)
 8. Choose automatic or manual deploys
     1. For automatic deploys, choose the main branch and select Enable Automatic Deloys
     2. For manual deploys, choose the main branch and select Deploy Branch
+![Step eight](docs/deployment/deploy-8.png)
 
 
 ## Acknowledgements
